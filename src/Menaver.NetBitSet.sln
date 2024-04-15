@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Menaver.NetBitSet", "Menaver.NetBitSet\Menaver.NetBitSet.csproj", "{1FA9A519-45A8-47EE-AA99-771DF58DF2CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Menaver.NetBitSet.Standard", "Menaver.NetBitSet.Standard\Menaver.NetBitSet.Standard.csproj", "{03B47793-66B8-4B43-8E6B-07098156649C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Menaver.NetBitSet.Shared", "Menaver.NetBitSet.Shared\Menaver.NetBitSet.Shared.csproj", "{0202E508-D35E-46A1-8781-DE0168AE436E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Menaver.NetBitSet.Core", "Menaver.NetBitSet.Core\Menaver.NetBitSet.Core.csproj", "{F1C3E8CE-D8CB-4CE1-A983-FA9B7A9A07DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Menaver.NetBitSet.Tests", "Menaver.NetBitSet.Tests\Menaver.NetBitSet.Tests.csproj", "{92C96045-E19B-4A56-85D1-7EC6022F7A9A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +17,22 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1FA9A519-45A8-47EE-AA99-771DF58DF2CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1FA9A519-45A8-47EE-AA99-771DF58DF2CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1FA9A519-45A8-47EE-AA99-771DF58DF2CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1FA9A519-45A8-47EE-AA99-771DF58DF2CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03B47793-66B8-4B43-8E6B-07098156649C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03B47793-66B8-4B43-8E6B-07098156649C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03B47793-66B8-4B43-8E6B-07098156649C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03B47793-66B8-4B43-8E6B-07098156649C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0202E508-D35E-46A1-8781-DE0168AE436E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0202E508-D35E-46A1-8781-DE0168AE436E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0202E508-D35E-46A1-8781-DE0168AE436E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0202E508-D35E-46A1-8781-DE0168AE436E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1C3E8CE-D8CB-4CE1-A983-FA9B7A9A07DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1C3E8CE-D8CB-4CE1-A983-FA9B7A9A07DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1C3E8CE-D8CB-4CE1-A983-FA9B7A9A07DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1C3E8CE-D8CB-4CE1-A983-FA9B7A9A07DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92C96045-E19B-4A56-85D1-7EC6022F7A9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92C96045-E19B-4A56-85D1-7EC6022F7A9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92C96045-E19B-4A56-85D1-7EC6022F7A9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92C96045-E19B-4A56-85D1-7EC6022F7A9A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
