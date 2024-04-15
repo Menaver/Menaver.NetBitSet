@@ -1,0 +1,24 @@
+version: 2
+
+registries:
+  nuget-public:
+    type: nuget-feed
+    url: https://api.nuget.org/v3/index.json
+
+updates:
+  - package-ecosystem: 'nuget' # See documentation for possible values
+    directory: '/src' # Location of package manifests
+    registries: '*'
+    schedule:
+      interval: 'daily'
+      time: "10:00"
+      timezone: "UTC"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "Menaver"
+    labels:
+      - "enhancement"
+    ignore: # dependabot will apply the most recent rules, so the catch all is the first one and then any explicity rules after will override it
+      - dependency-name: '*'
+        update-types:
+          ['version-update:semver-patch']
