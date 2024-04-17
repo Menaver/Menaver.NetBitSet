@@ -1,193 +1,350 @@
-﻿using Menaver.NetBitSet.Shared.Extras;
-using Menaver.NetBitSet.Shared.Interfaces;
+﻿using Menaver.NetBitSet.Shared.Interfaces;
+using Menaver.NetBitSet.Shared.Internals;
 
 namespace Menaver.NetBitSet.Shared;
 
 public partial class NetBitSet
 {
-    public void And(int position, bool bit)
+    public void And(ulong position, bool bit)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] &= bit;
     }
 
-    public void And(int position, byte bit)
+    public void And(ulong position, byte bit)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] &= bit.ToBit().ToBool();
     }
 
-    public void And(int position, int bit)
+    public void And(ulong position, int bit)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] &= bit.ToBit().ToBool();
     }
 
-    public void And(int position, double bit)
+    public void And(ulong position, double bit)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] &= bit.ToBit().ToBool();
     }
 
-    public void And(int position, Bit bit)
+    public void And(ulong position, Bit bit)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] &= bit.ToBool();
     }
 
     public void And(INetBitSet bitSet)
     {
-        throw new NotImplementedException();
+        var countA = Count;
+        var countB = bitSet.Count;
+
+        if (countA != countB)
+        {
+            throw new InvalidOperationException($"The lengths do not match. Count A: {countA}. Count B: {countB}.");
+        }
+
+        for (ulong i = 0; i < countA; i++)
+        {
+            this[i] = (this[i].ToBool() & bitSet[i].ToBool()).ToBit();
+        }
     }
 
     public void AndAll(bool bit)
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] &= bit;
+            }
+        }
     }
 
     public void AndAll(byte bit)
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] &= bit.ToBit().ToBool();
+            }
+        }
     }
 
     public void AndAll(int bit)
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] &= bit.ToBit().ToBool();
+            }
+        }
     }
 
     public void AndAll(double bit)
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] &= bit.ToBit().ToBool();
+            }
+        }
     }
 
     public void AndAll(Bit bit)
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] &= bit.ToBool();
+            }
+        }
     }
 
-    public void Or(int position, bool bit)
+    public void Or(ulong position, bool bit)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] |= bit;
     }
 
-    public void Or(int position, byte bit)
+    public void Or(ulong position, byte bit)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] |= bit.ToBit().ToBool();
     }
 
-    public void Or(int position, int bit)
+    public void Or(ulong position, int bit)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] |= bit.ToBit().ToBool();
     }
 
-    public void Or(int position, double bit)
+    public void Or(ulong position, double bit)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] |= bit.ToBit().ToBool();
     }
 
-    public void Or(int position, Bit bit)
+    public void Or(ulong position, Bit bit)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] |= bit.ToBool();
     }
 
     public void Or(INetBitSet bitSet)
     {
-        throw new NotImplementedException();
+        var countA = Count;
+        var countB = bitSet.Count;
+
+        if (countA != countB)
+        {
+            throw new InvalidOperationException($"The lengths do not match. Count A: {countA}. Count B: {countB}.");
+        }
+
+        for (ulong i = 0; i < countA; i++)
+        {
+            this[i] = (this[i].ToBool() | bitSet[i].ToBool()).ToBit();
+        }
     }
 
     public void OrAll(bool bit)
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] |= bit;
+            }
+        }
     }
 
     public void OrAll(byte bit)
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] |= bit.ToBit().ToBool();
+            }
+        }
     }
 
     public void OrAll(int bit)
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] |= bit.ToBit().ToBool();
+            }
+        }
     }
 
     public void OrAll(double bit)
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] |= bit.ToBit().ToBool();
+            }
+        }
     }
 
-    public void OrAll(Bit bitSet)
+    public void OrAll(Bit bit)
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] |= bit.ToBool();
+            }
+        }
     }
 
-    public void Xor(int position, bool bit)
+    public void Xor(ulong position, bool bit)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] |= bit;
     }
 
-    public void Xor(int position, byte bit)
+    public void Xor(ulong position, byte bit)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] |= bit.ToBit().ToBool();
     }
 
-    public void Xor(int position, int bit)
+    public void Xor(ulong position, int bit)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] |= bit.ToBit().ToBool();
     }
 
-    public void Xor(int position, double bit)
+    public void Xor(ulong position, double bit)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] |= bit.ToBit().ToBool();
     }
 
-    public void Xor(int position, Bit bit)
+    public void Xor(ulong position, Bit bit)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] |= bit.ToBool();
     }
 
     public void Xor(INetBitSet bitSet)
     {
-        throw new NotImplementedException();
+        var countA = Count;
+        var countB = bitSet.Count;
+
+        if (countA != countB)
+        {
+            throw new InvalidOperationException($"The lengths do not match. Count A: {countA}. Count B: {countB}.");
+        }
+
+        for (ulong i = 0; i < countA; i++)
+        {
+            this[i] = (this[i].ToBool() ^ bitSet[i].ToBool()).ToBit();
+        }
     }
 
     public void XorAll(bool bit)
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] ^= bit;
+            }
+        }
     }
 
     public void XorAll(byte bit)
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] ^= bit.ToBit().ToBool();
+            }
+        }
     }
 
     public void XorAll(int bit)
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] ^= bit.ToBit().ToBool();
+            }
+        }
     }
 
     public void XorAll(double bit)
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] ^= bit.ToBit().ToBool();
+            }
+        }
     }
 
     public void XorAll(Bit bit)
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] ^= bit.ToBool();
+            }
+        }
     }
 
-    public void Invert(long position)
+    public void Invert(ulong position)
     {
-        throw new NotImplementedException();
+        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        _containers[packIndex][bitIndex] = !_containers[packIndex][bitIndex];
     }
 
     public void InvertAll()
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] = !_containers[i][k];
+            }
+        }
     }
 
     public void SetAll()
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] = true;
+            }
+        }
     }
 
     public void ResetAll()
     {
-        throw new NotImplementedException();
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                _containers[i][k] = false;
+            }
+        }
     }
 
     public void ArithmeticShiftRight(ulong count)

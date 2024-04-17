@@ -26,8 +26,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.Set(newSut);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -48,8 +48,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.Set(str, newWordLength);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -69,8 +69,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.Set(array, newWordLength);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -90,8 +90,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.Set(obj);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -112,8 +112,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.Set(value);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -133,8 +133,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.Set(value);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -154,8 +154,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.Set(value);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -176,8 +176,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.Set(array);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -197,8 +197,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.Set(array);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -218,8 +218,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.Set(array);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -292,8 +292,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.ForceSet(newSut);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -314,8 +314,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.ForceSet(str, newWordLength);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -335,8 +335,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.ForceSet(array, newWordLength);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -356,8 +356,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.ForceSet(obj);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -378,8 +378,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.ForceSet(value);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -399,8 +399,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.ForceSet(value);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -420,8 +420,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.ForceSet(value);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -442,8 +442,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.ForceSet(array);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -463,8 +463,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.ForceSet(array);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));
@@ -484,8 +484,8 @@ public class NetBitSetMethodsSettersTests : TestsBase
         sut.ForceSet(array);
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlocksCount;
-        var bytesCount = sut.BytesCount;
+        var blockCount = sut.BlockCount;
+        var bytesCount = sut.ByteCount;
 
         // assert
         Assert.That(count, Is.EqualTo(exCount));

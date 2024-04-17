@@ -1,4 +1,4 @@
-﻿using Menaver.NetBitSet.Shared.Extras;
+﻿using Menaver.NetBitSet.Shared.Internals;
 
 namespace Menaver.NetBitSet.Shared.Interfaces;
 
@@ -7,11 +7,11 @@ namespace Menaver.NetBitSet.Shared.Interfaces;
 /// </summary>
 public interface INetBitSetBitwise
 {
-    void And(int position, bool bit);
-    void And(int position, byte bit);
-    void And(int position, int bit);
-    void And(int position, double bit);
-    void And(int position, Bit bit);
+    void And(ulong position, bool bit);
+    void And(ulong position, byte bit);
+    void And(ulong position, int bit);
+    void And(ulong position, double bit);
+    void And(ulong position, Bit bit);
     void And(INetBitSet bitSet);
 
     void AndAll(bool bit);
@@ -20,24 +20,24 @@ public interface INetBitSetBitwise
     void AndAll(double bit);
     void AndAll(Bit bit);
 
-    void Or(int position, bool bit);
-    void Or(int position, byte bit);
-    void Or(int position, int bit);
-    void Or(int position, double bit);
-    void Or(int position, Bit bit);
+    void Or(ulong position, bool bit);
+    void Or(ulong position, byte bit);
+    void Or(ulong position, int bit);
+    void Or(ulong position, double bit);
+    void Or(ulong position, Bit bit);
     void Or(INetBitSet bitSet);
 
     void OrAll(bool bit);
     void OrAll(byte bit);
     void OrAll(int bit);
     void OrAll(double bit);
-    void OrAll(Bit bitSet);
+    void OrAll(Bit bit);
 
-    void Xor(int position, bool bit);
-    void Xor(int position, byte bit);
-    void Xor(int position, int bit);
-    void Xor(int position, double bit);
-    void Xor(int position, Bit bit);
+    void Xor(ulong position, bool bit);
+    void Xor(ulong position, byte bit);
+    void Xor(ulong position, int bit);
+    void Xor(ulong position, double bit);
+    void Xor(ulong position, Bit bit);
     void Xor(INetBitSet bitSet);
 
     void XorAll(bool bit);
@@ -46,7 +46,7 @@ public interface INetBitSetBitwise
     void XorAll(double bit);
     void XorAll(Bit bit);
 
-    void Invert(long position);
+    void Invert(ulong position);
     void InvertAll();
 
     void SetAll();

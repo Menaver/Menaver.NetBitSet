@@ -1,6 +1,5 @@
 ﻿using System.Collections;
-using Menaver.NetBitSet.Shared.Converters;
-using Menaver.NetBitSet.Shared.Extras;
+using Menaver.NetBitSet.Shared.Internals;
 
 namespace Menaver.NetBitSet.Shared;
 
@@ -8,25 +7,25 @@ public partial class NetBitSet
 {
     private static Endian _systemEndianness = BitConverter.IsLittleEndian ? Endian.Little : Endian.Big;
 
-    private NetBitSet(BitArray bitArray, WordLength wordLength, Endian endianness)
+    private NetBitSet(BitArray[] bitArray, WordLength wordLength, Endian endianness)
     {
-        _container = bitArray;
+        _containers = bitArray;
         WordLength = (byte)wordLength;
         Endianness = endianness;
     }
 
     public NetBitSet(ulong count, Bit defaultValue)
-        : this(new BitArray((int)count, defaultValue.ToBool()), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayBuilder.BuildBitArrays(count, defaultValue), Extras.WordLength.Eight, _systemEndianness)
     {
     }
 
     public NetBitSet(ulong count, Bit defaultValue, WordLength wordLength)
-        : this(new BitArray((int)count, defaultValue.ToBool()), wordLength, _systemEndianness)
+        : this(BitArrayBuilder.BuildBitArrays(count, defaultValue), wordLength, _systemEndianness)
     {
     }
 
     public NetBitSet(ulong count, Bit defaultValue, WordLength wordLength, Endian endianness)
-        : this(new BitArray((int)count, defaultValue.ToBool()), wordLength, endianness)
+        : this(BitArrayBuilder.BuildBitArrays(count, defaultValue), wordLength, endianness)
     {
     }
 

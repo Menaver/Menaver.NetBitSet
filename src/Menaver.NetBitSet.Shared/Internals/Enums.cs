@@ -1,4 +1,4 @@
-﻿namespace Menaver.NetBitSet.Shared.Extras;
+﻿namespace Menaver.NetBitSet.Shared.Internals;
 
 public enum Bit : byte
 {

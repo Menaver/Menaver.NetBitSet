@@ -1,8 +1,9 @@
 ﻿using System.Collections;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
 using Menaver.NetBitSet.Shared.Interfaces;
 
-namespace Menaver.NetBitSet.Shared.Extras;
+namespace Menaver.NetBitSet.Shared.Internals;
 
 public static class Extensions
 {
@@ -309,41 +310,4 @@ public static class Extensions
     #endregion
 
     #endregion
-
-
-
-    public static bool ToBool(this Bit bit)
-    {
-        return bit == Bit.True;
-    }
-
-    public static string ToBinaryString(this Bit bit)
-    {
-        return bit == Bit.True ? "1" : "0";
-    }
-
-    public static char ToBinaryChar(this Bit bit)
-    {
-        return bit == Bit.True ? '1' : '0';
-    }
-
-    public static Bit ToBit(this bool value)
-    {
-        return value ? Bit.True : Bit.False;
-    }
-
-    public static Bit ToBit(this byte value)
-    {
-        return value == 0 ? Bit.False : Bit.True;
-    }
-
-    public static Bit ToBit(this int value)
-    {
-        return value == 0 ? Bit.False : Bit.True;
-    }
-
-    public static Bit ToBit(this double value, double precision = 0.0000001)
-    {
-        return Math.Abs(value) < precision ? Bit.False : Bit.True;
-    }
 }

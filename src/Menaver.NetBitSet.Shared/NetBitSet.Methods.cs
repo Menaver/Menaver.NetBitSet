@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using Menaver.NetBitSet.Shared.Extras;
+using Menaver.NetBitSet.Shared.Internals;
 
 namespace Menaver.NetBitSet.Shared;
 
@@ -7,177 +7,160 @@ public partial class NetBitSet
 {
     public Bit this[ulong index]
     {
-        get => throw new NotImplementedException();
-        set => throw new NotImplementedException();
+        get
+        {
+            var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(index);
+            return _containers[packIndex][bitIndex].ToBit();
+        }
+        set
+        {
+            var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(index);
+            _containers[packIndex][bitIndex] = value.ToBool();
+        }
     }
 
     public void Resize(ulong newSize)
     {
-        _container.Length = (int)newSize;
+        _containers = BitArrayBuilder.ResizeBitArrays(_containers, newSize);
     }
 
-    public IEnumerator GetEnumerator()
+    IEnumerator IEnumerable.GetEnumerator()
     {
-        throw new NotImplementedException();
+        return GetEnumerator();
     }
 
-    public void CopyTo(Array array, int index)
+    public IEnumerator<Bit> GetEnumerator()
     {
-        throw new NotImplementedException();
+        foreach (var bit in _containers.SelectMany(BitArrayConverter.ConvertToBools))
+        {
+            yield return bit.ToBit();
+        }
     }
-
-    int ICollection.Count { get; }
 
     public object Clone()
     {
-        throw new NotImplementedException();
+        var bitArraysCloned = _containers.Select(x => (BitArray)x.Clone()).ToArray();
+        return new NetBitSet(bitArraysCloned, (WordLength)WordLength, Endianness);
     }
+
+    public override bool Equals(object obj)
+    {
+        if (ReferenceEquals(null, obj)) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != typeof(NetBitSet)) return false;
+
+        return Equals((NetBitSet)obj);
+    }
+
+    private bool Equals(NetBitSet other)
+    {
+        if (WordLength != other.WordLength)
+            return false;
+
+        if (Endianness != other.Endianness)
+            return false;
+
+        if (_containers.Length != other._containers.Length)
+            return false;
+
+        if (Count != other.Count)
+            return false;
+
+        for (var i = 0; i < _containers.Length; i++)
+        {
+            for (var k = 0; k < _containers[i].Count; k++)
+            {
+                if (_containers[i][k] != other._containers[i][k])
+                    return false;
+            }
+        }
+
+        return true;
+    }
+
+    public override int GetHashCode()
+    {
+        return unchecked((_containers.Sum(x => x.GetHashCode()) * 4873)
+                         ^ WordLength.GetHashCode()
+                         ^ Endianness.GetHashCode());
+    }
+
+    public override string ToString()
+    {
+        return BitArrayConverter.ConvertToString(_containers, Endianness);
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
     //public void SetAll()
     //{
-    //    for (var i = 0; i < _container.Length; i++)
-    //        _container[i] = true;
+    //    for (var i = 0; i < _containers.Length; i++)
+    //        _containers[i] = true;
     //}
 
     //public void ResetAll()
     //{
-    //    for (var i = 0; i < _container.Length; i++)
-    //        _container[i] = false;
+    //    for (var i = 0; i < _containers.Length; i++)
+    //        _containers[i] = false;
     //}
 
     //#region IMPLEMENTATIONS & OVERRIDES
 
-    //public override bool Equals(object obj)
-    //{
-    //    if (ReferenceEquals(null, obj)) return false;
-    //    if (ReferenceEquals(this, obj)) return true;
-    //    if (obj.GetType() != typeof(NetBitSet)) return false;
-    //    return Equals((NetBitSet)obj);
-    //}
-
-    //public override int GetHashCode()
-    //{
-    //    return unchecked(((_container != null ? _container.GetHashCode() : 0) * 873) ^ WordLength.GetHashCode());
-    //}
-
-
-    //public int this[int index]
-    //{
-    //    // represents all bits (bools) as numbers (ints): 0 --> false, any other value --> true
-
-    //    get => _container[index] == false ? 0 : 1;
-    //    set => _container[index] = value != 0;
-    //}
-
-
-    //IEnumerator IEnumerable.GetEnumerator()
-    //{
-    //    return GetEnumerator();
-    //}
-
-    //public IEnumerator<int> GetEnumerator()
-    //{
-    //    foreach (bool bit in _container)
-    //        // converting of bools to ints
-    //        yield return bit == false ? 0 : 1;
-    //}
-
-
-    //public void CopyTo(Array array, int index = 0)
-    //{
-    //    _container.CopyTo(array, index);
-    //}
-
-
-    //public object Clone()
-    //{
-    //    return new NetBitSet { _container = (BitArray)_container.Clone(), WordLength = WordLength };
-    //}
-
-    //private bool Equals(NetBitSet other)
-    //{
-    //    if (_container.Count != other._container.Count)
-    //        return false;
-
-    //    for (var i = 0; i < _container.Count; i++)
-    //        if (_container[i] != other._container[i])
-    //            return false;
-
-    //    if (_container.IsReadOnly != other._container.IsReadOnly)
-    //        return false;
-
-    //    if (_container.IsSynchronized != other._container.IsSynchronized)
-    //        return false;
-
-    //    if (WordLength != other.WordLength)
-    //        return false;
-
-    //    return true;
-    //}
 
     //#endregion
 
 
     //#region BITWISE
 
-    //public void And(int position, int value)
-    //{
-    //    // converting bool to int
-    //    var bValue = value != 0;
-    //    _container[position] = _container[position] & bValue;
-    //}
 
     //public void AndAll(int value)
     //{
     //    // converting bool to int
     //    var bValue = value != 0;
-    //    for (var i = 0; i < _container.Count; i++)
-    //        _container[i] = _container[i] & bValue;
+    //    for (var i = 0; i < _containers.Count; i++)
+    //        _containers[i] = _containers[i] & bValue;
     //}
 
 
-    //public void Or(int position, int value)
-    //{
-    //    // converting bool to int
-    //    var bValue = value != 0;
-    //    _container[position] = _container[position] | bValue;
-    //}
+
 
     //public void OrAll(int value)
     //{
     //    // converting bool to int
     //    var bValue = value != 0;
-    //    for (var i = 0; i < _container.Count; i++)
-    //        _container[i] = _container[i] | bValue;
+    //    for (var i = 0; i < _containers.Count; i++)
+    //        _containers[i] = _containers[i] | bValue;
     //}
-
-
-    //public void Xor(int position, int value)
-    //{
-    //    // converting bool to int
-    //    var bValue = value != 0;
-    //    _container[position] = _container[position] ^ bValue;
-    //}
+    
 
     //public void XorAll(int value)
     //{
     //    // converting bool to int
     //    var bValue = value != 0;
-    //    for (var i = 0; i < _container.Count; i++)
-    //        _container[i] = _container[i] ^ bValue;
+    //    for (var i = 0; i < _containers.Count; i++)
+    //        _containers[i] = _containers[i] ^ bValue;
     //}
 
 
     //public void Invert(int position)
     //{
-    //    _container[position] = !_container[position];
+    //    _containers[position] = !_containers[position];
     //}
 
     //public void InvertAll()
     //{
-    //    for (var i = 0; i < _container.Count; i++)
-    //        _container[i] = !_container[i];
+    //    for (var i = 0; i < _containers.Count; i++)
+    //        _containers[i] = !_containers[i];
     //}
 
 
@@ -205,44 +188,7 @@ public partial class NetBitSet
 
     //#endregion
 
-
-    //// generate error message in case of mismatch 
-    //// of word length and required type to convert
-    //private static string GenerateErrorMessage(byte wordLength)
-    //{
-    //    var errorMessage = $"Word length ({wordLength}) does not match to this kind of type. Data type is ";
-
-    //    switch (wordLength)
-    //    {
-    //        case 1:
-    //            errorMessage += "bool (1-bit values)";
-    //            break;
-    //        case 8:
-    //            errorMessage += "byte (8-bit values)";
-    //            break;
-    //        case 32:
-    //            errorMessage += "int (32-bit values)";
-    //            break;
-    //        default:
-    //            errorMessage += "unspecified";
-    //            break;
-    //    }
-
-    //    return errorMessage;
-    //}
-
-
-    //// calculate new size to match of wordLength to required type to convert
-    //private static int GetNewArraySize(int currentBitCount, int wordLength)
-    //{
-    //    var temp = currentBitCount % wordLength;
-
-    //    if (temp == 0)
-    //        // if current bit count in array is in accordance with wordLength
-    //        return currentBitCount;
-    //    // if it is not then expand to accordance
-    //    return currentBitCount + (wordLength - temp);
-    //}
+    
 
 
     //public string ToString(string bytesSeparator = "", Endian endian = Endian.Little)
@@ -251,7 +197,7 @@ public partial class NetBitSet
     //    {
     //        // convert to non-binary string
 
-    //        var bytes = _container.ToByteArray();
+    //        var bytes = _containers.ToByteArray();
 
     //        if (endian == Endian.Big) Array.Reverse(bytes);
 
@@ -274,13 +220,13 @@ public partial class NetBitSet
     //        return new string(chars);
     //    }
 
-    //    return _container.ToBinaryString(bytesSeparator, endian);
+    //    return _containers.ToBinaryString(bytesSeparator, endian);
     //}
 
 
     //public string ToBinaryString(string bytesSeparator = "", Endian endian = Endian.Little)
     //{
-    //    return _container.ToBinaryString(bytesSeparator, endian);
+    //    return _containers.ToBinaryString(bytesSeparator, endian);
     //}
 
 
@@ -290,25 +236,25 @@ public partial class NetBitSet
     //    {
     //        // convert to non-binary char set
 
-    //        var bytes = _container.ToByteArray(endian);
+    //        var bytes = _containers.ToByteArray(endian);
 
     //        if (endian == Endian.Big) Array.Reverse(bytes);
 
     //        return Encoding.Unicode.GetChars(bytes);
     //    }
 
-    //    return _container.ToCharArray(endian);
+    //    return _containers.ToCharArray(endian);
     //}
 
     //public char[] ToBinaryCharArray(Endian endian = Endian.Little)
     //{
-    //    return _container.ToCharArray(endian);
+    //    return _containers.ToCharArray(endian);
     //}
 
 
     //public object ToObject()
     //{
-    //    return _container.ToObject();
+    //    return _containers.ToObject();
     //}
 
 
@@ -316,7 +262,7 @@ public partial class NetBitSet
 
     //public bool ToBool()
     //{
-    //    return _container.ToBool();
+    //    return _containers.ToBool();
     //}
 
     //public byte ToByte()
@@ -326,12 +272,12 @@ public partial class NetBitSet
     //        // note: use temp container to protect current data
 
     //        // resizing to convert to this king of type
-    //        var temp = (BitArray)_container.Clone();
+    //        var temp = (BitArray)_containers.Clone();
     //        temp.Length = GetNewArraySize(temp.Length, 8);
     //        return temp.ToByte();
     //    }
 
-    //    return _container.ToByte();
+    //    return _containers.ToByte();
     //}
 
     //public int ToInt()
@@ -341,18 +287,18 @@ public partial class NetBitSet
     //        // note: use temp container to protect current data
 
     //        // resizing to convert to this king of type
-    //        var temp = (BitArray)_container.Clone();
+    //        var temp = (BitArray)_containers.Clone();
     //        temp.Length = GetNewArraySize(temp.Length, 32);
     //        return temp.ToInt();
     //    }
 
-    //    return _container.ToInt();
+    //    return _containers.ToInt();
     //}
 
 
     //public bool[] ToBoolArray()
     //{
-    //    return _container.ToBoolArray();
+    //    return _containers.ToBoolArray();
     //}
 
     //public byte[] ToByteArray(Endian endian = Endian.Little)
@@ -362,12 +308,12 @@ public partial class NetBitSet
     //        // note: use temp container to protect current data
 
     //        // resizing to convert to this king of type
-    //        var temp = (BitArray)_container.Clone();
+    //        var temp = (BitArray)_containers.Clone();
     //        temp.Length = GetNewArraySize(temp.Length, 8);
     //        return temp.ToByteArray();
     //    }
 
-    //    return _container.ToByteArray(endian);
+    //    return _containers.ToByteArray(endian);
     //}
 
     //public int[] ToIntArray(Endian endian = Endian.Little)
@@ -377,12 +323,12 @@ public partial class NetBitSet
     //        // note: use temp container to protect current data
 
     //        // resizing to convert to this king of type
-    //        var temp = (BitArray)_container.Clone();
+    //        var temp = (BitArray)_containers.Clone();
     //        temp.Length = GetNewArraySize(temp.Length, 32);
     //        return temp.ToIntArray(endian);
     //    }
 
-    //    return _container.ToIntArray(endian);
+    //    return _containers.ToIntArray(endian);
     //}
 
     //#endregion
@@ -396,11 +342,11 @@ public partial class NetBitSet
     //    switch (WordLength)
     //    {
     //        case 8:
-    //            return _container.ToByte();
+    //            return _containers.ToByte();
     //        default:
     //            {
     //                // resizing to convert to byte
-    //                var temp = (BitArray)_container.Clone();
+    //                var temp = (BitArray)_containers.Clone();
     //                temp.Length = 8;
     //                return temp.ToByte();
     //            }
@@ -413,11 +359,11 @@ public partial class NetBitSet
     //    switch (WordLength)
     //    {
     //        case 32:
-    //            return _container.ToInt();
+    //            return _containers.ToInt();
     //        default:
     //            {
     //                // resizing to convert to int
-    //                var temp = (BitArray)_container.Clone();
+    //                var temp = (BitArray)_containers.Clone();
     //                temp.Length = 32;
     //                return temp.ToInt();
     //            }

@@ -190,7 +190,7 @@ public partial class NetBitSet
 
         var result = (NetBitSet)left.Clone();
         for (var i = 0; i < left.Count; i++)
-            result._container[i] = left._container[i] & right._container[i];
+            result._containers[i] = left._containers[i] & right._containers[i];
 
         return result;
     }
@@ -203,7 +203,7 @@ public partial class NetBitSet
 
         var result = (NetBitSet)left.Clone();
         for (var i = 0; i < left.Count; i++)
-            result._container[i] = left._container[i] | right._container[i];
+            result._containers[i] = left._containers[i] | right._containers[i];
 
         return result;
     }
@@ -216,7 +216,7 @@ public partial class NetBitSet
 
         var result = (NetBitSet)left.Clone();
         for (var i = 0; i < left.Count; i++)
-            result._container[i] = left._container[i] ^ right._container[i];
+            result._containers[i] = left._containers[i] ^ right._containers[i];
 
         return result;
     }
@@ -226,7 +226,7 @@ public partial class NetBitSet
     {
         var result = (NetBitSet)obj.Clone();
         for (var i = 0; i < obj.Count; i++)
-            result._container[i] = !obj._container[i];
+            result._containers[i] = !obj._containers[i];
 
         return result;
     }
@@ -242,16 +242,16 @@ public partial class NetBitSet
     // comparing
     public static bool operator <(NetBitSet left, NetBitSet right)
     {
-        if (left._container.Count < right._container.Count) return true;
-        if (left._container.Count > right._container.Count) return false;
+        if (left._containers.Count < right._containers.Count) return true;
+        if (left._containers.Count > right._containers.Count) return false;
 
-        for (var i = 0; i < left._container.Count; i++)
+        for (var i = 0; i < left._containers.Count; i++)
         {
-            if (left._container[i] == right._container[i]) continue; // if (0 == 0 || 1 == 1) -> check next pos
+            if (left._containers[i] == right._containers[i]) continue; // if (0 == 0 || 1 == 1) -> check next pos
 
-            if (left._container[i] && !right._container[i])
+            if (left._containers[i] && !right._containers[i])
                 return false; // if (1 and 0) then (left > right) -> return false
-            if (!left._container[i] && right._container[i])
+            if (!left._containers[i] && right._containers[i])
                 return true; // if (0 and 1) then (left < right) -> return true
         }
 
@@ -261,16 +261,16 @@ public partial class NetBitSet
     // comparing
     public static bool operator >(NetBitSet left, NetBitSet right)
     {
-        if (left._container.Count > right._container.Count) return true;
-        if (left._container.Count < right._container.Count) return false;
+        if (left._containers.Count > right._containers.Count) return true;
+        if (left._containers.Count < right._containers.Count) return false;
 
-        for (var i = 0; i < left._container.Count; i++)
+        for (var i = 0; i < left._containers.Count; i++)
         {
-            if (left._container[i] == right._container[i]) continue; // if (0 == 0 || 1 == 1) -> check next pos
+            if (left._containers[i] == right._containers[i]) continue; // if (0 == 0 || 1 == 1) -> check next pos
 
-            if (left._container[i] && !right._container[i])
+            if (left._containers[i] && !right._containers[i])
                 return true; // if (1 and 0) then (left > right) -> return true
-            if (!left._container[i] && right._container[i])
+            if (!left._containers[i] && right._containers[i])
                 return false; // if (0 and 1) then (left < right) -> return false
         }
 

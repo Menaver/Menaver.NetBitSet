@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using Menaver.NetBitSet.Shared.Extras;
+﻿using Menaver.NetBitSet.Shared.Internals;
 
 namespace Menaver.NetBitSet.Shared.Interfaces;
 
 /// <summary>
 ///     Represents an abstraction of a bit-level data structure.
 /// </summary>
-public interface INetBitSet : INetBitSetBitwise, INetBitSetConvertible, ICollection, ICloneable
+public interface INetBitSet : INetBitSetBitwise, INetBitSetConvertible, IEnumerable<Bit>, ICloneable
 {
     byte WordLength { get; }
 
@@ -14,9 +13,9 @@ public interface INetBitSet : INetBitSetBitwise, INetBitSetConvertible, ICollect
 
     ulong Count { get; }
 
-    ulong BlocksCount { get; }
+    ulong BlockCount { get; }
 
-    double BytesCount { get; }
+    double ByteCount { get; }
 
     Bit this[ulong index] { get; set; }
 

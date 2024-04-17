@@ -1,64 +1,66 @@
-﻿namespace Menaver.NetBitSet.Shared;
+﻿using Menaver.NetBitSet.Shared.Internals;
+
+namespace Menaver.NetBitSet.Shared;
 
 public partial class NetBitSet
 {
     public bool[] ToBools()
     {
-        throw new NotImplementedException();
+        return BitArrayConverter.ConvertToBools(_containers);
     }
 
     public sbyte[] ToSBytes()
     {
-        throw new NotImplementedException();
+        return BitArrayConverter.ConvertToSBytes(_containers);
     }
 
     public byte[] ToBytes()
     {
-        throw new NotImplementedException();
+        return BitArrayConverter.ConvertToBytes(_containers);
     }
 
     public short[] ToShorts()
     {
-        throw new NotImplementedException();
+        return BitArrayConverter.ConvertToShorts(_containers);
     }
 
     public ushort[] ToUShorts()
     {
-        throw new NotImplementedException();
+        return BitArrayConverter.ConvertToUShorts(_containers);
     }
 
     public int[] ToInts()
     {
-        throw new NotImplementedException();
+        return BitArrayConverter.ConvertToInts(_containers);
     }
 
     public uint[] ToUInts()
     {
-        throw new NotImplementedException();
+        return BitArrayConverter.ConvertToUInts(_containers);
     }
 
     public long[] ToLongs()
     {
-        throw new NotImplementedException();
+        return BitArrayConverter.ConvertToLongs(_containers);
     }
 
     public ulong[] ToULongs()
     {
-        throw new NotImplementedException();
+        return BitArrayConverter.ConvertToULongs(_containers);
     }
 
     public double[] ToDoubles()
     {
-        throw new NotImplementedException();
+        return BitArrayConverter.ConvertToDoubles(_containers);
     }
 
     public string[] ToStringsByWord()
     {
-        throw new NotImplementedException();
+        return BitArrayConverter.ConvertToStrings(_containers);
     }
 
     public T ToObject<T>()
     {
-        throw new NotImplementedException();
+        return BitArrayConverter.ConvertToObject<T>(_containers);
     }
 }

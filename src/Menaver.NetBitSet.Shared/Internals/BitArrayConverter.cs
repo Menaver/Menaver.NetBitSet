@@ -1,122 +1,122 @@
 ﻿using System.Collections;
 
-namespace Menaver.NetBitSet.Shared.Converters;
+namespace Menaver.NetBitSet.Shared.Internals;
 
 internal static class BitArrayConverter
 {
     #region To BitArray
 
-    public static BitArray Convert(bool value)
+    public static BitArray[] Convert(bool value)
     {
 
     }
 
-    public static BitArray Convert(sbyte value)
+    public static BitArray[] Convert(sbyte value)
     {
 
     }
 
-    public static BitArray Convert(byte value)
+    public static BitArray[] Convert(byte value)
     {
 
     }
 
-    public static BitArray Convert(short value)
+    public static BitArray[] Convert(short value)
     {
 
     }
 
-    public static BitArray Convert(ushort value)
+    public static BitArray[] Convert(ushort value)
     {
 
     }
 
-    public static BitArray Convert(int value)
+    public static BitArray[] Convert(int value)
     {
 
     }
 
-    public static BitArray Convert(uint value)
+    public static BitArray[] Convert(uint value)
     {
 
     }
 
-    public static BitArray Convert(long value)
+    public static BitArray[] Convert(long value)
     {
 
     }
 
-    public static BitArray Convert(ulong value)
+    public static BitArray[] Convert(ulong value)
     {
 
     }
 
-    public static BitArray Convert(double value)
+    public static BitArray[] Convert(double value)
     {
 
     }
 
-    public static BitArray Convert(string value)
+    public static BitArray[] Convert(string value)
     {
 
     }
 
-    public static BitArray Convert(object obj, Type type)
+    public static BitArray[] Convert(object obj, Type type)
     {
 
     }
 
-    public static BitArray Convert(bool[] value)
+    public static BitArray[] Convert(bool[] value)
     {
 
     }
 
-    public static BitArray Convert(sbyte[] value)
+    public static BitArray[] Convert(sbyte[] value)
     {
 
     }
 
-    public static BitArray Convert(byte[] value)
+    public static BitArray[] Convert(byte[] value)
     {
 
     }
 
-    public static BitArray Convert(short[] value)
+    public static BitArray[] Convert(short[] value)
     {
 
     }
 
-    public static BitArray Convert(ushort[] value)
+    public static BitArray[] Convert(ushort[] value)
     {
 
     }
 
-    public static BitArray Convert(int[] value)
+    public static BitArray[] Convert(int[] value)
     {
 
     }
 
-    public static BitArray Convert(uint[] value)
+    public static BitArray[] Convert(uint[] value)
     {
 
     }
 
-    public static BitArray Convert(long[] value)
+    public static BitArray[] Convert(long[] value)
     {
 
     }
 
-    public static BitArray Convert(ulong[] value)
+    public static BitArray[] Convert(ulong[] value)
     {
 
     }
 
-    public static BitArray Convert(double[] value)
+    public static BitArray[] Convert(double[] value)
     {
 
     }
 
-    public static BitArray Convert(string[] value)
+    public static BitArray[] Convert(string[] value)
     {
 
     }
@@ -125,57 +125,57 @@ internal static class BitArrayConverter
 
     #region From BitArray
 
-    public static bool ConvertToBool(BitArray bitArray)
+    public static bool ConvertToBool(BitArray[] bitArray)
     {
 
     }
 
-    public static sbyte ConvertToSByte(BitArray bitArray)
+    public static sbyte ConvertToSByte(BitArray[] bitArray)
     {
 
     }
 
-    public static byte ConvertToByte(BitArray bitArray)
+    public static byte ConvertToByte(BitArray[] bitArray)
     {
 
     }
 
-    public static short ConvertToShort(BitArray bitArray)
+    public static short ConvertToShort(BitArray[] bitArray)
     {
 
     }
 
-    public static ushort ConvertUShort(BitArray bitArray)
+    public static ushort ConvertUShort(BitArray[] bitArray)
     {
 
     }
 
-    public static int ConvertToInt(BitArray bitArray)
+    public static int ConvertToInt(BitArray[] bitArray)
     {
 
     }
 
-    public static uint ConvertToUInt(BitArray bitArray)
+    public static uint ConvertToUInt(BitArray[] bitArray)
     {
 
     }
 
-    public static long ConvertToLong(BitArray bitArray)
+    public static long ConvertToLong(BitArray[] bitArray)
     {
 
     }
 
-    public static ulong ConvertToULong(BitArray bitArray)
+    public static ulong ConvertToULong(BitArray[] bitArray)
     {
 
     }
 
-    public static double ConvertToDouble(BitArray bitArray)
+    public static double ConvertToDouble(BitArray[] bitArray)
     {
 
     }
 
-    public static string ConvertToString(BitArray bitArray)
+    public static string ConvertToString(BitArray[] bitArray, Endian endianness)
     {
 
     }
