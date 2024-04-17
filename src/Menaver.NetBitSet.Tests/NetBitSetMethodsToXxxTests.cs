@@ -1,4 +1,4 @@
-﻿using Menaver.NetBitSet.Shared.Interfaces;
+﻿using Menaver.NetBitSet.Shared.Extras;
 
 namespace Menaver.NetBitSet.Tests;
 
