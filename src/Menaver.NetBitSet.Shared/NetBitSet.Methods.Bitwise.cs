@@ -349,6 +349,17 @@ public partial class NetBitSet
 
     public void ArithmeticShiftRight(ulong count)
     {
+        //public void ShiftRight(int count, int shiftInValue = 0)
+        //{
+        //    for (var i = 0; i < count; i++)
+        //    {
+        //        for (var j = 0; j < Count - 1; j++)
+        //            this[j] = this[j + 1];
+
+        //        this[Count - 1] = shiftInValue;
+        //    }
+        //}
+
         throw new NotImplementedException();
     }
 
@@ -364,6 +375,17 @@ public partial class NetBitSet
 
     public void ArithmeticShiftLeft(ulong count)
     {
+        //public void ShiftLeft(int count, int shiftInValue = 0)
+        //{
+        //    for (var i = 0; i < count; i++)
+        //    {
+        //        for (var j = Count - 1; j > 0; j--)
+        //            this[j] = this[j - 1];
+
+        //        this[0] = shiftInValue;
+        //    }
+        //}
+
         throw new NotImplementedException();
     }
 

@@ -1,4 +1,5 @@
-﻿using Menaver.NetBitSet.Shared.Internals;
+﻿using Menaver.NetBitSet.Shared;
+using Menaver.NetBitSet.Shared.Internals;
 
 namespace Menaver.NetBitSet.Tests;
 

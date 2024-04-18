@@ -1,21 +1,30 @@
 ﻿using System.Collections;
+using System.Text;
 using Menaver.NetBitSet.Shared.Internals;
+using BitConverter = System.BitConverter;
 
 namespace Menaver.NetBitSet.Shared;
 
 public partial class NetBitSet
 {
     private static Endian _systemEndianness = BitConverter.IsLittleEndian ? Endian.Little : Endian.Big;
+    private static Encoding _defaultSystemEncoding = Encoding.UTF8;
 
     private NetBitSet(BitArray[] bitArray, WordLength wordLength, Endian endianness)
     {
+        if (endianness != _systemEndianness)
+        {
+            bitArray = BitArrayConverter.ReverseBytes(bitArray);
+        }
+
         _containers = bitArray;
-        WordLength = (byte)wordLength;
+        WordLength = wordLength;
         Endianness = endianness;
     }
 
     public NetBitSet(ulong count, Bit defaultValue)
-        : this(BitArrayBuilder.BuildBitArrays(count, defaultValue), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayBuilder.BuildBitArrays(count, defaultValue), Internals.BitConverter.GetBoolMachineWordLength(),
+            _systemEndianness)
     {
     }
 
@@ -30,7 +39,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(bool value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetBoolMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -45,7 +54,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(sbyte value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetByteMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -60,7 +69,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(byte value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetByteMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -75,7 +84,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(short value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetShortMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -90,7 +99,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(ushort value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetShortMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -105,7 +114,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(int value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetIntMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -120,7 +129,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(uint value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetIntMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -135,7 +144,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(long value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetLongMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -150,7 +159,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(ulong value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetLongMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -165,7 +174,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(double value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetDoubleMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -180,37 +189,51 @@ public partial class NetBitSet
     }
 
     public NetBitSet(string value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value, _defaultSystemEncoding),
+            Internals.BitConverter.GetStringMachineWordLength(_defaultSystemEncoding), _systemEndianness)
     {
     }
 
-    public NetBitSet(string value, WordLength wordLength)
-        : this(BitArrayConverter.Convert(value), wordLength, _systemEndianness)
+    public NetBitSet(string value, Encoding encoding)
+        : this(BitArrayConverter.Convert(value, encoding), Internals.BitConverter.GetStringMachineWordLength(encoding),
+            _systemEndianness)
     {
     }
 
-    public NetBitSet(string value, WordLength wordLength, Endian endianness)
-        : this(BitArrayConverter.Convert(value), wordLength, endianness)
+    public NetBitSet(string value, Encoding encoding, WordLength wordLength)
+        : this(BitArrayConverter.Convert(value, encoding), wordLength, _systemEndianness)
     {
     }
 
-    public NetBitSet(object obj, Type type)
-        : this(BitArrayConverter.Convert(obj, type), Extras.WordLength.Eight, _systemEndianness)
+    public NetBitSet(string value, Encoding encoding, WordLength wordLength, Endian endianness)
+        : this(BitArrayConverter.Convert(value, encoding), wordLength, endianness)
     {
     }
 
-    public NetBitSet(object obj, Type type, WordLength wordLength)
-        : this(BitArrayConverter.Convert(obj, type), wordLength, _systemEndianness)
+    public NetBitSet(object obj)
+        : this(BitArrayConverter.Convert(obj, _defaultSystemEncoding),
+            Internals.BitConverter.GetStringMachineWordLength(_defaultSystemEncoding), _systemEndianness)
     {
     }
 
-    public NetBitSet(object obj, Type type, WordLength wordLength, Endian endianness)
-        : this(BitArrayConverter.Convert(obj, type), wordLength, endianness)
+    public NetBitSet(object obj, Encoding encoding)
+        : this(BitArrayConverter.Convert(obj, encoding),
+            Internals.BitConverter.GetStringMachineWordLength(encoding), _systemEndianness)
+    {
+    }
+
+    public NetBitSet(object obj, Encoding encoding, WordLength wordLength)
+        : this(BitArrayConverter.Convert(obj, encoding), wordLength, _systemEndianness)
+    {
+    }
+
+    public NetBitSet(object obj, Encoding encoding, WordLength wordLength, Endian endianness)
+        : this(BitArrayConverter.Convert(obj, encoding), wordLength, endianness)
     {
     }
 
     public NetBitSet(bool[] value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetBoolMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -225,7 +248,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(sbyte[] value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetByteMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -240,7 +263,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(byte[] value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetByteMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -255,7 +278,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(short[] value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetShortMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -270,7 +293,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(ushort[] value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetShortMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -285,7 +308,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(int[] value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetIntMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -300,7 +323,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(uint[] value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetIntMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -315,7 +338,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(long[] value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetLongMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -330,7 +353,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(ulong[] value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetLongMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -345,7 +368,7 @@ public partial class NetBitSet
     }
 
     public NetBitSet(double[] value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(value), Internals.BitConverter.GetDoubleMachineWordLength(), _systemEndianness)
     {
     }
 
@@ -360,17 +383,24 @@ public partial class NetBitSet
     }
 
     public NetBitSet(string[] value)
-        : this(BitArrayConverter.Convert(value), Extras.WordLength.Eight, _systemEndianness)
+        : this(BitArrayConverter.Convert(string.Join(string.Empty, value), _defaultSystemEncoding),
+            Internals.BitConverter.GetStringMachineWordLength(_defaultSystemEncoding), _systemEndianness)
     {
     }
 
-    public NetBitSet(string[] value, WordLength wordLength)
-        : this(BitArrayConverter.Convert(value), wordLength, _systemEndianness)
+    public NetBitSet(string[] value, Encoding encoding)
+        : this(BitArrayConverter.Convert(string.Join(string.Empty, value), encoding), Internals.BitConverter.GetStringMachineWordLength(encoding),
+            _systemEndianness)
     {
     }
 
-    public NetBitSet(string[] value, WordLength wordLength, Endian endianness)
-        : this(BitArrayConverter.Convert(value), wordLength, endianness)
+    public NetBitSet(string[] value, Encoding encoding, WordLength wordLength)
+        : this(BitArrayConverter.Convert(string.Join(string.Empty, value), encoding), wordLength, _systemEndianness)
+    {
+    }
+
+    public NetBitSet(string[] value, Encoding encoding, WordLength wordLength, Endian endianness)
+        : this(BitArrayConverter.Convert(string.Join(string.Empty, value), encoding), wordLength, endianness)
     {
     }
 }

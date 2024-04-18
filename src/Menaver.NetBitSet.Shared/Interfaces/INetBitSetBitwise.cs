@@ -1,6 +1,4 @@
-﻿using Menaver.NetBitSet.Shared.Internals;
-
-namespace Menaver.NetBitSet.Shared.Interfaces;
+﻿namespace Menaver.NetBitSet.Shared.Interfaces;
 
 /// <summary>
 ///     Represents an abstraction of a bitwise-operable data structure.

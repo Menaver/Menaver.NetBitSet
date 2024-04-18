@@ -1,86 +1,58 @@
 ﻿using System.Collections;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using Menaver.NetBitSet.Shared.Interfaces;
 
 namespace Menaver.NetBitSet.Shared.Internals;
 
 public static class Extensions
 {
-    // defines if the input string 
-    // is binary - contains '0' and '1' only
-    public static bool IsBinary(this string str)
-    {
-        return str.All(ch => ch is '0' or '1');
-    }
 
-    // defines if the input array of chars 
-    // is binary - contains '0' and '1' only
-    public static bool IsBinary(this char[] array)
-    {
-        return array.All(ch => ch is '0' or '1');
-    }
 
-    public static BitArray ReverseBytes(this BitArray array)
-    {
-        var bytes = array.ToByteArray();
-        Array.Reverse(bytes);
-        return bytes.ToBitArray();
-    }
 
-    public static int[] ReverseBytes(this int[] values)
-    {
-        var result = new List<int>();
 
-        foreach (var value in values)
-        {
-            var bytes = BitConverter.GetBytes(value);
-            Array.Reverse(bytes);
-            result.Add(BitConverter.ToInt32(bytes, 0));
-        }
 
-        return result.ToArray();
-    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     #region CONVERSIONS
+    
 
-    #region Bool <--> int
-
-    // rule: 0 == false, any other int value == 1
-
-    // note: somewhere in code this methods is not 
-    // called because of lightness of its realization
-
-    public static int ToInt(this bool value)
-    {
-        if (value == false)
-            return 0;
-        return 1;
-    }
-
-    public static bool ToBool(this int value)
-    {
-        if (value == 0)
-            return false;
-        return true;
-    }
-
-    #endregion
-
-
-    #region BitArray <--> NetBitSet
-
-    public static INetBitSet ToNetBitSet(this BitArray array)
-    {
-        return new NetBitSet(array.ToBoolArray());
-    }
-
-    public static BitArray ToBitArray(this INetBitSet obj)
-    {
-        return obj.ToBoolArray().ToBitArray();
-    }
-
-    #endregion
+    
 
 
     #region BitArray <--> base types and arrays
@@ -184,34 +156,6 @@ public static class Extensions
 
     #endregion
 
-
-    #region BitArray <--> object
-
-    // converts object to its equivalent 
-    // bit array, represented by BitArray type
-    public static BitArray ToBitArray(this object obj)
-    {
-        using (var stream = new MemoryStream())
-        {
-            new BinaryFormatter().Serialize(stream, obj);
-            return new BitArray(stream.ToArray());
-        }
-    }
-
-    // converts a BitArray object to its 
-    // equivalent object instance if it's possible
-    public static object ToObject(this BitArray array)
-    {
-        var byteArray = array.ToByteArray();
-        using (var stream = new MemoryStream())
-        {
-            stream.Write(byteArray, 0, byteArray.Length);
-            stream.Position = 0;
-            return new BinaryFormatter().Deserialize(stream);
-        }
-    }
-
-    #endregion
 
 
     #region BitArray <--> binary string and array of chars

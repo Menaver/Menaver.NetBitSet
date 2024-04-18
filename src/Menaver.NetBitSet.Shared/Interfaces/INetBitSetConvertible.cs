@@ -16,7 +16,8 @@ public interface INetBitSetConvertible
     ulong[] ToULongs();
     double[] ToDoubles();
 
-    string[] ToStringsByWord();
+    string ToBinaryString();
+    string[] ToBinaryStringsByWord();
 
     T ToObject<T>();
 }

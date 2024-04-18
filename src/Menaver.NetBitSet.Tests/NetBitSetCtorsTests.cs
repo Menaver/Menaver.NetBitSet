@@ -27,7 +27,7 @@ public class NetBitSetCtorsTests : TestsBase
         // act: get its props
         var count = sut.Count;
         var wordLength = sut.WordLength;
-        var blockCount = sut.BlockCount;
+        var blockCount = sut.WordCount;
         var bytesCount = sut.ByteCount;
 
         // assert: compare props values with expected

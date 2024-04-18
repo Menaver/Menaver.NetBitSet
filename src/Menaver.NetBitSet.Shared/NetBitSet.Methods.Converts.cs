@@ -54,9 +54,14 @@ public partial class NetBitSet
         return BitArrayConverter.ConvertToDoubles(_containers);
     }
 
-    public string[] ToStringsByWord()
+    public string ToBinaryString()
     {
-        return BitArrayConverter.ConvertToStrings(_containers);
+        return BitArrayConverter.ConvertToBinaryString(_containers);
+    }
+
+    public string[] ToBinaryStringsByWord()
+    {
+        return BitArrayConverter.ConvertToBinaryStringsByWord(_containers);
     }
 
     public T ToObject<T>()

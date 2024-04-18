@@ -32,6 +32,29 @@ internal static class BitArrayBuilder
         return bitArrays;
     }
 
+    public static BitArray[] BuildBitArrays(byte[] bytes)
+    {
+        if (bytes.LongLength <= int.MaxValue)
+        {
+            return new BitArray[] { new(bytes) };
+        }
+
+        var (quotient, _) = Math.DivRem((ulong)bytes.LongLength, int.MaxValue);
+
+        var arraysCount = (int)quotient + 1;
+
+        var bitArrays = new BitArray[arraysCount];
+
+        for (var i = 0; i < arraysCount; i++)
+        {
+            var pagedBatch = bytes.Skip(int.MaxValue * i).Take(int.MaxValue).ToArray();
+
+            bitArrays[i] = new BitArray(pagedBatch);
+        }
+
+        return bitArrays;
+    }
+
     public static BitArray[] ResizeBitArrays(BitArray[] bitArrays, ulong newSize)
     {
         var (quotient, remainder) = Math.DivRem(newSize, int.MaxValue);
