@@ -15,47 +15,47 @@ internal static class BitArrayConverter
 
     public static BitArray[] Convert(sbyte value)
     {
-        return new[] { new BitArray(System.BitConverter.GetBytes(value)) };
+        return new[] { new BitArray(BitConverter.GetBytes(value)) };
     }
 
     public static BitArray[] Convert(byte value)
     {
-        return new[] { new BitArray(System.BitConverter.GetBytes(value)) };
+        return new[] { new BitArray(BitConverter.GetBytes(value)) };
     }
 
     public static BitArray[] Convert(short value)
     {
-        return new[] { new BitArray(System.BitConverter.GetBytes(value)) };
+        return new[] { new BitArray(BitConverter.GetBytes(value)) };
     }
 
     public static BitArray[] Convert(ushort value)
     {
-        return new[] { new BitArray(System.BitConverter.GetBytes(value)) };
+        return new[] { new BitArray(BitConverter.GetBytes(value)) };
     }
 
     public static BitArray[] Convert(int value)
     {
-        return new[] { new BitArray(System.BitConverter.GetBytes(value)) };
+        return new[] { new BitArray(BitConverter.GetBytes(value)) };
     }
 
     public static BitArray[] Convert(uint value)
     {
-        return new[] { new BitArray(System.BitConverter.GetBytes(value)) };
+        return new[] { new BitArray(BitConverter.GetBytes(value)) };
     }
 
     public static BitArray[] Convert(long value)
     {
-        return new[] { new BitArray(System.BitConverter.GetBytes(value)) };
+        return new[] { new BitArray(BitConverter.GetBytes(value)) };
     }
 
     public static BitArray[] Convert(ulong value)
     {
-        return new[] { new BitArray(System.BitConverter.GetBytes(value)) };
+        return new[] { new BitArray(BitConverter.GetBytes(value)) };
     }
 
     public static BitArray[] Convert(double value)
     {
-        return new[] { new BitArray(System.BitConverter.GetBytes(value)) };
+        return new[] { new BitArray(BitConverter.GetBytes(value)) };
     }
 
     public static BitArray[] Convert(string value, Encoding encoding)
@@ -73,61 +73,61 @@ internal static class BitArrayConverter
 
     public static BitArray[] Convert(bool[] value)
     {
-        var bytes = value.SelectMany(System.BitConverter.GetBytes).ToArray();
+        var bytes = value.SelectMany(BitConverter.GetBytes).ToArray();
         return BitArrayBuilder.BuildBitArrays(bytes);
     }
 
     public static BitArray[] Convert(sbyte[] value)
     {
-        var bytes = value.SelectMany(x => System.BitConverter.GetBytes(x)).ToArray();
+        var bytes = value.SelectMany(x => BitConverter.GetBytes(x)).ToArray();
         return BitArrayBuilder.BuildBitArrays(bytes);
     }
 
     public static BitArray[] Convert(byte[] value)
     {
-        var bytes = value.SelectMany(x => System.BitConverter.GetBytes(x)).ToArray();
+        var bytes = value.SelectMany(x => BitConverter.GetBytes(x)).ToArray();
         return BitArrayBuilder.BuildBitArrays(bytes);
     }
 
     public static BitArray[] Convert(short[] value)
     {
-        var bytes = value.SelectMany(System.BitConverter.GetBytes).ToArray();
+        var bytes = value.SelectMany(BitConverter.GetBytes).ToArray();
         return BitArrayBuilder.BuildBitArrays(bytes);
     }
 
     public static BitArray[] Convert(ushort[] value)
     {
-        var bytes = value.SelectMany(System.BitConverter.GetBytes).ToArray();
+        var bytes = value.SelectMany(BitConverter.GetBytes).ToArray();
         return BitArrayBuilder.BuildBitArrays(bytes);
     }
 
     public static BitArray[] Convert(int[] value)
     {
-        var bytes = value.SelectMany(System.BitConverter.GetBytes).ToArray();
+        var bytes = value.SelectMany(BitConverter.GetBytes).ToArray();
         return BitArrayBuilder.BuildBitArrays(bytes);
     }
 
     public static BitArray[] Convert(uint[] value)
     {
-        var bytes = value.SelectMany(System.BitConverter.GetBytes).ToArray();
+        var bytes = value.SelectMany(BitConverter.GetBytes).ToArray();
         return BitArrayBuilder.BuildBitArrays(bytes);
     }
 
     public static BitArray[] Convert(long[] value)
     {
-        var bytes = value.SelectMany(System.BitConverter.GetBytes).ToArray();
+        var bytes = value.SelectMany(BitConverter.GetBytes).ToArray();
         return BitArrayBuilder.BuildBitArrays(bytes);
     }
 
     public static BitArray[] Convert(ulong[] value)
     {
-        var bytes = value.SelectMany(System.BitConverter.GetBytes).ToArray();
+        var bytes = value.SelectMany(BitConverter.GetBytes).ToArray();
         return BitArrayBuilder.BuildBitArrays(bytes);
     }
 
     public static BitArray[] Convert(double[] value)
     {
-        var bytes = value.SelectMany(System.BitConverter.GetBytes).ToArray();
+        var bytes = value.SelectMany(BitConverter.GetBytes).ToArray();
         return BitArrayBuilder.BuildBitArrays(bytes);
     }
 
@@ -135,273 +135,154 @@ internal static class BitArrayConverter
 
     #region From BitArray
 
-    public static bool ConvertToBool(BitArray[] bitArray)
-    {
-
-    }
-
-    public static sbyte ConvertToSByte(BitArray[] bitArray)
-    {
-
-    }
-
-    public static byte ConvertToByte(BitArray[] bitArray)
-    {
-        //    if (WordLength != 8)
-        //    {
-        //        // note: use temp container to protect current data
-
-        //        // resizing to convert to this king of type
-        //        var temp = (BitArray)_containers.Clone();
-        //        temp.Length = GetNewArraySize(temp.Length, 8);
-        //        return temp.ToByte();
-        //    }
-
-        //    return _containers.ToByte();
-    }
-
-    public static short ConvertToShort(BitArray[] bitArray)
-    {
-
-    }
-
-    public static ushort ConvertUShort(BitArray[] bitArray)
-    {
-
-    }
-
-    public static int ConvertToInt(BitArray[] bitArray)
-    {
-        //    if (WordLength != 32)
-        //    {
-        //        // note: use temp container to protect current data
-
-        //        // resizing to convert to this king of type
-        //        var temp = (BitArray)_containers.Clone();
-        //        temp.Length = GetNewArraySize(temp.Length, 32);
-        //        return temp.ToInt();
-        //    }
-
-        //    return _containers.ToInt();
-    }
-
-    public static uint ConvertToUInt(BitArray[] bitArray)
-    {
-
-    }
-
-    public static long ConvertToLong(BitArray[] bitArray)
-    {
-
-    }
-
-    public static ulong ConvertToULong(BitArray[] bitArray)
-    {
-
-    }
-
-    public static double ConvertToDouble(BitArray[] bitArray)
-    {
-
-    }
-
     public static string ConvertToString(BitArray[] bitArray, Encoding encoding)
     {
-        //    if (WordLength == 8)
-        //    {
-        //        // convert to non-binary string
+        var bytes = ConvertToBytes(bitArray);
 
-        //        var bytes = _containers.ToByteArray();
-
-        //        if (endian == Endian.Big) Array.Reverse(bytes);
-
-        //        var chars = Encoding.Unicode.GetChars(bytes);
-
-        //        if (bytesSeparator != "")
-        //        {
-        //            var separatedChars = "";
-        //            for (var i = 0; i < chars.Length; i++)
-        //            {
-        //                separatedChars += chars[i];
-
-        //                if (i < chars.Length - 1) // for the last one skip adding bytesSeparator
-        //                    separatedChars += bytesSeparator;
-        //            }
-
-        //            return separatedChars;
-        //        }
-
-        //        return new string(chars);
-        //    }
-
-        //    return _containers.ToBinaryString(bytesSeparator, endian);
+        return encoding.GetString(bytes);
     }
 
-    public static T ConvertToObject<T>(BitArray[] bitArray)
+    public static T ConvertToObject<T>(BitArray[] bitArray, Encoding encoding)
     {
+        var json = ConvertToString(bitArray, encoding);
 
+        var obj = JsonConvert.DeserializeObject<T>(json);
+
+        return obj!;
     }
 
     public static bool[] ConvertToBools(BitArray[] bitArray)
     {
-
+        return bitArray.SelectMany(array => array.Cast<bool>()).ToArray();
     }
 
     public static sbyte[] ConvertToSBytes(BitArray[] bitArray)
     {
+        var arrayLength = bitArray.Length / (byte)WordLengths.Bool;
 
+        var temp = new sbyte[arrayLength];
+        bitArray.CopyTo(temp, 0);
+
+        return temp;
     }
 
     public static byte[] ConvertToBytes(BitArray[] bitArray)
     {
+        var arrayLength = bitArray.Length / (byte)WordLengths.Byte;
 
+        var temp = new byte[arrayLength];
+        bitArray.CopyTo(temp, 0);
+
+        return temp;
     }
 
     public static short[] ConvertToShorts(BitArray[] bitArray)
     {
+        var arrayLength = bitArray.Length / (byte)WordLengths.Short;
 
+        var temp = new short[arrayLength];
+        bitArray.CopyTo(temp, 0);
+
+        return temp;
     }
 
     public static ushort[] ConvertToUShorts(BitArray[] bitArray)
     {
+        var arrayLength = bitArray.Length / (byte)WordLengths.Short;
 
+        var temp = new ushort[arrayLength];
+        bitArray.CopyTo(temp, 0);
+
+        return temp;
     }
 
     public static int[] ConvertToInts(BitArray[] bitArray)
     {
+        var arrayLength = bitArray.Length / (byte)WordLengths.Int;
 
+        var temp = new int[arrayLength];
+        bitArray.CopyTo(temp, 0);
+
+        return temp;
     }
 
     public static uint[] ConvertToUInts(BitArray[] bitArray)
     {
+        var arrayLength = bitArray.Length / (byte)WordLengths.Int;
 
+        var temp = new uint[arrayLength];
+        bitArray.CopyTo(temp, 0);
+
+        return temp;
     }
 
     public static long[] ConvertToLongs(BitArray[] bitArray)
     {
+        var arrayLength = bitArray.Length / (byte)WordLengths.Long;
 
+        var temp = new long[arrayLength];
+        bitArray.CopyTo(temp, 0);
+
+        return temp;
     }
 
     public static ulong[] ConvertToULongs(BitArray[] bitArray)
     {
+        var arrayLength = bitArray.Length / (byte)WordLengths.Long;
 
+        var temp = new ulong[arrayLength];
+        bitArray.CopyTo(temp, 0);
+
+        return temp;
     }
 
     public static double[] ConvertToDoubles(BitArray[] bitArray)
     {
+        var arrayLength = bitArray.Length / (byte)WordLengths.Double;
 
+        var temp = new double[arrayLength];
+        bitArray.CopyTo(temp, 0);
+
+        return temp;
     }
 
     public static string ConvertToBinaryString(BitArray[] bitArray)
     {
+        var chars = ConvertToBools(bitArray)
+            .Select(x => x ? '1' : '0')
+            .ToArray();
 
+        return new string(chars);
     }
 
-    public static string[] ConvertToBinaryStringsByWord(BitArray[] bitArray)
+    public static string[] ConvertToBinaryStringsByWord(BitArray[] bitArray, WordLength wordLength)
     {
+        var chars = ConvertToBools(bitArray)
+            .Select(x => x ? '1' : '0')
+            .ToArray();
 
+        var result = new List<string>();
+
+        var wordLengthInt = (int)wordLength;
+        for (var i = 0; i < chars.Length; i++)
+        {
+            var sb = new StringBuilder();
+
+            for (var j = 0; j < wordLengthInt; j++)
+            {
+                if (i == chars.Length - 1)
+                {
+                    break;
+                }
+
+                sb.Append(chars[i]);
+            }
+
+            result.Add(sb.ToString());
+        }
+
+        return result.ToArray();
     }
 
     #endregion
-
-
-    public static BitArray[] ReverseBytes(BitArray[] bitArrays)
-    {
-
-    }
-
-
-
-
-
-
-
-
-
-    //public NetBitSet(string str, byte wordLength = 0)
-    //{
-    //    if (str.IsBinary())
-    //    {
-    //        WordLength = wordLength;
-
-    //        // if wordLength does not match to data type (unspecified, bool, byte or int)
-    //        if (WordLength != 0)
-    //            if (str.Length % WordLength != 0)
-    //                throw new ArgumentException(
-    //                    "String length does not fit word length.");
-
-    //        // if word length is unspecified or match to any data type
-    //        _container = str.ToBitArray();
-    //    }
-    //    else
-    //    {
-    //        var charCodes = Encoding.UTF8.GetBytes(str);
-    //        _container = charCodes.ToBitArray();
-    //        WordLength = 8;
-    //    }
-    //}
-
-    //public NetBitSet(char[] array, byte wordLength = 0)
-    //{
-    //    if (array.IsBinary())
-    //    {
-    //        WordLength = wordLength;
-
-    //        // if wordLength does not match to data type (bool, byte or int)
-    //        if (WordLength != 0)
-    //            if (array.Length % WordLength != 0)
-    //                throw new ArgumentException(
-    //                    "Array length does not match to this kind of type specified by wordLength");
-
-    //        // if word length is unspecified or match to any type
-    //        _container = array.ToBitArray();
-    //    }
-    //    else
-    //    {
-    //        var charCodes = Encoding.Unicode.GetBytes(new string(array));
-    //        _container = charCodes.ToBitArray();
-    //        WordLength = 8;
-    //    }
-    //}
-
-    //#region FROM BASE TYPES AND BASE-TYPED ARRAYS
-
-    //public NetBitSet(bool value)
-    //{
-    //    _container = value.ToBitArray();
-    //    WordLength = 1;
-    //}
-
-    //public NetBitSet(byte value)
-    //{
-    //    _container = value.ToBitArray();
-    //    WordLength = 8;
-    //}
-
-    //public NetBitSet(int value)
-    //{
-    //    _container = value.ToBitArray();
-    //    WordLength = 32;
-    //}
-
-
-    //public NetBitSet(bool[] array)
-    //{
-    //    _container = array.ToBitArray();
-    //    WordLength = 1;
-    //}
-
-    //public NetBitSet(byte[] array)
-    //{
-    //    _container = array.ToBitArray();
-    //    WordLength = 8;
-    //}
-
-    //public NetBitSet(int[] array)
-    //{
-    //    _container = array.ToBitArray();
-    //    WordLength = 32;
-    //}
-
-    //#endregion
 }

@@ -41,16 +41,19 @@ public partial class NetBitSet
 
     public IEnumerator<Bit> GetEnumerator()
     {
-        foreach (var bit in _containers.SelectMany(BitArrayConverter.ConvertToBools))
+        foreach (var container in _containers)
         {
-            yield return bit.ToBit();
+            foreach (bool bit in container)
+            {
+                yield return bit.ToBit();
+            }
         }
     }
 
     public object Clone()
     {
         var bitArraysCloned = _containers.Select(x => (BitArray)x.Clone()).ToArray();
-        return new NetBitSet(bitArraysCloned, WordLength, Endianness);
+        return new NetBitSet(bitArraysCloned, WordLength);
     }
 
     public override bool Equals(object obj)
