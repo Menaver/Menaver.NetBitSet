@@ -1,4 +1,6 @@
-﻿namespace Menaver.NetBitSet.Shared.Interfaces;
+﻿using System.Text;
+
+namespace Menaver.NetBitSet.Shared.Interfaces;
 
 /// <summary>
 ///     Represents an abstraction of a convertible bit-level data structure.
@@ -20,4 +22,5 @@ public interface INetBitSetConvertible
     string[] ToBinaryStringsByWord();
 
     T ToObject<T>();
+    T ToObject<T>(Encoding encoding);
 }

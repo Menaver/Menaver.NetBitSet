@@ -1,4 +1,5 @@
-﻿using Menaver.NetBitSet.Shared.Internals;
+﻿using System.Text;
+using Menaver.NetBitSet.Shared.Internals;
 
 namespace Menaver.NetBitSet.Shared;
 
@@ -61,11 +62,16 @@ public partial class NetBitSet
 
     public string[] ToBinaryStringsByWord()
     {
-        return BitArrayConverter.ConvertToBinaryStringsByWord(_containers);
+        return BitArrayConverter.ConvertToBinaryStringsByWord(_containers, WordLength);
     }
 
     public T ToObject<T>()
     {
-        return BitArrayConverter.ConvertToObject<T>(_containers);
+        return BitArrayConverter.ConvertToObject<T>(_containers, _defaultSystemEncoding);
+    }
+
+    public T ToObject<T>(Encoding encoding)
+    {
+        return BitArrayConverter.ConvertToObject<T>(_containers, encoding);
     }
 }

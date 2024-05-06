@@ -4,7 +4,15 @@ namespace Menaver.NetBitSet.Shared;
 
 public partial class NetBitSet
 {
+    /// <summary>
+    ///     The bit-data storage.
+    /// </summary>
     private BitArray[] _containers;
+
+    /// <summary>
+    ///     The order in which bytes within a word of data are read.
+    /// </summary>
+    private Endian _endianness;
 
     /// <summary>
     ///     The fixed length of a stored data unit, defined by its data type, in bits.

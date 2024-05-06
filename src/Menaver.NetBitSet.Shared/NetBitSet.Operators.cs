@@ -4,24 +4,19 @@ public partial class NetBitSet
 {
     public static NetBitSet operator +(NetBitSet left, NetBitSet right)
     {
-        // adding right to the end of left
+        if (left.WordLength != right.WordLength)
+        {
+            throw new InvalidOperationException("Operation cannot be completed - word lengths do not match.");
+        }
 
-        byte newWordLength = 0;
+        var result = (NetBitSet)left.Clone();
 
-        // if wordLengths are compatible then
-        // use left.WordLength as newWordLength
-        if (left.WordLength == right.WordLength)
-            newWordLength = left.WordLength;
-        else if (right.WordLength % left.WordLength == 0)
-            newWordLength = left.WordLength;
+        result.Resize(result.Count + right.Count);
 
-        var result = new NetBitSet(checked(left.Count + right.Count), newWordLength);
-
-        for (var i = 0; i < left.Count; i++)
-            result[i] = left[i];
-
-        for (int i = left.Count, j = 0; i < result.Count; i++, j++)
+        for (ulong i = left.Count, j = 0; i < result.Count; i++, j++)
+        {
             result[i] = right[j];
+        }
 
         return result;
     }
@@ -256,137 +251,58 @@ public partial class NetBitSet
 
     #region BITWISE
 
-    // for all bits in NetBitSet array
-
-    // left shift
     public static NetBitSet operator <<(NetBitSet obj, int count)
     {
-        // not so good solution, but... it works!
-
         var result = (NetBitSet)obj.Clone();
-        for (var i = 0; i < count; i++)
-        {
-            for (var j = 0; j < result.Count - 1; j++)
-                result[j] = result[j + 1];
 
-            // shift-in sign is 0
-            result[result.Count - 1] = 0;
-        }
+        result.LogicalShiftLeft((ulong)count);
 
         return result;
     }
 
-    // right shift
     public static NetBitSet operator >> (NetBitSet obj, int count)
     {
-        // not so good solution, but... it works!
-
         var result = (NetBitSet)obj.Clone();
-        for (var i = 0; i < count; i++)
-        {
-            for (var j = result.Count - 1; j > 0; j--)
-                result[j] = result[j - 1];
 
-            // shift-in sign is 0
-            result[0] = 0;
-        }
+        result.LogicalShiftRight((ulong)count);
 
         return result;
     }
 
-    // AND
     public static NetBitSet operator &(NetBitSet left, NetBitSet right)
     {
-        if (right.Count < left.Count)
-            throw new ArgumentException("Value's lengths should be equal");
-
         var result = (NetBitSet)left.Clone();
-        for (var i = 0; i < left.Count; i++)
-            result._containers[i] = left._containers[i] & right._containers[i];
+
+        result.And(right);
 
         return result;
     }
 
-    // OR
     public static NetBitSet operator |(NetBitSet left, NetBitSet right)
     {
-        if (right.Count < left.Count)
-            throw new ArgumentException("Value's lengths should be equal");
-
         var result = (NetBitSet)left.Clone();
-        for (var i = 0; i < left.Count; i++)
-            result._containers[i] = left._containers[i] | right._containers[i];
+
+        result.Or(right);
 
         return result;
     }
 
-    // XOR
     public static NetBitSet operator ^(NetBitSet left, NetBitSet right)
     {
-        if (right.Count < left.Count)
-            throw new ArgumentException("Value's lengths should be equal");
-
         var result = (NetBitSet)left.Clone();
-        for (var i = 0; i < left.Count; i++)
-            result._containers[i] = left._containers[i] ^ right._containers[i];
+
+        result.Xor(right);
 
         return result;
     }
 
-    // inverting
     public static NetBitSet operator ~(NetBitSet obj)
     {
         var result = (NetBitSet)obj.Clone();
-        for (var i = 0; i < obj.Count; i++)
-            result._containers[i] = !obj._containers[i];
+
+        result.InvertAll();
 
         return result;
-    }
-
-    // self-inverting
-    public static NetBitSet operator !(NetBitSet obj)
-    {
-        obj.InvertAll();
-        return obj;
-    }
-
-
-    // comparing
-    public static bool operator <(NetBitSet left, NetBitSet right)
-    {
-        if (left._containers.Count < right._containers.Count) return true;
-        if (left._containers.Count > right._containers.Count) return false;
-
-        for (var i = 0; i < left._containers.Count; i++)
-        {
-            if (left._containers[i] == right._containers[i]) continue; // if (0 == 0 || 1 == 1) -> check next pos
-
-            if (left._containers[i] && !right._containers[i])
-                return false; // if (1 and 0) then (left > right) -> return false
-            if (!left._containers[i] && right._containers[i])
-                return true; // if (0 and 1) then (left < right) -> return true
-        }
-
-        return false;
-    }
-
-    // comparing
-    public static bool operator >(NetBitSet left, NetBitSet right)
-    {
-        if (left._containers.Count > right._containers.Count) return true;
-        if (left._containers.Count < right._containers.Count) return false;
-
-        for (var i = 0; i < left._containers.Count; i++)
-        {
-            if (left._containers[i] == right._containers[i]) continue; // if (0 == 0 || 1 == 1) -> check next pos
-
-            if (left._containers[i] && !right._containers[i])
-                return true; // if (1 and 0) then (left > right) -> return true
-            if (!left._containers[i] && right._containers[i])
-                return false; // if (0 and 1) then (left < right) -> return false
-        }
-
-        return false;
     }
 
     #endregion

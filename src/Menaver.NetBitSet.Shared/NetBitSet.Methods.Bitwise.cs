@@ -349,103 +349,102 @@ public partial class NetBitSet
 
     public void ArithmeticShiftRight(ulong count)
     {
-        //public void ShiftRight(int count, int shiftInValue = 0)
-        //{
-        //    for (var i = 0; i < count; i++)
-        //    {
-        //        for (var j = 0; j < Count - 1; j++)
-        //            this[j] = this[j + 1];
-
-        //        this[Count - 1] = shiftInValue;
-        //    }
-        //}
-
-        throw new NotImplementedException();
+        for (ulong i = 0; i < count; i++)
+        {
+            ShiftRight(count, this[0]);
+        }
     }
 
     public void LogicalShiftRight(ulong count)
     {
-        throw new NotImplementedException();
+        ShiftRight(count, Bit.False);
     }
 
     public void CircularShiftRight(ulong count)
     {
-        throw new NotImplementedException();
+        for (ulong i = 0; i < count; i++)
+        {
+            ShiftRight(count, this[Count - 1]);
+        }
     }
 
     public void ArithmeticShiftLeft(ulong count)
     {
-        //public void ShiftLeft(int count, int shiftInValue = 0)
-        //{
-        //    for (var i = 0; i < count; i++)
-        //    {
-        //        for (var j = Count - 1; j > 0; j--)
-        //            this[j] = this[j - 1];
-
-        //        this[0] = shiftInValue;
-        //    }
-        //}
-
-        throw new NotImplementedException();
+        ShiftLeft(count, Bit.False);
     }
 
     public void LogicalShiftLeft(ulong count)
     {
-        throw new NotImplementedException();
+        ShiftLeft(count, Bit.False);
     }
 
     public void CircularShiftLeft(ulong count)
     {
-        throw new NotImplementedException();
+        for (ulong i = 0; i < count; i++)
+        {
+            ShiftLeft(count, this[0]);
+        }
     }
 
     public void ShiftRight(ulong count, bool shiftInBit)
     {
-        throw new NotImplementedException();
+        ShiftRight(count, shiftInBit.ToBit());
     }
 
     public void ShiftRight(ulong count, byte shiftInBit)
     {
-        throw new NotImplementedException();
+        ShiftRight(count, shiftInBit.ToBit());
     }
 
     public void ShiftRight(ulong count, int shiftInBit)
     {
-        throw new NotImplementedException();
+        ShiftRight(count, shiftInBit.ToBit());
     }
 
     public void ShiftRight(ulong count, double shiftInBit)
     {
-        throw new NotImplementedException();
+        ShiftRight(count, shiftInBit.ToBit());
     }
 
     public void ShiftRight(ulong count, Bit shiftInBit)
     {
-        throw new NotImplementedException();
+        for (ulong i = 0; i < count; i++)
+        {
+            for (var j = Count - 1; j > 0; j--)
+                this[j] = this[j - 1];
+
+            this[0] = shiftInBit;
+        }
     }
 
     public void ShiftLeft(ulong count, bool shiftInBit)
     {
-        throw new NotImplementedException();
+        ShiftLeft(count, shiftInBit.ToBit());
     }
 
     public void ShiftLeft(ulong count, byte shiftInBit)
     {
-        throw new NotImplementedException();
+        ShiftLeft(count, shiftInBit.ToBit());
     }
 
     public void ShiftLeft(ulong count, int shiftInBit)
     {
-        throw new NotImplementedException();
+        ShiftLeft(count, shiftInBit.ToBit());
     }
 
     public void ShiftLeft(ulong count, double shiftInBit)
     {
-        throw new NotImplementedException();
+        ShiftLeft(count, shiftInBit.ToBit());
     }
 
     public void ShiftLeft(ulong count, Bit shiftInBit)
     {
-        throw new NotImplementedException();
+        for (ulong i = 0; i < count; i++)
+        {
+            for (ulong j = 0; j < Count - 1; j++)
+                this[j] = this[j + 1];
+
+            this[Count - 1] = shiftInBit;
+        }
     }
 }
