@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Menaver.NetBitSet.Shared.Extensions;
 
 namespace Menaver.NetBitSet.Shared.Internals;
 
@@ -9,6 +10,11 @@ internal static class BitArrayBuilder
         var (quotient, remainder) = Math.DivRem(index, int.MaxValue);
 
         return ((int)quotient, (int)remainder);
+    }
+
+    public static ulong GetAggregatedCount(BitArray[] arrays)
+    {
+        return arrays.Aggregate<BitArray, ulong>(0, (current, bitArray) => current + (ulong)bitArray!.Length);
     }
 
     public static BitArray[] BuildBitArrays(ulong count, Bit defaultValue)
@@ -89,5 +95,19 @@ internal static class BitArrayBuilder
         }
 
         return bitArrays;
+    }
+
+    public static BitArray GetBatch(BitArray[] bitArrays, ulong index, byte count)
+    {
+        var batch = new BitArray(count);
+
+        for (var i = 0; i < count; i++, index++)
+        {
+            var (packIndex, bitIndex) = GetComplexIndex(index);
+
+            batch[i] = bitArrays[packIndex][bitIndex];
+        }
+
+        return batch;
     }
 }

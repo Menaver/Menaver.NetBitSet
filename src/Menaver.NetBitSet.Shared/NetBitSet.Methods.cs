@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Text;
+using Menaver.NetBitSet.Shared.Extensions;
 using Menaver.NetBitSet.Shared.Internals;
 
 namespace Menaver.NetBitSet.Shared;
