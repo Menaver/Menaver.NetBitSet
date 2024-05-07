@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Menaver.NetBitSet.Shared.Internals;
+using System.Collections;
 
 namespace Menaver.NetBitSet.Shared;
 
@@ -28,8 +29,7 @@ public partial class NetBitSet
     /// <summary>
     ///     The number of bits stored.
     /// </summary>
-    public ulong Count =>
-        _containers.Aggregate<BitArray, ulong>(0, (current, bitArray) => current + (ulong)bitArray!.Length);
+    public ulong Count => BitArrayBuilder.GetAggregatedCount(_containers);
 
     /// <summary>
     ///     The number of words stored.

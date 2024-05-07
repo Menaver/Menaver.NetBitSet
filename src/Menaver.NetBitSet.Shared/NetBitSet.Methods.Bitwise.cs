@@ -1,4 +1,5 @@
-﻿using Menaver.NetBitSet.Shared.Interfaces;
+﻿using Menaver.NetBitSet.Shared.Extensions;
+using Menaver.NetBitSet.Shared.Interfaces;
 using Menaver.NetBitSet.Shared.Internals;
 
 namespace Menaver.NetBitSet.Shared;

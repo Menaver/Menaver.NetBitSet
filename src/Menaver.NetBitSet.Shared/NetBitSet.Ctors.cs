@@ -131,6 +131,11 @@ public partial class NetBitSet
     {
     }
 
+    public NetBitSet(string value, WordLength wordLength)
+        : this(BitArrayConverter.Convert(value, _defaultSystemEncoding), wordLength)
+    {
+    }
+
     public NetBitSet(string value, Encoding encoding)
         : this(BitArrayConverter.Convert(value, encoding), WordLengths.String(encoding))
     {

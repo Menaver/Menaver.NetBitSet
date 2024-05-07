@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace Menaver.NetBitSet.Shared;
+namespace Menaver.NetBitSet.Shared.Extensions;
 
 public static class BitExtensions
 {
