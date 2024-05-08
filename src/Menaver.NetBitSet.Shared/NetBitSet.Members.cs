@@ -11,11 +11,6 @@ public partial class NetBitSet
     private BitArray[] _containers;
 
     /// <summary>
-    ///     The order in which bytes within a word of data are read.
-    /// </summary>
-    private Endian _endianness;
-
-    /// <summary>
     ///     The fixed length of a stored data unit, defined by its data type, in bits.
     ///     If the stored data does not have a fixed length, the WordLength would be WordLength.NotFixed.
     /// </summary>

@@ -127,32 +127,32 @@ public partial class NetBitSet
     }
 
     public NetBitSet(string value)
-        : this(BitArrayConverter.Convert(value, _defaultSystemEncoding), WordLengths.String(_defaultSystemEncoding))
+        : this(BitArrayConverter.ConvertFromString(value, _defaultSystemEncoding, WordLengths.String(value, _defaultSystemEncoding)), WordLengths.String(value, _defaultSystemEncoding))
     {
     }
 
     public NetBitSet(string value, WordLength wordLength)
-        : this(BitArrayConverter.Convert(value, _defaultSystemEncoding), wordLength)
+        : this(BitArrayConverter.ConvertFromString(value, _defaultSystemEncoding, wordLength), wordLength)
     {
     }
 
     public NetBitSet(string value, Encoding encoding)
-        : this(BitArrayConverter.Convert(value, encoding), WordLengths.String(encoding))
+        : this(BitArrayConverter.ConvertFromString(value, encoding, WordLengths.String(value, encoding)), WordLengths.String(value, encoding))
     {
     }
 
     public NetBitSet(string value, Encoding encoding, WordLength wordLength)
-        : this(BitArrayConverter.Convert(value, encoding), wordLength)
+        : this(BitArrayConverter.ConvertFromString(value, encoding, wordLength), wordLength)
     {
     }
 
     public NetBitSet(object obj)
-        : this(BitArrayConverter.Convert(obj, _defaultSystemEncoding), WordLengths.String(_defaultSystemEncoding))
+        : this(BitArrayConverter.Convert(obj, _defaultSystemEncoding), WordLengths.String(string.Empty, _defaultSystemEncoding))
     {
     }
 
     public NetBitSet(object obj, Encoding encoding)
-        : this(BitArrayConverter.Convert(obj, encoding), WordLengths.String(encoding))
+        : this(BitArrayConverter.Convert(obj, encoding), WordLengths.String(string.Empty, encoding))
     {
     }
 
@@ -263,13 +263,13 @@ public partial class NetBitSet
 
     public NetBitSet(string[] value)
         : this(BitArrayConverter.Convert(string.Join(string.Empty, value), _defaultSystemEncoding),
-            WordLengths.String(_defaultSystemEncoding))
+            WordLengths.String(string.Join(string.Empty, value), _defaultSystemEncoding))
     {
     }
 
     public NetBitSet(string[] value, Encoding encoding)
         : this(BitArrayConverter.Convert(string.Join(string.Empty, value), encoding),
-            WordLengths.String(encoding))
+            WordLengths.String(string.Join(string.Empty, value), encoding))
     {
     }
 

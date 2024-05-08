@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Text;
 using Newtonsoft.Json;
 
@@ -117,31 +118,11 @@ internal static class BitArrayConverter
         return BitArrayBuilder.BuildBitArrays(bytes);
     }
 
-    public static BitArray[] Convert(string value, Encoding encoding)
+    public static BitArray[] ConvertFromString(string value, Encoding encoding, WordLength wordLength)
     {
-        if (value.All(ch => ch is '1' or '0')) // binary string
+        if (value.Any() && value.All(ch => ch is '1' or '0'))
         {
-            var chars = value.ToCharArray();
-            Array.Reverse(chars);
-            value = new string(chars);
-
-            var count = (ulong)value.LongCount();
-
-            var bitArrays = BitArrayBuilder.BuildBitArrays(count, Bit.False);
-
-            for (ulong i = 0; i < count; i++)
-            {
-                if (value[(int)i] == '1')
-                {
-                    var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(i);
-
-                    bitArrays[packIndex][bitIndex] = true;
-                }
-            }
-
-
-
-            return bitArrays;
+            return ConvertBinaryString(value, wordLength);
         }
 
         var bytes = encoding.GetBytes(value);
@@ -153,6 +134,65 @@ internal static class BitArrayConverter
         var json = JsonConvert.SerializeObject(obj);
         var bytes = encoding.GetBytes(json);
         return BitArrayBuilder.BuildBitArrays(bytes);
+    }
+
+    public static BitArray[] ConvertBinaryString(string binaryString, WordLength wordLength)
+    {
+        var count = (ulong)binaryString.LongCount();
+        var bitArrays = BitArrayBuilder.BuildBitArrays(count, Bit.False);
+
+        switch (wordLength)
+        {
+            case WordLength.NotFixed:
+            case WordLength.One:
+            {
+                var chars = binaryString.ToCharArray();
+
+                Array.Reverse(chars);
+
+                binaryString = new string(chars);
+
+                for (ulong i = 0; i < count; i++)
+                {
+                    if (binaryString[(int)i] == '1')
+                    {
+                        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(i);
+
+                        bitArrays[packIndex][bitIndex] = true;
+                    }
+                }
+
+                return bitArrays;
+            }
+            case WordLength.Eight:
+            case WordLength.Sixteen:
+            case WordLength.ThirtyTwo:
+            case WordLength.SixtyFour:
+            {
+                // split binaryString by words 
+                var chunkSize = (byte)wordLength;
+                var binaryStrings = Enumerable.Range(0, binaryString.Length / chunkSize)
+                    .Select(i => binaryString.Substring(i * chunkSize, chunkSize)).ToList();
+
+                ulong index = 0;
+                foreach (var bs in binaryStrings)
+                {
+                    var bitArray = ConvertBinaryString(bs, WordLength.One).First();
+
+                    for (var i = 0; i < bitArray.Length; i++, index++)
+                    {
+                        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(index);
+
+                        bitArrays[packIndex][bitIndex] = bitArray[i];
+                    }
+                }
+            }
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(wordLength), wordLength, null);
+        }
+
+        return bitArrays;
     }
 
     #endregion
@@ -351,15 +391,39 @@ internal static class BitArrayConverter
         return encoding.GetString(bytes);
     }
 
-    public static string ConvertToBinaryString(BitArray[] bitArray)
+    public static string ConvertToBinaryString(BitArray[] bitArray, WordLength wordLength)
     {
-        var chars = ConvertToBools(bitArray)
-            .Select(x => x ? '1' : '0')
-            .ToArray();
+        string binaryString;
 
-        Array.Reverse(chars);
+        switch (wordLength)
+        {
+            case WordLength.NotFixed:
+            case WordLength.One:
+            {
+                var chars = ConvertToBools(bitArray)
+                    .Select(x => x ? '1' : '0')
+                    .ToArray();
 
-        return new string(chars);
+                Array.Reverse(chars);
+
+                binaryString = new string(chars);
+            }
+                break;
+            case WordLength.Eight:
+            case WordLength.Sixteen:
+            case WordLength.ThirtyTwo:
+            case WordLength.SixtyFour:
+            {
+                var stringsByWord = ConvertToBinaryStringsByWord(bitArray, wordLength);
+
+                binaryString = string.Join(string.Empty, stringsByWord);
+            }
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(wordLength), wordLength, null);
+        }
+
+        return binaryString;
     }
 
     public static string[] ConvertToBinaryStringsByWord(BitArray[] bitArray, WordLength wordLength)
@@ -368,26 +432,18 @@ internal static class BitArrayConverter
             .Select(x => x ? '1' : '0')
             .ToArray();
 
-        Array.Reverse(chars);
-
         var result = new List<string>();
 
         var wordLengthInt = (int)wordLength;
-        for (var i = 0; i < chars.Length; i++)
+        for (var i = 0; i < chars.Length; i += wordLengthInt)
         {
-            var sb = new StringBuilder();
+            var buffer = new char[wordLengthInt];
+            Array.Copy(chars, i, buffer, 0, wordLengthInt);
 
-            for (var j = 0; j < wordLengthInt; j++)
-            {
-                if (i == chars.Length - 1)
-                {
-                    break;
-                }
+            Array.Reverse(buffer);
 
-                sb.Append(chars[i]);
-            }
-
-            result.Add(sb.ToString());
+            var str = new string(buffer);
+            result.Add(str);
         }
 
         return result.ToArray();
