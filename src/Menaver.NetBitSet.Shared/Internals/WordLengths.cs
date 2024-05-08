@@ -11,16 +11,20 @@ internal static class WordLengths
     public static WordLength Long => (WordLength)(BitConverter.GetBytes((long)1).Length * 8);
     public static WordLength Double => (WordLength)(BitConverter.GetBytes((double)1).Length * 8);
 
-    public static WordLength String(Encoding encoding)
+    public static WordLength String(string str, Encoding encoding)
     {
+        if (str.Any() && str.All(ch => ch is '1' or '0'))
         {
-            if (encoding.EncodingName == Encoding.ASCII.EncodingName)
-            {
-                return (WordLength)(BitConverter.GetBytes((char)1).Length * 8);
-            }
-
-            // other string encoding do not guarantee a fixed length 
-            return WordLength.NotFixed;
+            // binary string
+            return WordLength.One;
         }
+
+        if (encoding.EncodingName == Encoding.ASCII.EncodingName)
+        {
+            return (WordLength)(Encoding.ASCII.GetBytes(" ").Length * 8);
+        }
+
+        // other string encoding do not guarantee a fixed length 
+        return WordLength.NotFixed;
     }
 }

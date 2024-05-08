@@ -75,7 +75,7 @@ public partial class NetBitSet
 
     public string ToBinaryString()
     {
-        return BitArrayConverter.ConvertToBinaryString(_containers);
+        return BitArrayConverter.ConvertToBinaryString(_containers, WordLength);
     }
 
     public string[] ToBinaryStringsByWord()
