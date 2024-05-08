@@ -3,4 +3,5 @@
 [TestFixture]
 public class NetBitSetOperatorsTests
 {
+
 }

@@ -1,10 +1,14 @@
 ﻿using Menaver.NetBitSet.Shared;
+using Menaver.NetBitSet.Shared.Extensions;
+using NUnit.Framework.Internal;
 
 namespace Menaver.NetBitSet.Tests;
 
 [TestFixture]
 public class NetBitSetMethodTests
 {
+    private static readonly Randomizer Randomizer = Randomizer.CreateRandomizer();
+
     [TestCase(0, 0, 1)]
     [TestCase(0, 1, 2)]
     [TestCase(0, 2, 4)]
@@ -153,5 +157,135 @@ public class NetBitSetMethodTests
         Assert.That(changedBytes[5] == 38);
         Assert.That(changedBytes[6] == 7);
         Assert.That(changedBytes[7] == 127);
+    }
+
+    [Test]
+    public void Resize_RandomData_Shrink_CountComplies()
+    {
+        // arrange 
+        var count = Randomizer.NextByte();
+        var randomValues = new bool[count];
+        for (var i = 0; i < count; i++)
+        {
+            randomValues[i] = Randomizer.NextBool();
+        }
+
+        var netBitSet = new Shared.NetBitSet(randomValues);
+
+        // act
+        var newCount = Randomizer.NextByte(max: (byte)(count - 1));
+        netBitSet.Resize(newCount);
+
+        // assert
+        Assert.That(netBitSet.Count == newCount);
+    }
+
+    [Test]
+    public void Resize_RandomData_Expand_CountComplies()
+    {
+        // arrange 
+        var count = Randomizer.NextByte();
+        var randomValues = new bool[count];
+        for (var i = 0; i < count; i++)
+        {
+            randomValues[i] = Randomizer.NextBool();
+        }
+
+        var netBitSet = new Shared.NetBitSet(randomValues);
+
+        // act
+        var newCount = Randomizer.NextUInt(min: count, max: ushort.MaxValue);
+        netBitSet.Resize(newCount);
+
+        var addedDataIsCorrect = true;
+        for (int i = count; i < newCount; i++)
+        {
+            if (netBitSet[(ulong)i] != Bit.False)
+            {
+                addedDataIsCorrect = false;
+
+                break;
+            }
+        }
+
+        // assert
+        Assert.That(netBitSet.Count == newCount);
+        Assert.That(addedDataIsCorrect);
+    }
+
+    [Test]
+    public void GetEnumerator_RandomData_SelectedValuesEqual()
+    {
+        // arrange 
+        var count = Randomizer.NextByte();
+        var randomValues = new bool[count];
+        for (var i = 0; i < count; i++)
+        {
+            randomValues[i] = Randomizer.NextBool();
+        }
+
+        var netBitSet = new Shared.NetBitSet(randomValues);
+
+        // act
+        var buffer = netBitSet.Select(x => x.ToBool()).ToArray();
+        var equal = randomValues.SequenceEqual(buffer);
+
+        // assert
+        Assert.That(equal);
+    }
+
+    [Test]
+    public void Clone_RandomData_Equals()
+    {
+        // arrange 
+        var count = Randomizer.NextByte();
+        var randomValues = new bool[count];
+        for (var i = 0; i < count; i++)
+        {
+            randomValues[i] = Randomizer.NextBool();
+        }
+
+        var netBitSet = new Shared.NetBitSet(randomValues);
+
+        // act
+        var netBitSetCloned = (Shared.NetBitSet)netBitSet.Clone();
+
+        var countsEqual = netBitSet.Count == netBitSetCloned.Count;
+        var wordLengthsEqual = netBitSet.WordLength == netBitSetCloned.WordLength;
+        var dataEqual = true;
+        for (int i = count; i < count; i++)
+        {
+            if (netBitSet[(ulong)i] != netBitSetCloned[(ulong)i])
+            {
+                dataEqual = false;
+
+                break;
+            }
+        }
+
+        // assert
+        Assert.That(countsEqual);
+        Assert.That(wordLengthsEqual);
+        Assert.That(dataEqual);
+    }
+
+    [Test]
+    public void Equals_RandomData_Equals()
+    {
+        // arrange 
+        var count = Randomizer.NextByte();
+        var randomValues = new bool[count];
+        for (var i = 0; i < count; i++)
+        {
+            randomValues[i] = Randomizer.NextBool();
+        }
+
+        var netBitSet = new Shared.NetBitSet(randomValues);
+
+        // act
+        var netBitSetCloned = (Shared.NetBitSet)netBitSet.Clone();
+
+        // assert
+        Assert.That(netBitSet.Equals(netBitSetCloned));
     }
 }
