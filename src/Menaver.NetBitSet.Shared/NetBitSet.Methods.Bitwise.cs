@@ -350,10 +350,7 @@ public partial class NetBitSet
 
     public void ArithmeticShiftRight(ulong count)
     {
-        for (ulong i = 0; i < count; i++)
-        {
-            ShiftRight(count, this[0]);
-        }
+        ShiftRight(count, this[Count-1]);
     }
 
     public void LogicalShiftRight(ulong count)
@@ -365,7 +362,7 @@ public partial class NetBitSet
     {
         for (ulong i = 0; i < count; i++)
         {
-            ShiftRight(count, this[Count - 1]);
+            ShiftRight(1, this[0]);
         }
     }
 
@@ -383,7 +380,7 @@ public partial class NetBitSet
     {
         for (ulong i = 0; i < count; i++)
         {
-            ShiftLeft(count, this[0]);
+            ShiftLeft(1, this[Count-1]);
         }
     }
 
@@ -407,7 +404,7 @@ public partial class NetBitSet
         ShiftRight(count, shiftInBit.ToBit());
     }
 
-    public void ShiftRight(ulong count, Bit shiftInBit)
+    public void ShiftLeft(ulong count, Bit shiftInBit)
     {
         for (ulong i = 0; i < count; i++)
         {
@@ -438,7 +435,7 @@ public partial class NetBitSet
         ShiftLeft(count, shiftInBit.ToBit());
     }
 
-    public void ShiftLeft(ulong count, Bit shiftInBit)
+    public void ShiftRight(ulong count, Bit shiftInBit)
     {
         for (ulong i = 0; i < count; i++)
         {
