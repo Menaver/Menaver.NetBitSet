@@ -1,5 +1,4 @@
-﻿using Menaver.NetBitSet.Shared;
-using NUnit.Framework.Internal;
+﻿using NUnit.Framework.Internal;
 
 namespace Menaver.NetBitSet.Tests;
 
@@ -18,10 +17,13 @@ public class NetBitSetMethodConvertNegativeTests
     {
         // arrange 
         var randomValue = Randomizer.NextSByte();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
-        void Action() => netBitSet.ToSBytes();
+        void Action()
+        {
+            netBitSet.ToSBytes();
+        }
 
         // assert
         Assert.Throws<InvalidOperationException>(Action);
@@ -37,10 +39,13 @@ public class NetBitSetMethodConvertNegativeTests
     {
         // arrange 
         var randomValue = Randomizer.NextByte();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
-        void Action() => netBitSet.ToBytes();
+        void Action()
+        {
+            netBitSet.ToBytes();
+        }
 
         // assert
         Assert.Throws<InvalidOperationException>(Action);
@@ -56,10 +61,13 @@ public class NetBitSetMethodConvertNegativeTests
     {
         // arrange 
         var randomValue = Randomizer.NextShort();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
-        void Action() => netBitSet.ToShorts();
+        void Action()
+        {
+            netBitSet.ToShorts();
+        }
 
         // assert
         Assert.Throws<InvalidOperationException>(Action);
@@ -75,10 +83,13 @@ public class NetBitSetMethodConvertNegativeTests
     {
         // arrange 
         var randomValue = Randomizer.NextUShort();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
-        void Action() => netBitSet.ToUShorts();
+        void Action()
+        {
+            netBitSet.ToUShorts();
+        }
 
         // assert
         Assert.Throws<InvalidOperationException>(Action);
@@ -94,10 +105,13 @@ public class NetBitSetMethodConvertNegativeTests
     {
         // arrange 
         var randomValue = Randomizer.Next();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
-        void Action() => netBitSet.ToInts();
+        void Action()
+        {
+            netBitSet.ToInts();
+        }
 
         // assert
         Assert.Throws<InvalidOperationException>(Action);
@@ -113,10 +127,13 @@ public class NetBitSetMethodConvertNegativeTests
     {
         // arrange 
         var randomValue = Randomizer.NextUInt();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
-        void Action() => netBitSet.ToUInts();
+        void Action()
+        {
+            netBitSet.ToUInts();
+        }
 
         // assert
         Assert.Throws<InvalidOperationException>(Action);
@@ -132,10 +149,13 @@ public class NetBitSetMethodConvertNegativeTests
     {
         // arrange 
         var randomValue = Randomizer.NextLong();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
-        void Action() => netBitSet.ToLongs();
+        void Action()
+        {
+            netBitSet.ToLongs();
+        }
 
         // assert
         Assert.Throws<InvalidOperationException>(Action);
@@ -151,10 +171,13 @@ public class NetBitSetMethodConvertNegativeTests
     {
         // arrange 
         var randomValue = Randomizer.NextULong();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
-        void Action() => netBitSet.ToULongs();
+        void Action()
+        {
+            netBitSet.ToULongs();
+        }
 
         // assert
         Assert.Throws<InvalidOperationException>(Action);
@@ -170,10 +193,13 @@ public class NetBitSetMethodConvertNegativeTests
     {
         // arrange 
         var randomValue = Randomizer.NextDouble();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
-        void Action() => netBitSet.ToDoubles();
+        void Action()
+        {
+            netBitSet.ToDoubles();
+        }
 
         // assert
         Assert.Throws<InvalidOperationException>(Action);

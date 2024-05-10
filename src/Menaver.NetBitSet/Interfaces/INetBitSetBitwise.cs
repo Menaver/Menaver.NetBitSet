@@ -1,4 +1,4 @@
-﻿namespace Menaver.NetBitSet.Shared.Interfaces;
+﻿namespace Menaver.NetBitSet.Interfaces;
 
 /// <summary>
 ///     Represents an abstraction of a bitwise-operable data structure.

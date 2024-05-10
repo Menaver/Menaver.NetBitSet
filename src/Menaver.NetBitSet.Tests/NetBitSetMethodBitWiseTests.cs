@@ -1,5 +1,4 @@
-﻿using Menaver.NetBitSet.Shared;
-using NUnit.Framework.Internal;
+﻿using NUnit.Framework.Internal;
 
 namespace Menaver.NetBitSet.Tests;
 
@@ -19,7 +18,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.And((ulong)index, bit);
@@ -40,7 +39,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.And((ulong)index, bit);
@@ -61,7 +60,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.And((ulong)index, bit);
@@ -82,7 +81,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.And((ulong)index, bit);
@@ -103,7 +102,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.And((ulong)index, bit);
@@ -123,8 +122,8 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSetA = new Shared.NetBitSet(binaryStringA);
-        var netBitSetB = new Shared.NetBitSet(binaryStringB);
+        var netBitSetA = new NetBitSet(binaryStringA);
+        var netBitSetB = new NetBitSet(binaryStringB);
 
         // act
         netBitSetA.And(netBitSetB);
@@ -144,7 +143,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.AndAll(bit);
@@ -164,7 +163,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.AndAll(bit);
@@ -184,7 +183,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.AndAll(bit);
@@ -204,7 +203,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.AndAll(bit);
@@ -224,7 +223,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.AndAll(bit);
@@ -245,7 +244,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.Or((ulong)index, bit);
@@ -266,7 +265,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.Or((ulong)index, bit);
@@ -287,7 +286,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.Or((ulong)index, bit);
@@ -308,7 +307,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.Or((ulong)index, bit);
@@ -329,7 +328,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.Or((ulong)index, bit);
@@ -349,8 +348,8 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSetA = new Shared.NetBitSet(binaryStringA);
-        var netBitSetB = new Shared.NetBitSet(binaryStringB);
+        var netBitSetA = new NetBitSet(binaryStringA);
+        var netBitSetB = new NetBitSet(binaryStringB);
 
         // act
         netBitSetA.Or(netBitSetB);
@@ -370,7 +369,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.OrAll(bit);
@@ -390,7 +389,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.OrAll(bit);
@@ -410,7 +409,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.OrAll(bit);
@@ -430,7 +429,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.OrAll(bit);
@@ -450,7 +449,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.OrAll(bit);
@@ -471,7 +470,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.Xor((ulong)index, bit);
@@ -492,7 +491,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.Xor((ulong)index, bit);
@@ -513,7 +512,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.Xor((ulong)index, bit);
@@ -534,7 +533,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.Xor((ulong)index, bit);
@@ -555,7 +554,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.Xor((ulong)index, bit);
@@ -575,8 +574,8 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSetA = new Shared.NetBitSet(binaryStringA);
-        var netBitSetB = new Shared.NetBitSet(binaryStringB);
+        var netBitSetA = new NetBitSet(binaryStringA);
+        var netBitSetB = new NetBitSet(binaryStringB);
 
         // act
         netBitSetA.Xor(netBitSetB);
@@ -596,7 +595,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.XorAll(bit);
@@ -616,7 +615,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.XorAll(bit);
@@ -636,7 +635,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.XorAll(bit);
@@ -656,7 +655,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.XorAll(bit);
@@ -676,7 +675,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.XorAll(bit);
@@ -696,7 +695,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.Invert((ulong)position);
@@ -715,7 +714,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.InvertAll();
@@ -734,7 +733,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.SetAll();
@@ -753,7 +752,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.ResetAll();
@@ -777,7 +776,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.ArithmeticShiftRight((ulong)count);
@@ -797,7 +796,7 @@ public class NetBitSetMethodBitWiseTests
         byte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet.ArithmeticShiftRight((ulong)count);
@@ -817,7 +816,7 @@ public class NetBitSetMethodBitWiseTests
         sbyte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet.ArithmeticShiftRight((ulong)count);
@@ -841,7 +840,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.ArithmeticShiftLeft((ulong)count);
@@ -861,7 +860,7 @@ public class NetBitSetMethodBitWiseTests
         byte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet.ArithmeticShiftLeft((ulong)count);
@@ -881,7 +880,7 @@ public class NetBitSetMethodBitWiseTests
         sbyte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet.ArithmeticShiftLeft((ulong)count);
@@ -905,7 +904,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.LogicalShiftRight((ulong)count);
@@ -925,7 +924,7 @@ public class NetBitSetMethodBitWiseTests
         byte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet.LogicalShiftRight((ulong)count);
@@ -945,7 +944,7 @@ public class NetBitSetMethodBitWiseTests
         sbyte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet.LogicalShiftRight((ulong)count);
@@ -969,7 +968,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.LogicalShiftLeft((ulong)count);
@@ -989,7 +988,7 @@ public class NetBitSetMethodBitWiseTests
         byte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet.LogicalShiftLeft((ulong)count);
@@ -1009,7 +1008,7 @@ public class NetBitSetMethodBitWiseTests
         sbyte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet.LogicalShiftLeft((ulong)count);
@@ -1033,7 +1032,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.CircularShiftRight((ulong)count);
@@ -1053,7 +1052,7 @@ public class NetBitSetMethodBitWiseTests
         byte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet.CircularShiftRight((ulong)count);
@@ -1073,7 +1072,7 @@ public class NetBitSetMethodBitWiseTests
         sbyte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet.CircularShiftRight((ulong)count);
@@ -1097,7 +1096,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.CircularShiftLeft((ulong)count);
@@ -1117,7 +1116,7 @@ public class NetBitSetMethodBitWiseTests
         byte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet.CircularShiftLeft((ulong)count);
@@ -1137,7 +1136,7 @@ public class NetBitSetMethodBitWiseTests
         sbyte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet.CircularShiftLeft((ulong)count);
@@ -1162,7 +1161,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.ShiftRight((ulong)count, bit);
@@ -1187,7 +1186,7 @@ public class NetBitSetMethodBitWiseTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet.ShiftLeft((ulong)count, bit);

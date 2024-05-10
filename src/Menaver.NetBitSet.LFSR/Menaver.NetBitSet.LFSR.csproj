@@ -2,6 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>10</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
 
     <PackageId>$(MSBuildProjectName)</PackageId>
     <PackageVersion>1.0.0</PackageVersion>
@@ -23,10 +26,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Menaver.NetBitSet.Shared\Menaver.NetBitSet.Shared.csproj" />
   </ItemGroup>
 
 </Project>

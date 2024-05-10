@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using Menaver.NetBitSet.Shared.Extensions;
+using Menaver.NetBitSet.Extensions;
 
-namespace Menaver.NetBitSet.Shared.Internals;
+namespace Menaver.NetBitSet.Internals;
 
 internal static class BitArrayBuilder
 {

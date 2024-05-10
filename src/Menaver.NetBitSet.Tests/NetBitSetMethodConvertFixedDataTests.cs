@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Menaver.NetBitSet.Shared;
 
 namespace Menaver.NetBitSet.Tests;
 
@@ -13,7 +12,7 @@ public class NetBitSetMethodConvertFixedDataTests
         Bit defaultValue)
     {
         // arrange
-        var netBitSet = new Shared.NetBitSet(count, defaultValue);
+        var netBitSet = new NetBitSet(count, defaultValue);
 
         // act
         var setupComplies = netBitSet.All(x => x == defaultValue);
@@ -32,7 +31,7 @@ public class NetBitSetMethodConvertFixedDataTests
         WordLength wordLength)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(count, defaultValue, wordLength);
+        var netBitSet = new NetBitSet(count, defaultValue, wordLength);
 
         // act
         var setupComplies = netBitSet.All(x => x == defaultValue);
@@ -47,7 +46,7 @@ public class NetBitSetMethodConvertFixedDataTests
         bool value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         var revertedValue = netBitSet.ToBools().FirstOrDefault();
@@ -63,7 +62,7 @@ public class NetBitSetMethodConvertFixedDataTests
         WordLength wordLength)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value, wordLength);
+        var netBitSet = new NetBitSet(value, wordLength);
 
         // act
         var revertedValue = netBitSet.ToBools().FirstOrDefault();
@@ -79,7 +78,7 @@ public class NetBitSetMethodConvertFixedDataTests
         sbyte value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         var revertedValue = netBitSet.ToSBytes().FirstOrDefault();
@@ -95,7 +94,7 @@ public class NetBitSetMethodConvertFixedDataTests
         byte value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         var revertedValue = netBitSet.ToBytes().FirstOrDefault();
@@ -111,7 +110,7 @@ public class NetBitSetMethodConvertFixedDataTests
         short value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         var revertedValue = netBitSet.ToShorts().FirstOrDefault();
@@ -127,7 +126,7 @@ public class NetBitSetMethodConvertFixedDataTests
         ushort value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         var revertedValue = netBitSet.ToUShorts().FirstOrDefault();
@@ -143,7 +142,7 @@ public class NetBitSetMethodConvertFixedDataTests
         int value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         var revertedValue = netBitSet.ToInts().FirstOrDefault();
@@ -159,7 +158,7 @@ public class NetBitSetMethodConvertFixedDataTests
         uint value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         var revertedValue = netBitSet.ToUInts().FirstOrDefault();
@@ -175,7 +174,7 @@ public class NetBitSetMethodConvertFixedDataTests
         long value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         var revertedValue = netBitSet.ToLongs().FirstOrDefault();
@@ -191,7 +190,7 @@ public class NetBitSetMethodConvertFixedDataTests
         ulong value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         var revertedValue = netBitSet.ToULongs().FirstOrDefault();
@@ -208,7 +207,7 @@ public class NetBitSetMethodConvertFixedDataTests
         double value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         var revertedValue = netBitSet.ToDoubles().FirstOrDefault();
@@ -224,7 +223,7 @@ public class NetBitSetMethodConvertFixedDataTests
         string value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         var revertedValue = netBitSet.ToString();
@@ -245,7 +244,7 @@ public class NetBitSetMethodConvertFixedDataTests
     {
         // arrange 
         var encoding = Encoding.GetEncoding(encodingName);
-        var netBitSet = new Shared.NetBitSet(value, encoding);
+        var netBitSet = new NetBitSet(value, encoding);
 
         // act
         var revertedValue = netBitSet.ToString(encoding);
@@ -266,7 +265,7 @@ public class NetBitSetMethodConvertFixedDataTests
     {
         // arrange 
         var encoding = Encoding.GetEncoding(encodingName);
-        var netBitSet = new Shared.NetBitSet(value, encoding, wordLength);
+        var netBitSet = new NetBitSet(value, encoding, wordLength);
 
         // act
         var revertedValue = netBitSet.ToString(encoding);
@@ -282,7 +281,7 @@ public class NetBitSetMethodConvertFixedDataTests
         string value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         var revertedValue = netBitSet.ToBinaryString();
@@ -298,7 +297,7 @@ public class NetBitSetMethodConvertFixedDataTests
         WordLength wordLength)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value, wordLength);
+        var netBitSet = new NetBitSet(value, wordLength);
 
         // act
         var revertedValue = netBitSet.ToBinaryString();
@@ -316,7 +315,7 @@ public class NetBitSetMethodConvertFixedDataTests
         int expectedNumber)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value, wordLength);
+        var netBitSet = new NetBitSet(value, wordLength);
 
         // act
         var extractedNumber = netBitSet.ToInts().FirstOrDefault();
@@ -330,7 +329,7 @@ public class NetBitSetMethodConvertFixedDataTests
     {
         // arrange 
         var dateTime = DateTimeOffset.UtcNow;
-        var netBitSet = new Shared.NetBitSet(dateTime);
+        var netBitSet = new NetBitSet(dateTime);
 
         // act
         var revertedValue = netBitSet.ToObject<DateTimeOffset>();
@@ -347,7 +346,7 @@ public class NetBitSetMethodConvertFixedDataTests
         // arrange 
         var dateTime = DateTimeOffset.UtcNow;
         var encoding = Encoding.GetEncoding(encodingName);
-        var netBitSet = new Shared.NetBitSet(dateTime, encoding);
+        var netBitSet = new NetBitSet(dateTime, encoding);
 
         // act
         var revertedValue = netBitSet.ToObject<DateTimeOffset>();
@@ -365,7 +364,7 @@ public class NetBitSetMethodConvertFixedDataTests
         // arrange 
         var dateTime = DateTimeOffset.UtcNow;
         var encoding = Encoding.GetEncoding(encodingName);
-        var netBitSet = new Shared.NetBitSet(dateTime, encoding, wordLength);
+        var netBitSet = new NetBitSet(dateTime, encoding, wordLength);
 
         // act
         var revertedValue = netBitSet.ToObject<DateTimeOffset>();

@@ -1,5 +1,4 @@
-﻿using Menaver.NetBitSet.Shared;
-using NUnit.Framework.Internal;
+﻿using NUnit.Framework.Internal;
 
 namespace Menaver.NetBitSet.Tests;
 
@@ -19,8 +18,8 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextByte();
         }
 
-        var netBitSetA = new Shared.NetBitSet(randomValues);
-        var netBitSetB = new Shared.NetBitSet(randomValues);
+        var netBitSetA = new NetBitSet(randomValues);
+        var netBitSetB = new NetBitSet(randomValues);
 
         // act
         var equals = netBitSetA == netBitSetB;
@@ -40,8 +39,8 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextByte();
         }
 
-        var netBitSetA = new Shared.NetBitSet(randomValues, WordLength.Sixteen);
-        var netBitSetB = new Shared.NetBitSet(randomValues, WordLength.ThirtyTwo);
+        var netBitSetA = new NetBitSet(randomValues, WordLength.Sixteen);
+        var netBitSetB = new NetBitSet(randomValues, WordLength.ThirtyTwo);
 
         // act
         var notEquals = netBitSetA != netBitSetB;
@@ -55,7 +54,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextBool();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = netBitSet.ToBools().FirstOrDefault();
@@ -69,7 +68,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextByte();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = netBitSet.ToBytes().FirstOrDefault();
@@ -83,7 +82,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextSByte();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = netBitSet.ToSBytes().FirstOrDefault();
@@ -97,7 +96,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextShort();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = netBitSet.ToShorts().FirstOrDefault();
@@ -111,7 +110,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextUShort();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = netBitSet.ToUShorts().FirstOrDefault();
@@ -125,7 +124,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.Next();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = netBitSet.ToInts().FirstOrDefault();
@@ -139,7 +138,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextUInt();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = netBitSet.ToUInts().FirstOrDefault();
@@ -153,7 +152,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextLong();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = netBitSet.ToLongs().FirstOrDefault();
@@ -167,7 +166,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextULong();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = netBitSet.ToULongs().FirstOrDefault();
@@ -181,7 +180,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextDouble();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = netBitSet.ToDoubles().FirstOrDefault();
@@ -195,7 +194,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.GetString();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = netBitSet.ToString();
@@ -215,7 +214,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextBool();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = netBitSet.ToBools();
@@ -236,7 +235,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextByte();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = netBitSet.ToBytes();
@@ -257,7 +256,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextSByte();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = netBitSet.ToSBytes();
@@ -278,7 +277,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextShort();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = netBitSet.ToShorts();
@@ -299,7 +298,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.Next();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = netBitSet.ToInts();
@@ -320,7 +319,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextUInt();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = netBitSet.ToUInts();
@@ -341,7 +340,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextLong();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = netBitSet.ToLongs();
@@ -362,7 +361,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextULong();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = netBitSet.ToULongs();
@@ -383,7 +382,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextULong();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = netBitSet.ToDoubles();
@@ -398,7 +397,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextBool();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = (bool)netBitSet;
@@ -412,7 +411,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextByte();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = (byte)netBitSet;
@@ -426,7 +425,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextSByte();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = (sbyte)netBitSet;
@@ -440,7 +439,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextShort();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = (short)netBitSet;
@@ -454,7 +453,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextUShort();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = (ushort)netBitSet;
@@ -468,7 +467,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.Next();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = (int)netBitSet;
@@ -482,7 +481,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextUInt();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = (uint)netBitSet;
@@ -496,7 +495,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextLong();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = (long)netBitSet;
@@ -510,7 +509,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextULong();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = (ulong)netBitSet;
@@ -524,7 +523,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.NextDouble();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = (double)netBitSet;
@@ -538,7 +537,7 @@ public class NetBitSetOperatorsTests
     {
         // arrange
         var value = Randomizer.GetString();
-        Shared.NetBitSet netBitSet = value;
+        NetBitSet netBitSet = value;
 
         // act
         var revertedValue = (string)netBitSet;
@@ -558,7 +557,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextBool();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = (bool[])netBitSet;
@@ -579,7 +578,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextByte();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = (byte[])netBitSet;
@@ -600,7 +599,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextSByte();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = (sbyte[])netBitSet;
@@ -621,7 +620,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextShort();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = (short[])netBitSet;
@@ -642,7 +641,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextUShort();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = (ushort[])netBitSet;
@@ -663,7 +662,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.Next();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = (int[])netBitSet;
@@ -684,7 +683,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextUInt();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = (uint[])netBitSet;
@@ -705,7 +704,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextLong();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = (long[])netBitSet;
@@ -726,7 +725,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextULong();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = (ulong[])netBitSet;
@@ -747,7 +746,7 @@ public class NetBitSetOperatorsTests
             randomValues[i] = Randomizer.NextULong();
         }
 
-        Shared.NetBitSet netBitSet = randomValues;
+        NetBitSet netBitSet = randomValues;
 
         // act
         var revertedValues = (double[])netBitSet;
@@ -771,7 +770,7 @@ public class NetBitSetOperatorsTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet >>= count;
@@ -791,7 +790,7 @@ public class NetBitSetOperatorsTests
         byte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet >>= count;
@@ -811,7 +810,7 @@ public class NetBitSetOperatorsTests
         sbyte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet >>= count;
@@ -835,7 +834,7 @@ public class NetBitSetOperatorsTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet <<= count;
@@ -855,7 +854,7 @@ public class NetBitSetOperatorsTests
         byte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet <<= count;
@@ -875,7 +874,7 @@ public class NetBitSetOperatorsTests
         sbyte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet <<= count;
@@ -897,8 +896,8 @@ public class NetBitSetOperatorsTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSetA = new Shared.NetBitSet(binaryStringA);
-        var netBitSetB = new Shared.NetBitSet(binaryStringB);
+        var netBitSetA = new NetBitSet(binaryStringA);
+        var netBitSetB = new NetBitSet(binaryStringB);
 
         // act
         netBitSetA &= netBitSetB;
@@ -920,8 +919,8 @@ public class NetBitSetOperatorsTests
         byte expectedValue)
     {
         // arrange 
-        var netBitSetA = new Shared.NetBitSet(valueA);
-        var netBitSetB = new Shared.NetBitSet(valueB);
+        var netBitSetA = new NetBitSet(valueA);
+        var netBitSetB = new NetBitSet(valueB);
 
         // act
         netBitSetA &= netBitSetB;
@@ -943,8 +942,8 @@ public class NetBitSetOperatorsTests
         sbyte expectedValue)
     {
         // arrange 
-        var netBitSetA = new Shared.NetBitSet(valueA);
-        var netBitSetB = new Shared.NetBitSet(valueB);
+        var netBitSetA = new NetBitSet(valueA);
+        var netBitSetB = new NetBitSet(valueB);
 
         // act
         netBitSetA &= netBitSetB;
@@ -966,8 +965,8 @@ public class NetBitSetOperatorsTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSetA = new Shared.NetBitSet(binaryStringA);
-        var netBitSetB = new Shared.NetBitSet(binaryStringB);
+        var netBitSetA = new NetBitSet(binaryStringA);
+        var netBitSetB = new NetBitSet(binaryStringB);
 
         // act
         netBitSetA |= netBitSetB;
@@ -989,8 +988,8 @@ public class NetBitSetOperatorsTests
         byte expectedValue)
     {
         // arrange 
-        var netBitSetA = new Shared.NetBitSet(valueA);
-        var netBitSetB = new Shared.NetBitSet(valueB);
+        var netBitSetA = new NetBitSet(valueA);
+        var netBitSetB = new NetBitSet(valueB);
 
         // act
         netBitSetA |= netBitSetB;
@@ -1012,8 +1011,8 @@ public class NetBitSetOperatorsTests
         sbyte expectedValue)
     {
         // arrange 
-        var netBitSetA = new Shared.NetBitSet(valueA);
-        var netBitSetB = new Shared.NetBitSet(valueB);
+        var netBitSetA = new NetBitSet(valueA);
+        var netBitSetB = new NetBitSet(valueB);
 
         // act
         netBitSetA |= netBitSetB;
@@ -1035,8 +1034,8 @@ public class NetBitSetOperatorsTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSetA = new Shared.NetBitSet(binaryStringA);
-        var netBitSetB = new Shared.NetBitSet(binaryStringB);
+        var netBitSetA = new NetBitSet(binaryStringA);
+        var netBitSetB = new NetBitSet(binaryStringB);
 
         // act
         netBitSetA ^= netBitSetB;
@@ -1058,8 +1057,8 @@ public class NetBitSetOperatorsTests
         byte expectedValue)
     {
         // arrange 
-        var netBitSetA = new Shared.NetBitSet(valueA);
-        var netBitSetB = new Shared.NetBitSet(valueB);
+        var netBitSetA = new NetBitSet(valueA);
+        var netBitSetB = new NetBitSet(valueB);
 
         // act
         netBitSetA ^= netBitSetB;
@@ -1081,8 +1080,8 @@ public class NetBitSetOperatorsTests
         sbyte expectedValue)
     {
         // arrange 
-        var netBitSetA = new Shared.NetBitSet(valueA);
-        var netBitSetB = new Shared.NetBitSet(valueB);
+        var netBitSetA = new NetBitSet(valueA);
+        var netBitSetB = new NetBitSet(valueB);
 
         // act
         netBitSetA ^= netBitSetB;
@@ -1100,7 +1099,7 @@ public class NetBitSetOperatorsTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet = ~netBitSet;
@@ -1118,7 +1117,7 @@ public class NetBitSetOperatorsTests
         byte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet = ~netBitSet;
@@ -1136,7 +1135,7 @@ public class NetBitSetOperatorsTests
         sbyte expectedValue)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
         netBitSet = ~netBitSet;

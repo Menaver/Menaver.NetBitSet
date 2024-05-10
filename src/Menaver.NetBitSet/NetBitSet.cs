@@ -1,6 +1,6 @@
-﻿using Menaver.NetBitSet.Shared.Interfaces;
+﻿using Menaver.NetBitSet.Interfaces;
 
-namespace Menaver.NetBitSet.Shared;
+namespace Menaver.NetBitSet;
 
 /// <summary>
 ///     Represents an implementation of a bit-level data structure.

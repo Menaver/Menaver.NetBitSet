@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace Menaver.NetBitSet.Shared.Internals;
+namespace Menaver.NetBitSet.Internals;
 
 internal static class BitArrayConverter
 {
@@ -145,48 +144,48 @@ internal static class BitArrayConverter
         {
             case WordLength.NotFixed:
             case WordLength.One:
-            {
-                var chars = binaryString.ToCharArray();
-
-                Array.Reverse(chars);
-
-                binaryString = new string(chars);
-
-                for (ulong i = 0; i < count; i++)
                 {
-                    if (binaryString[(int)i] == '1')
+                    var chars = binaryString.ToCharArray();
+
+                    Array.Reverse(chars);
+
+                    binaryString = new string(chars);
+
+                    for (ulong i = 0; i < count; i++)
                     {
-                        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(i);
+                        if (binaryString[(int)i] == '1')
+                        {
+                            var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(i);
 
-                        bitArrays[packIndex][bitIndex] = true;
+                            bitArrays[packIndex][bitIndex] = true;
+                        }
                     }
-                }
 
-                return bitArrays;
-            }
+                    return bitArrays;
+                }
             case WordLength.Eight:
             case WordLength.Sixteen:
             case WordLength.ThirtyTwo:
             case WordLength.SixtyFour:
-            {
-                // split binaryString by words 
-                var chunkSize = (byte)wordLength;
-                var binaryStrings = Enumerable.Range(0, binaryString.Length / chunkSize)
-                    .Select(i => binaryString.Substring(i * chunkSize, chunkSize)).ToList();
-
-                ulong index = 0;
-                foreach (var bs in binaryStrings)
                 {
-                    var bitArray = ConvertBinaryString(bs, WordLength.One).First();
+                    // split binaryString by words 
+                    var chunkSize = (byte)wordLength;
+                    var binaryStrings = Enumerable.Range(0, binaryString.Length / chunkSize)
+                        .Select(i => binaryString.Substring(i * chunkSize, chunkSize)).ToList();
 
-                    for (var i = 0; i < bitArray.Length; i++, index++)
+                    ulong index = 0;
+                    foreach (var bs in binaryStrings)
                     {
-                        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(index);
+                        var bitArray = ConvertBinaryString(bs, WordLength.One).First();
 
-                        bitArrays[packIndex][bitIndex] = bitArray[i];
+                        for (var i = 0; i < bitArray.Length; i++, index++)
+                        {
+                            var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(index);
+
+                            bitArrays[packIndex][bitIndex] = bitArray[i];
+                        }
                     }
                 }
-            }
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(wordLength), wordLength, null);
@@ -399,25 +398,25 @@ internal static class BitArrayConverter
         {
             case WordLength.NotFixed:
             case WordLength.One:
-            {
-                var chars = ConvertToBools(bitArray)
-                    .Select(x => x ? '1' : '0')
-                    .ToArray();
+                {
+                    var chars = ConvertToBools(bitArray)
+                        .Select(x => x ? '1' : '0')
+                        .ToArray();
 
-                Array.Reverse(chars);
+                    Array.Reverse(chars);
 
-                binaryString = new string(chars);
-            }
+                    binaryString = new string(chars);
+                }
                 break;
             case WordLength.Eight:
             case WordLength.Sixteen:
             case WordLength.ThirtyTwo:
             case WordLength.SixtyFour:
-            {
-                var stringsByWord = ConvertToBinaryStringsByWord(bitArray, wordLength);
+                {
+                    var stringsByWord = ConvertToBinaryStringsByWord(bitArray, wordLength);
 
-                binaryString = string.Join(string.Empty, stringsByWord);
-            }
+                    binaryString = string.Join(string.Empty, stringsByWord);
+                }
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(wordLength), wordLength, null);

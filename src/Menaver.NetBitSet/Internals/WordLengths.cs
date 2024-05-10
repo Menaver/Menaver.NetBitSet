@@ -1,13 +1,13 @@
 ﻿using System.Text;
 
-namespace Menaver.NetBitSet.Shared.Internals;
+namespace Menaver.NetBitSet.Internals;
 
 internal static class WordLengths
 {
     public static WordLength Bool => WordLength.One;
     public static WordLength Byte => WordLength.Eight;
     public static WordLength Short => (WordLength)(BitConverter.GetBytes((short)1).Length * 8);
-    public static WordLength Int => (WordLength)(BitConverter.GetBytes((int)1).Length * 8);
+    public static WordLength Int => (WordLength)(BitConverter.GetBytes(1).Length * 8);
     public static WordLength Long => (WordLength)(BitConverter.GetBytes((long)1).Length * 8);
     public static WordLength Double => (WordLength)(BitConverter.GetBytes((double)1).Length * 8);
 

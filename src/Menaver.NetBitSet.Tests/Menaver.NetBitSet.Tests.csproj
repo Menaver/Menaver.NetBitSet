@@ -18,7 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Menaver.NetBitSet.Shared\Menaver.NetBitSet.Shared.csproj" />
+    <ProjectReference Include="..\Menaver.NetBitSet.LFSR\Menaver.NetBitSet.LFSR.csproj" />
+    <ProjectReference Include="..\Menaver.NetBitSet\Menaver.NetBitSet.csproj" />
   </ItemGroup>
 
   <ItemGroup>

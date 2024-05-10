@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Text;
-using Menaver.NetBitSet.Shared.Extensions;
-using Menaver.NetBitSet.Shared.Internals;
+using Menaver.NetBitSet.Extensions;
+using Menaver.NetBitSet.Internals;
 
-namespace Menaver.NetBitSet.Shared;
+namespace Menaver.NetBitSet;
 
 public partial class NetBitSet
 {

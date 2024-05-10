@@ -1,6 +1,5 @@
 ﻿using System.Text;
-using Menaver.NetBitSet.Shared;
-using Menaver.NetBitSet.Shared.Extensions;
+using Menaver.NetBitSet.Extensions;
 using NUnit.Framework.Internal;
 
 namespace Menaver.NetBitSet.Tests;
@@ -16,7 +15,7 @@ public class NetBitSetCtorRandomDataTests
         // arrange
         var randomCount = Randomizer.NextULong((ulong)short.MaxValue);
         var randomDefaultValue = Randomizer.NextBool().ToBit();
-        var netBitSet = new Shared.NetBitSet(randomCount, randomDefaultValue);
+        var netBitSet = new NetBitSet(randomCount, randomDefaultValue);
 
         // act
 
@@ -37,7 +36,7 @@ public class NetBitSetCtorRandomDataTests
         // arrange 
         var randomCount = Randomizer.NextULong((ulong)short.MaxValue);
         var randomDefaultValue = Randomizer.NextBool().ToBit();
-        var netBitSet = new Shared.NetBitSet(randomCount, randomDefaultValue, wordLength);
+        var netBitSet = new NetBitSet(randomCount, randomDefaultValue, wordLength);
 
         // act
 
@@ -51,7 +50,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextBool();
-        var netBitSet = new Shared.NetBitSet(randomValue);
+        var netBitSet = new NetBitSet(randomValue);
 
         // act
 
@@ -67,7 +66,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange
         var randomValue = Randomizer.NextBool();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
 
@@ -81,7 +80,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextSByte();
-        var netBitSet = new Shared.NetBitSet(randomValue);
+        var netBitSet = new NetBitSet(randomValue);
 
         // act
 
@@ -97,7 +96,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextSByte();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
 
@@ -111,7 +110,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextByte();
-        var netBitSet = new Shared.NetBitSet(randomValue);
+        var netBitSet = new NetBitSet(randomValue);
 
         // act
 
@@ -127,7 +126,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextByte();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
 
@@ -141,7 +140,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextShort();
-        var netBitSet = new Shared.NetBitSet(randomValue);
+        var netBitSet = new NetBitSet(randomValue);
 
         // act
 
@@ -157,7 +156,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextShort();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
 
@@ -171,7 +170,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextUShort();
-        var netBitSet = new Shared.NetBitSet(randomValue);
+        var netBitSet = new NetBitSet(randomValue);
 
         // act
 
@@ -187,7 +186,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextUShort();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
 
@@ -201,7 +200,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.Next();
-        var netBitSet = new Shared.NetBitSet(randomValue);
+        var netBitSet = new NetBitSet(randomValue);
 
         // act
 
@@ -217,7 +216,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.Next();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
 
@@ -231,7 +230,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextUInt();
-        var netBitSet = new Shared.NetBitSet(randomValue);
+        var netBitSet = new NetBitSet(randomValue);
 
         // act
 
@@ -247,7 +246,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextUInt();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
 
@@ -261,7 +260,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextInt64();
-        var netBitSet = new Shared.NetBitSet(randomValue);
+        var netBitSet = new NetBitSet(randomValue);
 
         // act
 
@@ -277,7 +276,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextInt64();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
 
@@ -291,7 +290,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextULong();
-        var netBitSet = new Shared.NetBitSet(randomValue);
+        var netBitSet = new NetBitSet(randomValue);
 
         // act
 
@@ -307,7 +306,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextULong();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
 
@@ -321,7 +320,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.NextDouble();
-        var netBitSet = new Shared.NetBitSet(randomValue);
+        var netBitSet = new NetBitSet(randomValue);
 
         // act
 
@@ -337,7 +336,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange
         var randomValue = Randomizer.NextDouble();
-        var netBitSet = new Shared.NetBitSet(randomValue, wordLength);
+        var netBitSet = new NetBitSet(randomValue, wordLength);
 
         // act
 
@@ -354,7 +353,7 @@ public class NetBitSetCtorRandomDataTests
     {
         // arrange 
         var randomValue = Randomizer.GetString(stringLengthLimit);
-        var netBitSet = new Shared.NetBitSet(randomValue);
+        var netBitSet = new NetBitSet(randomValue);
 
         // act
 
@@ -375,7 +374,7 @@ public class NetBitSetCtorRandomDataTests
         // arrange 
         var randomValue = Randomizer.GetString(stringLengthLimit);
         var encoding = Encoding.GetEncoding(encodingName);
-        var netBitSet = new Shared.NetBitSet(randomValue, encoding);
+        var netBitSet = new NetBitSet(randomValue, encoding);
 
         // act
 
@@ -394,7 +393,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextBool();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
 
@@ -420,7 +419,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextBool();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues, wordLength);
+        var netBitSet = new NetBitSet(randomValues, wordLength);
 
         // act
 
@@ -440,7 +439,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextSByte();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
 
@@ -466,7 +465,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextSByte();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues, wordLength);
+        var netBitSet = new NetBitSet(randomValues, wordLength);
 
         // act
 
@@ -486,7 +485,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextByte();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
 
@@ -512,7 +511,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextByte();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues, wordLength);
+        var netBitSet = new NetBitSet(randomValues, wordLength);
 
         // act
 
@@ -532,7 +531,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextShort();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
 
@@ -558,7 +557,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextShort();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues, wordLength);
+        var netBitSet = new NetBitSet(randomValues, wordLength);
 
         // act
 
@@ -578,7 +577,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextUShort();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
 
@@ -604,7 +603,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextUShort();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues, wordLength);
+        var netBitSet = new NetBitSet(randomValues, wordLength);
 
         // act
 
@@ -624,7 +623,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.Next();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
 
@@ -650,7 +649,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.Next();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues, wordLength);
+        var netBitSet = new NetBitSet(randomValues, wordLength);
 
         // act
 
@@ -670,7 +669,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextUInt();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
 
@@ -696,7 +695,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextUInt();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues, wordLength);
+        var netBitSet = new NetBitSet(randomValues, wordLength);
 
         // act
 
@@ -716,7 +715,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextLong();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
 
@@ -742,7 +741,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextLong();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues, wordLength);
+        var netBitSet = new NetBitSet(randomValues, wordLength);
 
         // act
 
@@ -762,7 +761,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextULong();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
 
@@ -788,7 +787,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextULong();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues, wordLength);
+        var netBitSet = new NetBitSet(randomValues, wordLength);
 
         // act
 
@@ -808,7 +807,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextDouble();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
 
@@ -834,7 +833,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.NextDouble();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues, wordLength);
+        var netBitSet = new NetBitSet(randomValues, wordLength);
 
         // act
 
@@ -857,7 +856,7 @@ public class NetBitSetCtorRandomDataTests
             randomValues[i] = Randomizer.GetString(stringLengthLimit);
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
 
@@ -884,7 +883,7 @@ public class NetBitSetCtorRandomDataTests
         }
 
         var encoding = Encoding.GetEncoding(encodingName);
-        var netBitSet = new Shared.NetBitSet(randomValues, encoding);
+        var netBitSet = new NetBitSet(randomValues, encoding);
 
         // act
 
@@ -911,7 +910,7 @@ public class NetBitSetCtorRandomDataTests
         }
 
         var encoding = Encoding.GetEncoding(encodingName);
-        var netBitSet = new Shared.NetBitSet(randomValues, encoding, wordLength);
+        var netBitSet = new NetBitSet(randomValues, encoding, wordLength);
 
         // act
 
