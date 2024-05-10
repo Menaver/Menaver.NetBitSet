@@ -2,25 +2,6 @@
 
 public partial class NetBitSet
 {
-    public static NetBitSet operator +(NetBitSet left, NetBitSet right)
-    {
-        if (left.WordLength != right.WordLength)
-        {
-            throw new InvalidOperationException("Operation cannot be completed - word lengths do not match.");
-        }
-
-        var result = (NetBitSet)left.Clone();
-
-        result.Resize(result.Count + right.Count);
-
-        for (ulong i = left.Count, j = 0; i < result.Count; i++, j++)
-        {
-            result[i] = right[j];
-        }
-
-        return result;
-    }
-
     public static bool operator ==(NetBitSet left, NetBitSet right)
     {
         return Equals(left, right);
