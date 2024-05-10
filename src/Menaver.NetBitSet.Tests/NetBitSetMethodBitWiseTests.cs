@@ -12,7 +12,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, true, "1100")]
     [TestCase("1111", 2, false, "1011")]
     [TestCase("0000", 3, true, "0000")]
-    public void BitWise_And_Bool_BinaryStringChanged(
+    public void BitWise_And_Bool_BinaryStringFits(
         string binaryString,
         int index,
         bool bit,
@@ -33,7 +33,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, 1, "1100")]
     [TestCase("1111", 2, 0, "1011")]
     [TestCase("0000", 3, 1, "0000")]
-    public void BitWise_And_Byte_BinaryStringChanged(
+    public void BitWise_And_Byte_BinaryStringFits(
         string binaryString,
         int index,
         byte bit,
@@ -54,7 +54,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, 1, "1100")]
     [TestCase("1111", 2, 0, "1011")]
     [TestCase("0000", 3, 1, "0000")]
-    public void BitWise_And_Int_BinaryStringChanged(
+    public void BitWise_And_Int_BinaryStringFits(
         string binaryString,
         int index,
         int bit,
@@ -75,7 +75,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, 1, "1100")]
     [TestCase("1111", 2, 0, "1011")]
     [TestCase("0000", 3, 1, "0000")]
-    public void BitWise_And_Double_BinaryStringChanged(
+    public void BitWise_And_Double_BinaryStringFits(
         string binaryString,
         int index,
         double bit,
@@ -96,7 +96,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, Bit.True, "1100")]
     [TestCase("1111", 2, Bit.False, "1011")]
     [TestCase("0000", 3, Bit.True, "0000")]
-    public void BitWise_And_Bit_BinaryStringChanged(
+    public void BitWise_And_Bit_BinaryStringFits(
         string binaryString,
         int index,
         Bit bit,
@@ -117,7 +117,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", "1111", "1100")]
     [TestCase("1111", "1111", "1111")]
     [TestCase("0000", "0000", "0000")]
-    public void BitWise_And_NetBitSet_BinaryStringChanged(
+    public void BitWise_And_NetBitSet_BinaryStringFits(
         string binaryStringA,
         string binaryStringB,
         string expectedBinaryString)
@@ -138,7 +138,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", true, "1100")]
     [TestCase("0011", false, "0000")]
     [TestCase("0000", true, "0000")]
-    public void BitWise_AndAll_Bool_BinaryStringChanged(
+    public void BitWise_AndAll_Bool_BinaryStringFits(
         string binaryString,
         bool bit,
         string expectedBinaryString)
@@ -158,7 +158,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, "1100")]
     [TestCase("0011", 0, "0000")]
     [TestCase("0000", 1, "0000")]
-    public void BitWise_AndAll_Byte_BinaryStringChanged(
+    public void BitWise_AndAll_Byte_BinaryStringFits(
         string binaryString,
         byte bit,
         string expectedBinaryString)
@@ -178,7 +178,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, "1100")]
     [TestCase("0011", 0, "0000")]
     [TestCase("0000", 1, "0000")]
-    public void BitWise_AndAll_Int_BinaryStringChanged(
+    public void BitWise_AndAll_Int_BinaryStringFits(
         string binaryString,
         int bit,
         string expectedBinaryString)
@@ -198,7 +198,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, "1100")]
     [TestCase("0011", 0, "0000")]
     [TestCase("0000", 1, "0000")]
-    public void BitWise_AndAll_Double_BinaryStringChanged(
+    public void BitWise_AndAll_Double_BinaryStringFits(
         string binaryString,
         double bit,
         string expectedBinaryString)
@@ -218,7 +218,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", Bit.True, "1100")]
     [TestCase("0011", Bit.False, "0000")]
     [TestCase("0000", Bit.True, "0000")]
-    public void BitWise_AndAll_Bit_BinaryStringChanged(
+    public void BitWise_AndAll_Bit_BinaryStringFits(
         string binaryString,
         Bit bit,
         string expectedBinaryString)
@@ -238,7 +238,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, true, "1110")]
     [TestCase("1111", 2, false, "1111")]
     [TestCase("0000", 3, true, "1000")]
-    public void BitWise_Or_Bool_BinaryStringChanged(
+    public void BitWise_Or_Bool_BinaryStringFits(
         string binaryString,
         int index,
         bool bit,
@@ -259,7 +259,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, 1, "1110")]
     [TestCase("1111", 2, 0, "1111")]
     [TestCase("0000", 3, 1, "1000")]
-    public void BitWise_Or_Byte_BinaryStringChanged(
+    public void BitWise_Or_Byte_BinaryStringFits(
         string binaryString,
         int index,
         byte bit,
@@ -280,7 +280,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, 1, "1110")]
     [TestCase("1111", 2, 0, "1111")]
     [TestCase("0000", 3, 1, "1000")]
-    public void BitWise_Or_Int_BinaryStringChanged(
+    public void BitWise_Or_Int_BinaryStringFits(
         string binaryString,
         int index,
         int bit,
@@ -301,7 +301,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, 1, "1110")]
     [TestCase("1111", 2, 0, "1111")]
     [TestCase("0000", 3, 1, "1000")]
-    public void BitWise_Or_Double_BinaryStringChanged(
+    public void BitWise_Or_Double_BinaryStringFits(
         string binaryString,
         int index,
         double bit,
@@ -322,7 +322,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, Bit.True, "1110")]
     [TestCase("1111", 2, Bit.False, "1111")]
     [TestCase("0000", 3, Bit.True, "1000")]
-    public void BitWise_Or_Bit_BinaryStringChanged(
+    public void BitWise_Or_Bit_BinaryStringFits(
         string binaryString,
         int index,
         Bit bit,
@@ -343,7 +343,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", "1111", "1111")]
     [TestCase("1111", "1111", "1111")]
     [TestCase("0000", "0000", "0000")]
-    public void BitWise_Or_NetBitSet_BinaryStringChanged(
+    public void BitWise_Or_NetBitSet_BinaryStringFits(
         string binaryStringA,
         string binaryStringB,
         string expectedBinaryString)
@@ -364,7 +364,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", true, "1111")]
     [TestCase("0011", false, "0011")]
     [TestCase("0000", true, "1111")]
-    public void BitWise_OrAll_Bool_BinaryStringChanged(
+    public void BitWise_OrAll_Bool_BinaryStringFits(
         string binaryString,
         bool bit,
         string expectedBinaryString)
@@ -384,7 +384,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, "1111")]
     [TestCase("0011", 0, "0011")]
     [TestCase("0000", 1, "1111")]
-    public void BitWise_OrAll_Byte_BinaryStringChanged(
+    public void BitWise_OrAll_Byte_BinaryStringFits(
         string binaryString,
         byte bit,
         string expectedBinaryString)
@@ -404,7 +404,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, "1111")]
     [TestCase("0011", 0, "0011")]
     [TestCase("0000", 1, "1111")]
-    public void BitWise_OrAll_Int_BinaryStringChanged(
+    public void BitWise_OrAll_Int_BinaryStringFits(
         string binaryString,
         int bit,
         string expectedBinaryString)
@@ -424,7 +424,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, "1111")]
     [TestCase("0011", 0, "0011")]
     [TestCase("0000", 1, "1111")]
-    public void BitWise_OrAll_Double_BinaryStringChanged(
+    public void BitWise_OrAll_Double_BinaryStringFits(
         string binaryString,
         double bit,
         string expectedBinaryString)
@@ -444,7 +444,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", Bit.True, "1111")]
     [TestCase("0011", Bit.False, "0011")]
     [TestCase("0000", Bit.True, "1111")]
-    public void BitWise_OrAll_Bit_BinaryStringChanged(
+    public void BitWise_OrAll_Bit_BinaryStringFits(
         string binaryString,
         Bit bit,
         string expectedBinaryString)
@@ -464,7 +464,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, true, "1110")]
     [TestCase("1111", 2, false, "1111")]
     [TestCase("0000", 3, true, "1000")]
-    public void BitWise_Xor_Bool_BinaryStringChanged(
+    public void BitWise_Xor_Bool_BinaryStringFits(
         string binaryString,
         int index,
         bool bit,
@@ -485,7 +485,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, 1, "1110")]
     [TestCase("1111", 2, 0, "1111")]
     [TestCase("0000", 3, 1, "1000")]
-    public void BitWise_Xor_Byte_BinaryStringChanged(
+    public void BitWise_Xor_Byte_BinaryStringFits(
         string binaryString,
         int index,
         byte bit,
@@ -506,7 +506,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, 1, "1110")]
     [TestCase("1111", 2, 0, "1111")]
     [TestCase("0000", 3, 1, "1000")]
-    public void BitWise_Xor_Int_BinaryStringChanged(
+    public void BitWise_Xor_Int_BinaryStringFits(
         string binaryString,
         int index,
         int bit,
@@ -527,7 +527,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, 1, "1110")]
     [TestCase("1111", 2, 0, "1111")]
     [TestCase("0000", 3, 1, "1000")]
-    public void BitWise_Xor_Double_BinaryStringChanged(
+    public void BitWise_Xor_Double_BinaryStringFits(
         string binaryString,
         int index,
         double bit,
@@ -548,7 +548,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, Bit.True, "1110")]
     [TestCase("1111", 2, Bit.False, "1111")]
     [TestCase("0000", 3, Bit.True, "1000")]
-    public void BitWise_Xor_Bit_BinaryStringChanged(
+    public void BitWise_Xor_Bit_BinaryStringFits(
         string binaryString,
         int index,
         Bit bit,
@@ -569,7 +569,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", "1111", "0011")]
     [TestCase("1111", "1111", "0000")]
     [TestCase("0000", "0000", "0000")]
-    public void BitWise_Xor_NetBitSet_BinaryStringChanged(
+    public void BitWise_Xor_NetBitSet_BinaryStringFits(
         string binaryStringA,
         string binaryStringB,
         string expectedBinaryString)
@@ -590,7 +590,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", true, "0011")]
     [TestCase("0011", false, "0011")]
     [TestCase("0000", true, "1111")]
-    public void BitWise_XorAll_Bool_BinaryStringChanged(
+    public void BitWise_XorAll_Bool_BinaryStringFits(
         string binaryString,
         bool bit,
         string expectedBinaryString)
@@ -610,7 +610,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, "0011")]
     [TestCase("0011", 0, "0011")]
     [TestCase("0000", 1, "1111")]
-    public void BitWise_XorAll_Byte_BinaryStringChanged(
+    public void BitWise_XorAll_Byte_BinaryStringFits(
         string binaryString,
         byte bit,
         string expectedBinaryString)
@@ -630,7 +630,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, "0011")]
     [TestCase("0011", 0, "0011")]
     [TestCase("0000", 1, "1111")]
-    public void BitWise_XorAll_Int_BinaryStringChanged(
+    public void BitWise_XorAll_Int_BinaryStringFits(
         string binaryString,
         int bit,
         string expectedBinaryString)
@@ -650,7 +650,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", 1, "0011")]
     [TestCase("0011", 0, "0011")]
     [TestCase("0000", 1, "1111")]
-    public void BitWise_XorAll_Double_BinaryStringChanged(
+    public void BitWise_XorAll_Double_BinaryStringFits(
         string binaryString,
         double bit,
         string expectedBinaryString)
@@ -670,7 +670,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", Bit.True, "0011")]
     [TestCase("0011", Bit.False, "0011")]
     [TestCase("0000", Bit.True, "1111")]
-    public void BitWise_XorAll_Bit_BinaryStringChanged(
+    public void BitWise_XorAll_Bit_BinaryStringFits(
         string binaryString,
         Bit bit,
         string expectedBinaryString)
@@ -690,7 +690,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1111", 1, "1101")]
     [TestCase("1111", 2, "1011")]
     [TestCase("1111", 3, "0111")]
-    public void BitWise_Invert_Position_BinaryStringChanged(
+    public void BitWise_Invert_Position_BinaryStringFits(
         string binaryString,
         int position,
         string expectedBinaryString)
@@ -710,7 +710,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", "0011")]
     [TestCase("0011", "1100")]
     [TestCase("0000", "1111")]
-    public void BitWise_InvertAll_BinaryStringChanged(
+    public void BitWise_InvertAll_BinaryStringFits(
         string binaryString,
         string expectedBinaryString)
     {
@@ -729,7 +729,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", "1111")]
     [TestCase("0011", "1111")]
     [TestCase("0000", "1111")]
-    public void BitWise_SetAll_BinaryStringChanged(
+    public void BitWise_SetAll_BinaryStringFits(
         string binaryString,
         string expectedBinaryString)
     {
@@ -748,7 +748,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("1100", "0000")]
     [TestCase("0011", "0000")]
     [TestCase("0000", "0000")]
-    public void BitWise_ResetAll_BinaryStringChanged(
+    public void BitWise_ResetAll_BinaryStringFits(
         string binaryString,
         string expectedBinaryString)
     {
@@ -771,7 +771,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("01111011", 2, "00011110")]
     [TestCase("01111011", 3, "00001111")]
     [TestCase("01111011", 4, "00000111")]
-    public void BitWise_ArithmeticShiftRight_BinaryString_Count_BinaryStringChanged(
+    public void BitWise_ArithmeticShiftRight_BinaryString_Count_BinaryStringFits(
         string binaryString,
         int count,
         string expectedBinaryString)
@@ -791,7 +791,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase(123, 2, 30)]
     [TestCase(123, 3, 15)]
     [TestCase(123, 4, 7)]
-    public void BitWise_ArithmeticShiftRight_Byte_Count_BinaryStringChanged(
+    public void BitWise_ArithmeticShiftRight_Byte_Count_NumberFits(
         byte value,
         int count,
         byte expectedValue)
@@ -811,7 +811,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase(-105, 2, -27)]
     [TestCase(-105, 3, -14)]
     [TestCase(-105, 4, -7)]
-    public void BitWise_ArithmeticShiftRight_SByte_Count_BinaryStringChanged(
+    public void BitWise_ArithmeticShiftRight_SByte_Count_NumberFits(
         sbyte value,
         int count,
         sbyte expectedValue)
@@ -835,7 +835,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("01111011", 2, "11101100")]
     [TestCase("01111011", 3, "11011000")]
     [TestCase("01111011", 4, "10110000")]
-    public void BitWise_ArithmeticShiftLeft_BinaryString_Count_BinaryStringChanged(
+    public void BitWise_ArithmeticShiftLeft_BinaryString_Count_BinaryStringFits(
         string binaryString,
         int count,
         string expectedBinaryString)
@@ -855,7 +855,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase(123, 2, 236)]
     [TestCase(123, 3, 216)]
     [TestCase(123, 4, 176)]
-    public void BitWise_ArithmeticShiftLeft_Byte_Count_BinaryStringChanged(
+    public void BitWise_ArithmeticShiftLeft_Byte_Count_NumberFits(
         byte value,
         int count,
         byte expectedValue)
@@ -875,7 +875,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase(-105, 2, 92)]
     [TestCase(-105, 3, -72)]
     [TestCase(-105, 4, 112)]
-    public void BitWise_ArithmeticShiftLeft_SByte_Count_BinaryStringChanged(
+    public void BitWise_ArithmeticShiftLeft_SByte_Count_NumberFits(
         sbyte value,
         int count,
         sbyte expectedValue)
@@ -899,7 +899,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("01111011", 2, "00011110")]
     [TestCase("01111011", 3, "00001111")]
     [TestCase("01111011", 4, "00000111")]
-    public void BitWise_LogicalShiftRight_BinaryString_Count_BinaryStringChanged(
+    public void BitWise_LogicalShiftRight_BinaryString_Count_BinaryStringFits(
         string binaryString,
         int count,
         string expectedBinaryString)
@@ -919,7 +919,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase(123, 2, 30)]
     [TestCase(123, 3, 15)]
     [TestCase(123, 4, 7)]
-    public void BitWise_LogicalShiftRight_Byte_Count_BinaryStringChanged(
+    public void BitWise_LogicalShiftRight_Byte_Count_NumberFits(
         byte value,
         int count,
         byte expectedValue)
@@ -939,7 +939,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase(-105, 2, 37)]
     [TestCase(-105, 3, 18)]
     [TestCase(-105, 4, 9)]
-    public void BitWise_LogicalShiftRight_SByte_Count_BinaryStringChanged(
+    public void BitWise_LogicalShiftRight_SByte_Count_NumberFits(
         sbyte value,
         int count,
         sbyte expectedValue)
@@ -963,7 +963,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("01111011", 2, "11101100")]
     [TestCase("01111011", 3, "11011000")]
     [TestCase("01111011", 4, "10110000")]
-    public void BitWise_LogicalShiftLeft_BinaryString_Count_BinaryStringChanged(
+    public void BitWise_LogicalShiftLeft_BinaryString_Count_BinaryStringFits(
         string binaryString,
         int count,
         string expectedBinaryString)
@@ -983,7 +983,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase(123, 2, 236)]
     [TestCase(123, 3, 216)]
     [TestCase(123, 4, 176)]
-    public void BitWise_LogicalShiftLeft_Byte_Count_BinaryStringChanged(
+    public void BitWise_LogicalShiftLeft_Byte_Count_NumberFits(
         byte value,
         int count,
         byte expectedValue)
@@ -1003,7 +1003,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase(-105, 2, 92)]
     [TestCase(-105, 3, -72)]
     [TestCase(-105, 4, 112)]
-    public void BitWise_LogicalShiftLeft_SByte_Count_BinaryStringChanged(
+    public void BitWise_LogicalShiftLeft_SByte_Count_NumberFits(
         sbyte value,
         int count,
         sbyte expectedValue)
@@ -1027,7 +1027,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("01111011", 2, "11011110")]
     [TestCase("01111011", 3, "01101111")]
     [TestCase("01111011", 4, "10110111")]
-    public void BitWise_CircularShiftRight_BinaryString_Count_BinaryStringChanged(
+    public void BitWise_CircularShiftRight_BinaryString_Count_BinaryStringFits(
         string binaryString,
         int count,
         string expectedBinaryString)
@@ -1047,7 +1047,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase(123, 2, 222)]
     [TestCase(123, 3, 111)]
     [TestCase(123, 4, 183)]
-    public void BitWise_CircularShiftRight_Byte_Count_BinaryStringChanged(
+    public void BitWise_CircularShiftRight_Byte_Count_NumberFits(
         byte value,
         int count,
         byte expectedValue)
@@ -1067,7 +1067,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase(-105, 2, -27)]
     [TestCase(-105, 3, -14)]
     [TestCase(-105, 4, 121)]
-    public void BitWise_CircularShiftRight_SByte_Count_BinaryStringChanged(
+    public void BitWise_CircularShiftRight_SByte_Count_NumberFits(
         sbyte value,
         int count,
         sbyte expectedValue)
@@ -1091,7 +1091,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("01111011", 2, "11101101")]
     [TestCase("01111011", 3, "11011011")]
     [TestCase("01111011", 4, "10110111")]
-    public void BitWise_CircularShiftLeft_BinaryString_Count_BinaryStringChanged(
+    public void BitWise_CircularShiftLeft_BinaryString_Count_BinaryStringFits(
         string binaryString,
         int count,
         string expectedBinaryString)
@@ -1111,7 +1111,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase(123, 2, 237)]
     [TestCase(123, 3, 219)]
     [TestCase(123, 4, 183)]
-    public void BitWise_CircularShiftLeft_Byte_Count_BinaryStringChanged(
+    public void BitWise_CircularShiftLeft_Byte_Count_NumberFits(
         byte value,
         int count,
         byte expectedValue)
@@ -1131,7 +1131,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase(-105, 2, 94)]
     [TestCase(-105, 3, -68)]
     [TestCase(-105, 4, 121)]
-    public void BitWise_CircularShiftLeft_SByte_Count_BinaryStringChanged(
+    public void BitWise_CircularShiftLeft_SByte_Count_NumberFits(
         sbyte value,
         int count,
         sbyte expectedValue)
@@ -1155,7 +1155,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("01111011", 2, Bit.True, "11011110")]
     [TestCase("01111011", 3, Bit.True, "11101111")]
     [TestCase("01111011", 4, Bit.True, "11110111")]
-    public void BitWise_ShiftRight_Bit_Count_BinaryStringChanged(
+    public void BitWise_ShiftRight_Bit_Count_BinaryStringFits(
         string binaryString,
         int count,
         Bit bit,
@@ -1180,7 +1180,7 @@ public class NetBitSetMethodBitWiseTests
     [TestCase("01111011", 2, Bit.True, "11101111")]
     [TestCase("01111011", 3, Bit.True, "11011111")]
     [TestCase("01111011", 4, Bit.True, "10111111")]
-    public void BitWise_ShiftLeft_Bit_Count_BinaryStringChanged(
+    public void BitWise_ShiftLeft_Bit_Count_BinaryStringFits(
         string binaryString,
         int count,
         Bit bit,
