@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Text;
+using Menaver.NetBitSet.Extensions;
 using Newtonsoft.Json;
 
 namespace Menaver.NetBitSet.Internals;
@@ -56,6 +57,11 @@ internal static class BitArrayConverter
     public static BitArray[] Convert(double value)
     {
         return new[] { new BitArray(BitConverter.GetBytes(value)) };
+    }
+
+    public static BitArray[] Convert(Bit value)
+    {
+        return new[] { new BitArray(new[] { value.ToBool() }) };
     }
 
     public static BitArray[] Convert(bool[] value)
@@ -115,6 +121,11 @@ internal static class BitArrayConverter
     {
         var bytes = value.SelectMany(BitConverter.GetBytes).ToArray();
         return BitArrayBuilder.BuildBitArrays(bytes);
+    }
+
+    public static BitArray[] Convert(Bit[] value)
+    {
+        return new[] { new BitArray(value.Select(x => x.ToBool()).ToArray()) };
     }
 
     public static BitArray[] ConvertFromString(string value, Encoding encoding, WordLength wordLength)
