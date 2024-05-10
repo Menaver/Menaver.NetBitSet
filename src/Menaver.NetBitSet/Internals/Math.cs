@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace Menaver.NetBitSet.Shared.Internals;
+namespace Menaver.NetBitSet.Internals;
 
 internal class Math
 {

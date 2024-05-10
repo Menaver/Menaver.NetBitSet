@@ -1,4 +1,4 @@
-﻿namespace Menaver.NetBitSet.Shared;
+﻿namespace Menaver.NetBitSet;
 
 /// <summary>
 ///     Representation of a bit, the data structure is built from.

@@ -1,7 +1,7 @@
-﻿using Menaver.NetBitSet.Shared.Internals;
+﻿using Menaver.NetBitSet.Internals;
 using System.Collections;
 
-namespace Menaver.NetBitSet.Shared;
+namespace Menaver.NetBitSet;
 
 public partial class NetBitSet
 {

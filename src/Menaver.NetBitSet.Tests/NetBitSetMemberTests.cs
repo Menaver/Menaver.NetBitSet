@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Menaver.NetBitSet.Shared;
 using NUnit.Framework.Internal;
 
 namespace Menaver.NetBitSet.Tests;
@@ -20,7 +19,7 @@ public class NetBitSetMemberTests
             randomValues[i] = Randomizer.NextByte();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
         var expectedWordLength = WordLength.Eight;
@@ -48,7 +47,7 @@ public class NetBitSetMemberTests
             randomValues[i] = Randomizer.NextShort();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
         var expectedWordLength = WordLength.Sixteen;
@@ -76,7 +75,7 @@ public class NetBitSetMemberTests
             randomValues[i] = Randomizer.Next();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
         var expectedWordLength = WordLength.ThirtyTwo;
@@ -104,7 +103,7 @@ public class NetBitSetMemberTests
             randomValues[i] = Randomizer.NextLong();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
         var expectedWordLength = WordLength.SixtyFour;
@@ -132,7 +131,7 @@ public class NetBitSetMemberTests
             randomValues[i] = Randomizer.NextDouble();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
         var expectedWordLength = WordLength.SixtyFour;
@@ -155,7 +154,7 @@ public class NetBitSetMemberTests
         // arrange
         var value = Randomizer.GetString();
 
-        var netBitSet = new Shared.NetBitSet(value, Encoding.ASCII);
+        var netBitSet = new NetBitSet(value, Encoding.ASCII);
 
         // act
         var expectedWordLength = WordLength.Eight;
@@ -178,7 +177,7 @@ public class NetBitSetMemberTests
         // arrange
         var value = Randomizer.GetString();
 
-        var netBitSet = new Shared.NetBitSet(value, Encoding.Unicode);
+        var netBitSet = new NetBitSet(value, Encoding.Unicode);
 
         // act
         var expectedWordLength = WordLength.NotFixed;

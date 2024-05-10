@@ -1,8 +1,8 @@
-﻿using Menaver.NetBitSet.Shared.Extensions;
-using Menaver.NetBitSet.Shared.Interfaces;
-using Menaver.NetBitSet.Shared.Internals;
+﻿using Menaver.NetBitSet.Extensions;
+using Menaver.NetBitSet.Interfaces;
+using Menaver.NetBitSet.Internals;
 
-namespace Menaver.NetBitSet.Shared;
+namespace Menaver.NetBitSet;
 
 public partial class NetBitSet
 {

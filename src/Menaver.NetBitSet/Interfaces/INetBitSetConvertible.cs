@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace Menaver.NetBitSet.Shared.Interfaces;
+namespace Menaver.NetBitSet.Interfaces;
 
 /// <summary>
 ///     Represents an abstraction of a convertible bit-level data structure.

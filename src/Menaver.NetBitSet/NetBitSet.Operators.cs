@@ -1,4 +1,4 @@
-﻿namespace Menaver.NetBitSet.Shared;
+﻿namespace Menaver.NetBitSet;
 
 public partial class NetBitSet
 {

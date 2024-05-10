@@ -1,5 +1,4 @@
-﻿using Menaver.NetBitSet.Shared;
-using Menaver.NetBitSet.Shared.Extensions;
+﻿using Menaver.NetBitSet.Extensions;
 using NUnit.Framework.Internal;
 
 namespace Menaver.NetBitSet.Tests;
@@ -19,7 +18,7 @@ public class NetBitSetMethodTests
         int expectedNumber)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(number);
+        var netBitSet = new NetBitSet(number);
 
         // act
         netBitSet[(ulong)indexOfElementToSet] = Bit.True;
@@ -39,7 +38,7 @@ public class NetBitSetMethodTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet[(ulong)indexOfElementToSet] = Bit.True;
@@ -49,17 +48,17 @@ public class NetBitSetMethodTests
         Assert.That(changedBinaryString == expectedBinaryString);
     }
 
-    [TestCase("00000000", 0, 1)]   // 00000001
-    [TestCase("00000000", 1, 2)]   // 00000010
-    [TestCase("00000000", 2, 4)]   // 00000100
-    [TestCase("00000000", 3, 8)]   // 00001000
+    [TestCase("00000000", 0, 1)] // 00000001
+    [TestCase("00000000", 1, 2)] // 00000010
+    [TestCase("00000000", 2, 4)] // 00000100
+    [TestCase("00000000", 3, 8)] // 00001000
     public void Indexer_BinaryString_SetElementByIndex_NumberChanged(
         string binaryString,
         int indexOfElementToSet,
         byte expectedNumber)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString, WordLength.Eight);
+        var netBitSet = new NetBitSet(binaryString, WordLength.Eight);
 
         // act
         netBitSet[(ulong)indexOfElementToSet] = Bit.True;
@@ -79,7 +78,7 @@ public class NetBitSetMethodTests
         int expectedNumber)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(number);
+        var netBitSet = new NetBitSet(number);
 
         // act
         netBitSet[(ulong)indexOfElementToSet] = Bit.False;
@@ -99,7 +98,7 @@ public class NetBitSetMethodTests
         string expectedBinaryString)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString);
+        var netBitSet = new NetBitSet(binaryString);
 
         // act
         netBitSet[(ulong)indexOfElementToSet] = Bit.False;
@@ -109,17 +108,17 @@ public class NetBitSetMethodTests
         Assert.That(changedBinaryString == expectedBinaryString);
     }
 
-    [TestCase("00001111", 0, 14)]   // 00001110
-    [TestCase("00001111", 1, 13)]   // 00001101
-    [TestCase("00001111", 2, 11)]   // 00001011
-    [TestCase("00001111", 3, 7)]    // 00000111
+    [TestCase("00001111", 0, 14)] // 00001110
+    [TestCase("00001111", 1, 13)] // 00001101
+    [TestCase("00001111", 2, 11)] // 00001011
+    [TestCase("00001111", 3, 7)] // 00000111
     public void Indexer_BinaryString_ResetElementByIndex_NumberChanged(
         string binaryString,
         int indexOfElementToSet,
         byte expectedNumber)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(binaryString, WordLength.Eight);
+        var netBitSet = new NetBitSet(binaryString, WordLength.Eight);
 
         // act
         netBitSet[(ulong)indexOfElementToSet] = Bit.False;
@@ -134,7 +133,7 @@ public class NetBitSetMethodTests
     {
         // arrange 
         var bytes = new byte[] { 0, 34, 2, 5, 9, 34, 7, 255 };
-        var netBitSet = new Shared.NetBitSet(bytes);
+        var netBitSet = new NetBitSet(bytes);
 
         // act
         netBitSet[3] = Bit.True;
@@ -170,7 +169,7 @@ public class NetBitSetMethodTests
             randomValues[i] = Randomizer.NextBool();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
         var newCount = Randomizer.NextByte(max: (byte)(count - 1));
@@ -191,7 +190,7 @@ public class NetBitSetMethodTests
             randomValues[i] = Randomizer.NextBool();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
         var newCount = Randomizer.NextUInt(min: count, max: ushort.MaxValue);
@@ -224,7 +223,7 @@ public class NetBitSetMethodTests
             randomValues[i] = Randomizer.NextBool();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
         var buffer = netBitSet.Select(x => x.ToBool()).ToArray();
@@ -245,10 +244,10 @@ public class NetBitSetMethodTests
             randomValues[i] = Randomizer.NextBool();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
-        var netBitSetCloned = (Shared.NetBitSet)netBitSet.Clone();
+        var netBitSetCloned = (NetBitSet)netBitSet.Clone();
 
         var countsEqual = netBitSet.Count == netBitSetCloned.Count;
         var wordLengthsEqual = netBitSet.WordLength == netBitSetCloned.WordLength;
@@ -280,10 +279,10 @@ public class NetBitSetMethodTests
             randomValues[i] = Randomizer.NextBool();
         }
 
-        var netBitSet = new Shared.NetBitSet(randomValues);
+        var netBitSet = new NetBitSet(randomValues);
 
         // act
-        var netBitSetCloned = (Shared.NetBitSet)netBitSet.Clone();
+        var netBitSetCloned = (NetBitSet)netBitSet.Clone();
 
         // assert
         Assert.That(netBitSet.Equals(netBitSetCloned));

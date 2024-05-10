@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Menaver.NetBitSet.Shared;
 
 namespace Menaver.NetBitSet.Tests;
 
@@ -15,7 +14,7 @@ public class NetBitSetCtorFixedDataTests
         Bit defaultValue)
     {
         // arrange
-        var netBitSet = new Shared.NetBitSet(count, defaultValue);
+        var netBitSet = new NetBitSet(count, defaultValue);
 
         // act
 
@@ -34,7 +33,7 @@ public class NetBitSetCtorFixedDataTests
         WordLength wordLength)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(count, defaultValue, wordLength);
+        var netBitSet = new NetBitSet(count, defaultValue, wordLength);
 
         // act
 
@@ -49,7 +48,7 @@ public class NetBitSetCtorFixedDataTests
         bool value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
 
@@ -65,7 +64,7 @@ public class NetBitSetCtorFixedDataTests
         WordLength wordLength)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value, wordLength);
+        var netBitSet = new NetBitSet(value, wordLength);
 
         // act
 
@@ -81,7 +80,7 @@ public class NetBitSetCtorFixedDataTests
         sbyte value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
 
@@ -97,7 +96,7 @@ public class NetBitSetCtorFixedDataTests
         WordLength wordLength)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value, wordLength);
+        var netBitSet = new NetBitSet(value, wordLength);
 
         // act
 
@@ -113,7 +112,7 @@ public class NetBitSetCtorFixedDataTests
         byte value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
 
@@ -129,7 +128,7 @@ public class NetBitSetCtorFixedDataTests
         WordLength wordLength)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value, wordLength);
+        var netBitSet = new NetBitSet(value, wordLength);
 
         // act
 
@@ -145,7 +144,7 @@ public class NetBitSetCtorFixedDataTests
         short value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
 
@@ -161,7 +160,7 @@ public class NetBitSetCtorFixedDataTests
         WordLength wordLength)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value, wordLength);
+        var netBitSet = new NetBitSet(value, wordLength);
 
         // act
 
@@ -177,7 +176,7 @@ public class NetBitSetCtorFixedDataTests
         ushort value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
 
@@ -193,7 +192,7 @@ public class NetBitSetCtorFixedDataTests
         WordLength wordLength)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value, wordLength);
+        var netBitSet = new NetBitSet(value, wordLength);
 
         // act
 
@@ -209,7 +208,7 @@ public class NetBitSetCtorFixedDataTests
         int value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
 
@@ -225,7 +224,7 @@ public class NetBitSetCtorFixedDataTests
         WordLength wordLength)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value, wordLength);
+        var netBitSet = new NetBitSet(value, wordLength);
 
         // act
 
@@ -241,7 +240,7 @@ public class NetBitSetCtorFixedDataTests
         uint value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
 
@@ -257,7 +256,7 @@ public class NetBitSetCtorFixedDataTests
         WordLength wordLength)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value, wordLength);
+        var netBitSet = new NetBitSet(value, wordLength);
 
         // act
 
@@ -274,7 +273,7 @@ public class NetBitSetCtorFixedDataTests
         long value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
 
@@ -290,7 +289,7 @@ public class NetBitSetCtorFixedDataTests
         WordLength wordLength)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value, wordLength);
+        var netBitSet = new NetBitSet(value, wordLength);
 
         // act
 
@@ -306,7 +305,7 @@ public class NetBitSetCtorFixedDataTests
         ulong value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
 
@@ -322,7 +321,7 @@ public class NetBitSetCtorFixedDataTests
         WordLength wordLength)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value, wordLength);
+        var netBitSet = new NetBitSet(value, wordLength);
 
         // act
 
@@ -339,7 +338,7 @@ public class NetBitSetCtorFixedDataTests
         double value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
 
@@ -355,7 +354,7 @@ public class NetBitSetCtorFixedDataTests
         WordLength wordLength)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value, wordLength);
+        var netBitSet = new NetBitSet(value, wordLength);
 
         // act
 
@@ -371,7 +370,7 @@ public class NetBitSetCtorFixedDataTests
         string value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
 
@@ -391,7 +390,7 @@ public class NetBitSetCtorFixedDataTests
     {
         // arrange 
         var encoding = Encoding.GetEncoding(encodingName);
-        var netBitSet = new Shared.NetBitSet(value, encoding);
+        var netBitSet = new NetBitSet(value, encoding);
 
         // act
 
@@ -411,7 +410,7 @@ public class NetBitSetCtorFixedDataTests
     {
         // arrange 
         var encoding = Encoding.GetEncoding(encodingName);
-        var netBitSet = new Shared.NetBitSet(value, encoding, wordLength);
+        var netBitSet = new NetBitSet(value, encoding, wordLength);
 
         // act
 
@@ -426,7 +425,7 @@ public class NetBitSetCtorFixedDataTests
         string value)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value);
+        var netBitSet = new NetBitSet(value);
 
         // act
 
@@ -443,7 +442,7 @@ public class NetBitSetCtorFixedDataTests
         int number)
     {
         // arrange 
-        var netBitSet = new Shared.NetBitSet(value, wordLength);
+        var netBitSet = new NetBitSet(value, wordLength);
 
         // act
 
@@ -456,7 +455,7 @@ public class NetBitSetCtorFixedDataTests
     {
         // arrange 
         var dateTime = DateTimeOffset.UtcNow;
-        var netBitSet = new Shared.NetBitSet(dateTime);
+        var netBitSet = new NetBitSet(dateTime);
 
         // act
 
@@ -473,7 +472,7 @@ public class NetBitSetCtorFixedDataTests
         // arrange 
         var dateTime = DateTimeOffset.UtcNow;
         var encoding = Encoding.GetEncoding(encodingName);
-        var netBitSet = new Shared.NetBitSet(dateTime, encoding);
+        var netBitSet = new NetBitSet(dateTime, encoding);
 
         // act
 
@@ -490,7 +489,7 @@ public class NetBitSetCtorFixedDataTests
         // arrange 
         var dateTime = DateTimeOffset.UtcNow;
         var encoding = Encoding.GetEncoding(encodingName);
-        var netBitSet = new Shared.NetBitSet(dateTime, encoding, wordLength);
+        var netBitSet = new NetBitSet(dateTime, encoding, wordLength);
 
         // act
 
