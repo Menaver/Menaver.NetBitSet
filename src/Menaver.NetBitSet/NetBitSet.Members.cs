@@ -1,5 +1,5 @@
-﻿using Menaver.NetBitSet.Internals;
-using System.Collections;
+﻿using System.Collections;
+using Menaver.NetBitSet.Internals;
 
 namespace Menaver.NetBitSet;
 
