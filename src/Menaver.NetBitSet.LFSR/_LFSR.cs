@@ -20,8 +20,8 @@ public class LFSR : ILFSR
     /// <summary>
     ///     Constructs the instance.
     /// </summary>
-    /// <param name="container"></param>
-    /// <param name="polynomial"></param>
+    /// <param name="container">The bit-set data container.</param>
+    /// <param name="polynomial">The numbers representing a feedback polynomial.</param>
     /// <exception cref="ArgumentException"></exception>
     public LFSR(NetBitSet container, ulong[] polynomial)
     {

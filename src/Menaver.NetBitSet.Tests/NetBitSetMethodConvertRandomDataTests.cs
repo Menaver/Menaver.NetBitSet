@@ -205,7 +205,7 @@ public class NetBitSetMethodConvertRandomDataTests
     }
 
     [TestCase(25, "us-ascii")]
-    [TestCase(2, "utf-8")]
+    [TestCase(16, "utf-8")]
     [TestCase(75, "us-ascii")]
     [TestCase(16, "utf-8")]
     [TestCase(7, "utf-8")]

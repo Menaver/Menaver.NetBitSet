@@ -24,7 +24,7 @@ internal static class WordLengths
             return (WordLength)(Encoding.ASCII.GetBytes(" ").Length * 8);
         }
 
-        // other string encoding do not guarantee a fixed length 
+        // other string encodings do not guarantee a fixed length 
         return WordLength.NotFixed;
     }
 }

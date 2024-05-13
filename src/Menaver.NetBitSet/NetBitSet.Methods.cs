@@ -16,12 +16,12 @@ public partial class NetBitSet
     {
         get
         {
-            var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(index);
+            var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(index);
             return _containers[packIndex][bitIndex].ToBit();
         }
         set
         {
-            var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(index);
+            var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(index);
             _containers[packIndex][bitIndex] = value.ToBool();
         }
     }
@@ -35,11 +35,22 @@ public partial class NetBitSet
         _containers = BitArrayBuilder.ResizeBitArrays(_containers, newSize);
     }
 
+    /// <summary>
+    ///     Returns an enumerator that iterates through a collection.
+    /// </summary>
+    /// <returns>
+    ///     An <see cref="T:System.Collections.IEnumerator"></see> object that can be used to iterate through the
+    ///     collection.
+    /// </returns>
     IEnumerator IEnumerable.GetEnumerator()
     {
         return GetEnumerator();
     }
 
+    /// <summary>
+    ///     Returns an enumerator that iterates through the collection.
+    /// </summary>
+    /// <returns>An enumerator that can be used to iterate through the collection.</returns>
     public IEnumerator<Bit> GetEnumerator()
     {
         foreach (var container in _containers)
@@ -51,12 +62,19 @@ public partial class NetBitSet
         }
     }
 
+    /// <summary>
+    ///     Creates a new object that is a copy of the current instance.
+    /// </summary>
+    /// <returns>A new object that is a copy of this instance.</returns>
     public object Clone()
     {
         var bitArraysCloned = _containers.Select(x => (BitArray)x.Clone()).ToArray();
         return new NetBitSet(bitArraysCloned, WordLength);
     }
 
+    /// <summary>Determines whether the specified object is equal to the current object.</summary>
+    /// <param name="obj">The object to compare with the current object.</param>
+    /// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
     public override bool Equals(object obj)
     {
         if (ReferenceEquals(null, obj)) return false;
@@ -92,6 +110,8 @@ public partial class NetBitSet
         return true;
     }
 
+    /// <summary>Serves as the default hash function.</summary>
+    /// <returns>A hash code for the current object.</returns>
     public override int GetHashCode()
     {
         return unchecked((_containers.Sum(x => x.GetHashCode()) * 4873)
@@ -99,11 +119,20 @@ public partial class NetBitSet
                          ^ Endianness.GetHashCode());
     }
 
+    /// <summary>
+    ///     Returns a string that represents the current object.
+    /// </summary>
+    /// <returns>A string that represents the current object.</returns>
     public override string ToString()
     {
-        return BitArrayConverter.ConvertToString(_containers, _defaultSystemEncoding);
+        return BitArrayConverter.ConvertToString(_containers, DefaultSystemEncoding);
     }
 
+    /// <summary>
+    ///     Returns a string in a given encoding that represents the current object.
+    /// </summary>
+    /// <param name="encoding">The encoding the string is driven by.</param>
+    /// <returns>A string that represents the current object.</returns>
     public string ToString(Encoding encoding)
     {
         return BitArrayConverter.ConvertToString(_containers, encoding);
