@@ -31,7 +31,7 @@ public partial class NetBitSet
         {
             if (_endianness != value)
             {
-                _containers = BitArrayConverter.Reverse(_containers, WordLength);
+                _containers = BitArrayHelper.Reverse(_containers, WordLength);
             }
 
             _endianness = value;
@@ -41,7 +41,7 @@ public partial class NetBitSet
     /// <summary>
     ///     The number of bits stored.
     /// </summary>
-    public ulong Count => BitArrayBuilder.GetAggregatedCount(_containers);
+    public ulong Count => BitArrayHelper.GetAggregatedCount(_containers);
 
     /// <summary>
     ///     The number of words stored.

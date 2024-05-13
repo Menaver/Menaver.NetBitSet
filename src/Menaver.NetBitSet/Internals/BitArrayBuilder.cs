@@ -5,18 +5,6 @@ namespace Menaver.NetBitSet.Internals;
 
 internal static class BitArrayBuilder
 {
-    public static (int PackIndex, int BitIndex) GetComplexIndex(ulong index)
-    {
-        var (quotient, remainder) = Math.DivRem(index, int.MaxValue);
-
-        return ((int)quotient, (int)remainder);
-    }
-
-    public static ulong GetAggregatedCount(BitArray[] arrays)
-    {
-        return arrays.Aggregate<BitArray, ulong>(0, (current, bitArray) => current + (ulong)bitArray!.Length);
-    }
-
     public static BitArray[] BuildBitArrays(ulong count, Bit defaultValue)
     {
         var (quotient, remainder) = Math.DivRem(count, int.MaxValue);
@@ -26,13 +14,15 @@ internal static class BitArrayBuilder
 
         var bitArrays = new BitArray[arraysCount];
 
+        var defaultValueBool = defaultValue.ToBool();
+
         for (var i = 0; i < arraysCount; i++)
         {
             var length = i < arraysCount - 1
                 ? int.MaxValue
                 : lastArrayLength;
 
-            bitArrays[i] = new BitArray(length, defaultValue.ToBool());
+            bitArrays[i] = new BitArray(length, defaultValueBool);
         }
 
         return bitArrays;
@@ -95,65 +85,5 @@ internal static class BitArrayBuilder
         }
 
         return bitArrays;
-    }
-
-    public static BitArray GetBatch(BitArray[] bitArrays, ulong index, byte count)
-    {
-        var batch = new BitArray(count);
-
-        for (var i = 0; i < count; i++, index++)
-        {
-            var (packIndex, bitIndex) = GetComplexIndex(index);
-
-            batch[i] = bitArrays[packIndex][bitIndex];
-        }
-
-        return batch;
-    }
-
-    public static BitArray[] Inject(BitArray[] bitArrays, ulong index, BitArray bitArrayToInject)
-    {
-        for (var i = 0; i < bitArrayToInject.Count; i++, index++)
-        {
-            var (packIndex, bitIndex) = GetComplexIndex(index);
-
-            bitArrays[packIndex][bitIndex] = bitArrayToInject[i];
-        }
-
-        return bitArrays;
-    }
-
-    public static BitArray[] Reverse(BitArray[] bitArrays)
-    {
-        var bools = BitArrayConverter.ConvertToBools(bitArrays);
-
-        Array.Reverse(bools);
-
-        bitArrays = BitArrayConverter.Convert(bools);
-
-        return bitArrays;
-    }
-
-    public static BitArray Reverse(BitArray bitArray)
-    {
-        var bools = BitArrayConverter.ConvertToBools(new[] { bitArray });
-
-        Array.Reverse(bools);
-
-        bitArray = BitArrayConverter.Convert(bools).First();
-
-        return bitArray;
-    }
-
-    public static BitArray[] Clone(BitArray[] bitArray)
-    {
-        var result = new BitArray[bitArray.Length];
-
-        for (var i = 0; i < bitArray.Length; i++)
-        {
-            result[i] = (BitArray)bitArray[i].Clone();
-        }
-
-        return result;
     }
 }

@@ -154,21 +154,25 @@ internal static class BitArrayConverter
     {
         if (value.Any() && value.All(ch => ch is '1' or '0'))
         {
-            return ConvertBinaryString(value, wordLength);
+            return ConvertFromBinaryString(value, wordLength);
         }
 
         var bytes = encoding.GetBytes(value);
-        return BitArrayBuilder.BuildBitArrays(bytes);
+        var bitArrays = BitArrayBuilder.BuildBitArrays(bytes);
+
+        return bitArrays;
     }
 
     public static BitArray[] Convert(object obj, Encoding encoding)
     {
         var json = JsonConvert.SerializeObject(obj);
         var bytes = encoding.GetBytes(json);
-        return BitArrayBuilder.BuildBitArrays(bytes);
+        var bitArrays = BitArrayBuilder.BuildBitArrays(bytes);
+
+        return bitArrays;
     }
 
-    public static BitArray[] ConvertBinaryString(string binaryString, WordLength wordLength)
+    public static BitArray[] ConvertFromBinaryString(string binaryString, WordLength wordLength)
     {
         var count = (ulong)binaryString.LongCount();
         var bitArrays = BitArrayBuilder.BuildBitArrays(count, Bit.False);
@@ -177,48 +181,48 @@ internal static class BitArrayConverter
         {
             case WordLength.NotFixed:
             case WordLength.One:
+            {
+                var chars = binaryString.ToCharArray();
+
+                Array.Reverse(chars);
+
+                binaryString = new string(chars);
+
+                for (ulong i = 0; i < count; i++)
                 {
-                    var chars = binaryString.ToCharArray();
-
-                    Array.Reverse(chars);
-
-                    binaryString = new string(chars);
-
-                    for (ulong i = 0; i < count; i++)
+                    if (binaryString[(int)i] == '1')
                     {
-                        if (binaryString[(int)i] == '1')
-                        {
-                            var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(i);
+                        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(i);
 
-                            bitArrays[packIndex][bitIndex] = true;
-                        }
+                        bitArrays[packIndex][bitIndex] = true;
                     }
-
-                    return bitArrays;
                 }
+
+                return bitArrays;
+            }
             case WordLength.Eight:
             case WordLength.Sixteen:
             case WordLength.ThirtyTwo:
             case WordLength.SixtyFour:
+            {
+                // split binaryString by words 
+                var chunkSize = (byte)wordLength;
+                var binaryStrings = Enumerable.Range(0, binaryString.Length / chunkSize)
+                    .Select(i => binaryString.Substring(i * chunkSize, chunkSize)).ToList();
+
+                ulong index = 0;
+                foreach (var bs in binaryStrings)
                 {
-                    // split binaryString by words 
-                    var chunkSize = (byte)wordLength;
-                    var binaryStrings = Enumerable.Range(0, binaryString.Length / chunkSize)
-                        .Select(i => binaryString.Substring(i * chunkSize, chunkSize)).ToList();
+                    var bitArray = ConvertFromBinaryString(bs, WordLength.One).First();
 
-                    ulong index = 0;
-                    foreach (var bs in binaryStrings)
+                    for (var i = 0; i < bitArray.Length; i++, index++)
                     {
-                        var bitArray = ConvertBinaryString(bs, WordLength.One).First();
+                        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(index);
 
-                        for (var i = 0; i < bitArray.Length; i++, index++)
-                        {
-                            var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(index);
-
-                            bitArrays[packIndex][bitIndex] = bitArray[i];
-                        }
+                        bitArrays[packIndex][bitIndex] = bitArray[i];
                     }
                 }
+            }
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(wordLength), wordLength, null);
@@ -239,18 +243,15 @@ internal static class BitArrayConverter
     public static sbyte[] ConvertToSBytes(BitArray[] bitArrays)
     {
         var wordLength = (byte)WordLengths.Byte;
-        var elementCount = BitArrayBuilder.GetAggregatedCount(bitArrays);
+        var elementCount = BitArrayHelper.GetAggregatedCount(bitArrays);
         var arrayLength = elementCount / wordLength;
 
         var result = new sbyte[arrayLength];
 
         for (ulong i = 0, j = 0; i < arrayLength; i++, j += wordLength)
         {
-            var batch = BitArrayBuilder.GetBatch(bitArrays, j, wordLength);
-
-            var temp = new sbyte[1];
-            batch.CopyTo(temp, 0);
-            result[i] = temp[0];
+            var batch = BitArrayHelper.GetBatch(bitArrays, j, wordLength);
+            result[i] = ConvertToSByte(batch);
         }
 
         return result;
@@ -259,18 +260,15 @@ internal static class BitArrayConverter
     public static byte[] ConvertToBytes(BitArray[] bitArrays)
     {
         var wordLength = (byte)WordLengths.Byte;
-        var elementCount = BitArrayBuilder.GetAggregatedCount(bitArrays);
+        var elementCount = BitArrayHelper.GetAggregatedCount(bitArrays);
         var arrayLength = elementCount / wordLength;
 
         var result = new byte[arrayLength];
 
         for (ulong i = 0, j = 0; i < arrayLength; i++, j += wordLength)
         {
-            var batch = BitArrayBuilder.GetBatch(bitArrays, j, wordLength);
-
-            var temp = new byte[1];
-            batch.CopyTo(temp, 0);
-            result[i] = temp[0];
+            var batch = BitArrayHelper.GetBatch(bitArrays, j, wordLength);
+            result[i] = ConvertToByte(batch);
         }
 
         return result;
@@ -279,18 +277,15 @@ internal static class BitArrayConverter
     public static short[] ConvertToShorts(BitArray[] bitArrays)
     {
         var wordLength = (byte)WordLengths.Short;
-        var elementCount = BitArrayBuilder.GetAggregatedCount(bitArrays);
+        var elementCount = BitArrayHelper.GetAggregatedCount(bitArrays);
         var arrayLength = elementCount / wordLength;
 
         var result = new short[arrayLength];
 
         for (ulong i = 0, j = 0; i < arrayLength; i++, j += wordLength)
         {
-            var batch = BitArrayBuilder.GetBatch(bitArrays, j, wordLength);
-
-            var temp = new byte[2];
-            batch.CopyTo(temp, 0);
-            result[i] = BitConverter.ToInt16(temp, 0);
+            var batch = BitArrayHelper.GetBatch(bitArrays, j, wordLength);
+            result[i] = ConvertToShort(batch);
         }
 
         return result;
@@ -299,18 +294,15 @@ internal static class BitArrayConverter
     public static ushort[] ConvertToUShorts(BitArray[] bitArrays)
     {
         var wordLength = (byte)WordLengths.Short;
-        var elementCount = BitArrayBuilder.GetAggregatedCount(bitArrays);
+        var elementCount = BitArrayHelper.GetAggregatedCount(bitArrays);
         var arrayLength = elementCount / wordLength;
 
         var result = new ushort[arrayLength];
 
         for (ulong i = 0, j = 0; i < arrayLength; i++, j += wordLength)
         {
-            var batch = BitArrayBuilder.GetBatch(bitArrays, j, wordLength);
-
-            var temp = new byte[2];
-            batch.CopyTo(temp, 0);
-            result[i] = BitConverter.ToUInt16(temp, 0);
+            var batch = BitArrayHelper.GetBatch(bitArrays, j, wordLength);
+            result[i] = ConvertToUShort(batch);
         }
 
         return result;
@@ -319,18 +311,15 @@ internal static class BitArrayConverter
     public static int[] ConvertToInts(BitArray[] bitArrays)
     {
         var wordLength = (byte)WordLengths.Int;
-        var elementCount = BitArrayBuilder.GetAggregatedCount(bitArrays);
+        var elementCount = BitArrayHelper.GetAggregatedCount(bitArrays);
         var arrayLength = elementCount / wordLength;
 
         var result = new int[arrayLength];
 
         for (ulong i = 0, j = 0; i < arrayLength; i++, j += wordLength)
         {
-            var batch = BitArrayBuilder.GetBatch(bitArrays, j, wordLength);
-
-            var temp = new int[1];
-            batch.CopyTo(temp, 0);
-            result[i] = temp[0];
+            var batch = BitArrayHelper.GetBatch(bitArrays, j, wordLength);
+            result[i] = ConvertToInt(batch);
         }
 
         return result;
@@ -339,18 +328,15 @@ internal static class BitArrayConverter
     public static uint[] ConvertToUInts(BitArray[] bitArrays)
     {
         var wordLength = (byte)WordLengths.Int;
-        var elementCount = BitArrayBuilder.GetAggregatedCount(bitArrays);
+        var elementCount = BitArrayHelper.GetAggregatedCount(bitArrays);
         var arrayLength = elementCount / wordLength;
 
         var result = new uint[arrayLength];
 
         for (ulong i = 0, j = 0; i < arrayLength; i++, j += wordLength)
         {
-            var batch = BitArrayBuilder.GetBatch(bitArrays, j, wordLength);
-
-            var temp = new uint[1];
-            batch.CopyTo(temp, 0);
-            result[i] = temp[0];
+            var batch = BitArrayHelper.GetBatch(bitArrays, j, wordLength);
+            result[i] = ConvertToUInt(batch);
         }
 
         return result;
@@ -359,18 +345,15 @@ internal static class BitArrayConverter
     public static long[] ConvertToLongs(BitArray[] bitArrays)
     {
         var wordLength = (byte)WordLengths.Long;
-        var elementCount = BitArrayBuilder.GetAggregatedCount(bitArrays);
+        var elementCount = BitArrayHelper.GetAggregatedCount(bitArrays);
         var arrayLength = elementCount / wordLength;
 
         var result = new long[arrayLength];
 
         for (ulong i = 0, j = 0; i < arrayLength; i++, j += wordLength)
         {
-            var batch = BitArrayBuilder.GetBatch(bitArrays, j, wordLength);
-
-            var temp = new byte[8];
-            batch.CopyTo(temp, 0);
-            result[i] = BitConverter.ToInt64(temp, 0);
+            var batch = BitArrayHelper.GetBatch(bitArrays, j, wordLength);
+            result[i] = ConvertToLong(batch);
         }
 
         return result;
@@ -379,18 +362,15 @@ internal static class BitArrayConverter
     public static ulong[] ConvertToULongs(BitArray[] bitArrays)
     {
         var wordLength = (byte)WordLengths.Long;
-        var elementCount = BitArrayBuilder.GetAggregatedCount(bitArrays);
+        var elementCount = BitArrayHelper.GetAggregatedCount(bitArrays);
         var arrayLength = elementCount / wordLength;
 
         var result = new ulong[arrayLength];
 
         for (ulong i = 0, j = 0; i < arrayLength; i++, j += wordLength)
         {
-            var batch = BitArrayBuilder.GetBatch(bitArrays, j, wordLength);
-
-            var temp = new byte[8];
-            batch.CopyTo(temp, 0);
-            result[i] = BitConverter.ToUInt64(temp, 0);
+            var batch = BitArrayHelper.GetBatch(bitArrays, j, wordLength);
+            result[i] = ConvertToULong(batch);
         }
 
         return result;
@@ -399,21 +379,81 @@ internal static class BitArrayConverter
     public static double[] ConvertToDoubles(BitArray[] bitArrays)
     {
         var wordLength = (byte)WordLengths.Double;
-        var elementCount = BitArrayBuilder.GetAggregatedCount(bitArrays);
+        var elementCount = BitArrayHelper.GetAggregatedCount(bitArrays);
         var arrayLength = elementCount / wordLength;
 
         var result = new double[arrayLength];
 
         for (ulong i = 0, j = 0; i < arrayLength; i++, j += wordLength)
         {
-            var batch = BitArrayBuilder.GetBatch(bitArrays, j, wordLength);
-
-            var temp = new byte[8];
-            batch.CopyTo(temp, 0);
-            result[i] = BitConverter.ToDouble(temp, 0);
+            var batch = BitArrayHelper.GetBatch(bitArrays, j, wordLength);
+            result[i] = ConvertToDouble(batch);
         }
 
         return result;
+    }
+
+    public static sbyte ConvertToSByte(BitArray bitArray)
+    {
+        var temp = new sbyte[1];
+        bitArray.CopyTo(temp, 0);
+        return temp[0];
+    }
+
+    public static byte ConvertToByte(BitArray bitArray)
+    {
+        var temp = new byte[1];
+        bitArray.CopyTo(temp, 0);
+        return temp[0];
+    }
+
+    public static short ConvertToShort(BitArray bitArray)
+    {
+        var temp = new byte[2];
+        bitArray.CopyTo(temp, 0);
+        return BitConverter.ToInt16(temp, 0);
+    }
+
+    public static ushort ConvertToUShort(BitArray bitArray)
+    {
+        var temp = new byte[2];
+        bitArray.CopyTo(temp, 0);
+        return BitConverter.ToUInt16(temp, 0);
+    }
+
+    public static int ConvertToInt(BitArray bitArray)
+    {
+        var temp = new int[1];
+        bitArray.CopyTo(temp, 0);
+        return temp[0];
+    }
+
+    public static uint ConvertToUInt(BitArray bitArray)
+    {
+        var temp = new uint[1];
+        bitArray.CopyTo(temp, 0);
+        return temp[0];
+    }
+
+    public static long ConvertToLong(BitArray bitArray)
+    {
+        var temp = new byte[8];
+        bitArray.CopyTo(temp, 0);
+        return BitConverter.ToInt64(temp, 0);
+    }
+
+    public static ulong ConvertToULong(BitArray bitArray)
+    {
+        var temp = new byte[8];
+        bitArray.CopyTo(temp, 0);
+        return BitConverter.ToUInt64(temp, 0);
+    }
+
+    public static double ConvertToDouble(BitArray bitArray)
+    {
+        var temp = new byte[8];
+        bitArray.CopyTo(temp, 0);
+        return BitConverter.ToDouble(temp, 0);
     }
 
     public static string ConvertToString(BitArray[] bitArray, Encoding encoding)
@@ -431,25 +471,25 @@ internal static class BitArrayConverter
         {
             case WordLength.NotFixed:
             case WordLength.One:
-                {
-                    var chars = ConvertToBools(bitArray)
-                        .Select(x => x ? '1' : '0')
-                        .ToArray();
+            {
+                var chars = ConvertToBools(bitArray)
+                    .Select(x => x ? '1' : '0')
+                    .ToArray();
 
-                    Array.Reverse(chars);
+                Array.Reverse(chars);
 
-                    binaryString = new string(chars);
-                }
+                binaryString = new string(chars);
+            }
                 break;
             case WordLength.Eight:
             case WordLength.Sixteen:
             case WordLength.ThirtyTwo:
             case WordLength.SixtyFour:
-                {
-                    var stringsByWord = ConvertToBinaryStringsByWord(bitArray, wordLength);
+            {
+                var stringsByWord = ConvertToBinaryStringsByWord(bitArray, wordLength);
 
-                    binaryString = string.Join(string.Empty, stringsByWord);
-                }
+                binaryString = string.Join(string.Empty, stringsByWord);
+            }
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(wordLength), wordLength, null);
@@ -488,45 +528,4 @@ internal static class BitArrayConverter
     }
 
     #endregion
-
-    public static BitArray[] Reverse(BitArray[] bitArrays, WordLength wordLength)
-    {
-        var temp = BitArrayBuilder.Clone(bitArrays);
-
-        switch (wordLength)
-        {
-            case WordLength.NotFixed:
-                throw new InvalidOperationException("Word Length isn't fixed. Operation is invalid.");
-            case WordLength.One:
-            {
-                temp = BitArrayBuilder.Reverse(temp);
-
-                break;
-            }
-            case WordLength.Eight:
-            case WordLength.Sixteen:
-            case WordLength.ThirtyTwo:
-            case WordLength.SixtyFour:
-            {
-                var wordLengthByte = (byte)wordLength;
-                var elementCount = BitArrayBuilder.GetAggregatedCount(temp);
-                var iterationCount = elementCount / wordLengthByte;
-
-                for (ulong iteration = 0, index = 0; iteration < iterationCount; iteration++, index += wordLengthByte)
-                {
-                    var batch = BitArrayBuilder.GetBatch(temp, index, wordLengthByte);
-
-                    batch = BitArrayBuilder.Reverse(batch);
-
-                    BitArrayBuilder.Inject(temp, index, batch);
-                }
-
-                break;
-            }
-            default:
-                throw new ArgumentOutOfRangeException(nameof(wordLength), wordLength, null);
-        }
-
-        return temp;
-    }
 }

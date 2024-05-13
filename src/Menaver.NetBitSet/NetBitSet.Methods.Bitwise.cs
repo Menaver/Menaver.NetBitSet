@@ -8,31 +8,31 @@ public partial class NetBitSet
 {
     public void And(ulong position, bool bit)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] &= bit;
     }
 
     public void And(ulong position, byte bit)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] &= bit.ToBit().ToBool();
     }
 
     public void And(ulong position, int bit)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] &= bit.ToBit().ToBool();
     }
 
     public void And(ulong position, double bit)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] &= bit.ToBit().ToBool();
     }
 
     public void And(ulong position, Bit bit)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] &= bit.ToBool();
     }
 
@@ -109,31 +109,31 @@ public partial class NetBitSet
 
     public void Or(ulong position, bool bit)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] |= bit;
     }
 
     public void Or(ulong position, byte bit)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] |= bit.ToBit().ToBool();
     }
 
     public void Or(ulong position, int bit)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] |= bit.ToBit().ToBool();
     }
 
     public void Or(ulong position, double bit)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] |= bit.ToBit().ToBool();
     }
 
     public void Or(ulong position, Bit bit)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] |= bit.ToBool();
     }
 
@@ -210,31 +210,31 @@ public partial class NetBitSet
 
     public void Xor(ulong position, bool bit)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] |= bit;
     }
 
     public void Xor(ulong position, byte bit)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] |= bit.ToBit().ToBool();
     }
 
     public void Xor(ulong position, int bit)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] |= bit.ToBit().ToBool();
     }
 
     public void Xor(ulong position, double bit)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] |= bit.ToBit().ToBool();
     }
 
     public void Xor(ulong position, Bit bit)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] |= bit.ToBool();
     }
 
@@ -311,7 +311,7 @@ public partial class NetBitSet
 
     public void Invert(ulong position)
     {
-        var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(position);
+        var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
         _containers[packIndex][bitIndex] = !_containers[packIndex][bitIndex];
     }
 

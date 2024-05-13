@@ -16,12 +16,12 @@ public partial class NetBitSet
     {
         get
         {
-            var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(index);
+            var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(index);
             return _containers[packIndex][bitIndex].ToBit();
         }
         set
         {
-            var (packIndex, bitIndex) = BitArrayBuilder.GetComplexIndex(index);
+            var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(index);
             _containers[packIndex][bitIndex] = value.ToBool();
         }
     }
