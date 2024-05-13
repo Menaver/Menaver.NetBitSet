@@ -9,12 +9,12 @@ public interface INetBitSet : INetBitSetBitwise, INetBitSetConvertible, IEnumera
     ///     The fixed length of a stored data unit, defined by its data type, in bits.
     ///     If the stored data does not have a fixed length, the WordLength would be WordLength.NotFixed.
     /// </summary>
-    WordLength WordLength { get; }
+    WordLength WordLength { get; set; }
 
     /// <summary>
     ///     The order in which bytes within a word of data are read.
     /// </summary>
-    Endian Endianness { get; }
+    Endian Endianness { get; set; }
 
     /// <summary>
     ///     The number of bits stored.

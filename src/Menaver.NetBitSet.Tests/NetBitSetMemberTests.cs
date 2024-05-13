@@ -193,4 +193,62 @@ public class NetBitSetMemberTests
         Assert.That(netBitSet.WordCount == expectedWordCount);
         Assert.That(netBitSet.ByteCount == expectedByteCount);
     }
+
+    [TestCase("1010", WordLength.One, "0101")]
+    [TestCase("11110000", WordLength.One, "00001111")]
+    [TestCase("11110000", WordLength.Eight, "00001111")]
+    [TestCase("1111000010101010", WordLength.Eight, "0000111101010101")]
+    [TestCase("1111000010101010", WordLength.Sixteen, "0101010100001111")]
+    public void Endianness_BinnaryString_ChangeEndianness_BitsWithinWordReversed(
+        string binaryString,
+        WordLength wordLength,
+        string expectedBinaryString)
+    {
+        // arrange
+        var netBitSet = new NetBitSet(binaryString, wordLength);
+
+        // act
+        netBitSet.Endianness = netBitSet.Endianness == Endian.Little ? Endian.Big : Endian.Little;
+        binaryString = netBitSet.ToBinaryString();
+
+        // assert
+        Assert.That(binaryString == expectedBinaryString);
+    }
+
+    [TestCase(69, 162)]
+    [TestCase(74, 82)]
+    [TestCase(15, 240)]
+    [TestCase(33, 132)]
+    [TestCase(3, 192)]
+    public void Endianness_Byte_ChangeEndianness_BitsWithinWordReversed(
+        byte value,
+        byte expectedValue)
+    {
+        // arrange
+        var netBitSet = new NetBitSet(value);
+
+        // act
+        netBitSet.Endianness = netBitSet.Endianness == Endian.Little ? Endian.Big : Endian.Little;
+        value = netBitSet.ToBytes().FirstOrDefault();
+
+        // assert
+        Assert.That(value == expectedValue);
+    }
+
+    [TestCase(new byte[] { 69, 74, 15, 33, 3 }, new byte[] { 162, 82, 240, 132, 192 })]
+    public void Endianness_Bytes_ChangeEndianness_BitsWithinWordReversed(
+        byte[] values,
+        byte[] expectedValues)
+    {
+        // arrange
+        var netBitSet = new NetBitSet(values);
+
+        // act
+        netBitSet.Endianness = netBitSet.Endianness == Endian.Little ? Endian.Big : Endian.Little;
+        values = netBitSet.ToBytes();
+        var equals = values.SequenceEqual(expectedValues);
+
+        // assert
+        Assert.That(equals);
+    }
 }

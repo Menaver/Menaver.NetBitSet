@@ -13,7 +13,7 @@ public partial class NetBitSet
     {
         _containers = bitArray;
         WordLength = wordLength;
-        Endianness = _systemEndianness;
+        _endianness = _systemEndianness;
     }
 
     public NetBitSet(ulong count, Bit defaultValue)
