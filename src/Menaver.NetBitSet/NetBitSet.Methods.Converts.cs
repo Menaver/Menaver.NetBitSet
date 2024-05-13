@@ -110,7 +110,8 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public sbyte[] ToSBytes()
     {
-        CheckConversionByWordLength(WordLengths.Byte);
+        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Byte);
+        BitArrayConverter.CheckByElementCount(Count, WordLengths.Byte);
 
         return BitArrayConverter.ConvertToSBytes(_containers);
     }
@@ -121,7 +122,8 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public byte[] ToBytes()
     {
-        CheckConversionByWordLength(WordLengths.Byte);
+        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Byte);
+        BitArrayConverter.CheckByElementCount(Count, WordLengths.Byte);
 
         return BitArrayConverter.ConvertToBytes(_containers);
     }
@@ -132,7 +134,8 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public short[] ToShorts()
     {
-        CheckConversionByWordLength(WordLengths.Short);
+        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Short);
+        BitArrayConverter.CheckByElementCount(Count, WordLengths.Short);
 
         return BitArrayConverter.ConvertToShorts(_containers);
     }
@@ -143,7 +146,8 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public ushort[] ToUShorts()
     {
-        CheckConversionByWordLength(WordLengths.Short);
+        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Short);
+        BitArrayConverter.CheckByElementCount(Count, WordLengths.Short);
 
         return BitArrayConverter.ConvertToUShorts(_containers);
     }
@@ -154,7 +158,8 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public int[] ToInts()
     {
-        CheckConversionByWordLength(WordLengths.Int);
+        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Int);
+        BitArrayConverter.CheckByElementCount(Count, WordLengths.Int);
 
         return BitArrayConverter.ConvertToInts(_containers);
     }
@@ -165,7 +170,8 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public uint[] ToUInts()
     {
-        CheckConversionByWordLength(WordLengths.Int);
+        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Int);
+        BitArrayConverter.CheckByElementCount(Count, WordLengths.Int);
 
         return BitArrayConverter.ConvertToUInts(_containers);
     }
@@ -176,7 +182,8 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public long[] ToLongs()
     {
-        CheckConversionByWordLength(WordLengths.Long);
+        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Long);
+        BitArrayConverter.CheckByElementCount(Count, WordLengths.Long);
 
         return BitArrayConverter.ConvertToLongs(_containers);
     }
@@ -187,7 +194,8 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public ulong[] ToULongs()
     {
-        CheckConversionByWordLength(WordLengths.Long);
+        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Long);
+        BitArrayConverter.CheckByElementCount(Count, WordLengths.Long);
 
         return BitArrayConverter.ConvertToULongs(_containers);
     }
@@ -198,7 +206,8 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public double[] ToDoubles()
     {
-        CheckConversionByWordLength(WordLengths.Double);
+        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Double);
+        BitArrayConverter.CheckByElementCount(Count, WordLengths.Double);
 
         return BitArrayConverter.ConvertToDoubles(_containers);
     }
@@ -250,20 +259,5 @@ public partial class NetBitSet
     public TObj ToObject<TObj>(Encoding encoding)
     {
         return BitArrayConverter.ConvertToObject<TObj>(_containers, encoding);
-    }
-
-    private void CheckConversionByWordLength(WordLength wordLength)
-    {
-        if (WordLength != wordLength)
-        {
-            throw new InvalidOperationException(
-                $"Word length does not match. Current: {WordLength}. Expected: {wordLength}.");
-        }
-
-        if (Count % (byte)wordLength != 0)
-        {
-            throw new InvalidOperationException(
-                $"Count does not match. Current: {Count}. Expected be multiple of {(byte)wordLength}.");
-        }
     }
 }

@@ -7,6 +7,28 @@ namespace Menaver.NetBitSet.Internals;
 
 internal static class BitArrayConverter
 {
+    public static void CheckByWordLength(
+        WordLength currentWordLength,
+        WordLength targetWordLength)
+    {
+        if (currentWordLength != targetWordLength)
+        {
+            throw new InvalidOperationException(
+                $"Word length does not match. Current: {currentWordLength}. Expected: {targetWordLength}.");
+        }
+    }
+
+    public static void CheckByElementCount(
+        ulong elementCount,
+        WordLength targetWordLength)
+    {
+        if (elementCount % (byte)targetWordLength != 0)
+        {
+            throw new InvalidOperationException(
+                $"Count does not match. Current: {elementCount}. Expected be multiple of {(byte)targetWordLength}.");
+        }
+    }
+
     #region To BitArray
 
     public static BitArray[] Convert(bool value)
