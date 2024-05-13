@@ -466,4 +466,45 @@ internal static class BitArrayConverter
     }
 
     #endregion
+
+    public static BitArray[] Reverse(BitArray[] bitArrays, WordLength wordLength)
+    {
+        var temp = BitArrayBuilder.Clone(bitArrays);
+
+        switch (wordLength)
+        {
+            case WordLength.NotFixed:
+                throw new InvalidOperationException("Word Length isn't fixed. Operation is invalid.");
+            case WordLength.One:
+            {
+                temp = BitArrayBuilder.Reverse(temp);
+
+                break;
+            }
+            case WordLength.Eight:
+            case WordLength.Sixteen:
+            case WordLength.ThirtyTwo:
+            case WordLength.SixtyFour:
+            {
+                var wordLengthByte = (byte)wordLength;
+                var elementCount = BitArrayBuilder.GetAggregatedCount(temp);
+                var iterationCount = elementCount / wordLengthByte;
+
+                for (ulong iteration = 0, index = 0; iteration < iterationCount; iteration++, index += wordLengthByte)
+                {
+                    var batch = BitArrayBuilder.GetBatch(temp, index, wordLengthByte);
+
+                    batch = BitArrayBuilder.Reverse(batch);
+
+                    BitArrayBuilder.Inject(temp, index, batch);
+                }
+
+                break;
+            }
+            default:
+                throw new ArgumentOutOfRangeException(nameof(wordLength), wordLength, null);
+        }
+
+        return temp;
+    }
 }
