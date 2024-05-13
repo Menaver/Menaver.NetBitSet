@@ -126,6 +126,16 @@ public partial class NetBitSet
     {
     }
 
+    public NetBitSet(Bit value)
+        : this(BitArrayConverter.Convert(value), WordLength.One)
+    {
+    }
+
+    public NetBitSet(Bit value, WordLength wordLength)
+        : this(BitArrayConverter.Convert(value), wordLength)
+    {
+    }
+
     public NetBitSet(string value)
         : this(BitArrayConverter.ConvertFromString(value, _defaultSystemEncoding, WordLengths.String(value, _defaultSystemEncoding)), WordLengths.String(value, _defaultSystemEncoding))
     {
@@ -257,6 +267,16 @@ public partial class NetBitSet
     }
 
     public NetBitSet(double[] value, WordLength wordLength)
+        : this(BitArrayConverter.Convert(value), wordLength)
+    {
+    }
+
+    public NetBitSet(Bit[] value)
+        : this(BitArrayConverter.Convert(value), WordLength.One)
+    {
+    }
+
+    public NetBitSet(Bit[] value, WordLength wordLength)
         : this(BitArrayConverter.Convert(value), wordLength)
     {
     }

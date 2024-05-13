@@ -28,4 +28,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Menaver.NetBitSet\Menaver.NetBitSet.csproj" />
+  </ItemGroup>
+
 </Project>

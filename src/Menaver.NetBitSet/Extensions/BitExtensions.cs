@@ -11,6 +11,18 @@ public static class BitExtensions
     }
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static byte ToByte(this Bit bit)
+    {
+        return bit == Bit.True ? (byte)1 : (byte)0;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public static int ToInt(this Bit bit)
+    {
+        return bit == Bit.True ? 1 : 0;
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public static string ToBinaryString(this Bit bit)
     {
         return bit == Bit.True ? "1" : "0";
