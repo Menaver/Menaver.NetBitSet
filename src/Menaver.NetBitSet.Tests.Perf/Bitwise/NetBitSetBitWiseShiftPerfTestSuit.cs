@@ -2,28 +2,31 @@
 
 namespace Menaver.NetBitSet.Tests.Perf.Bitwise;
 
-[MinColumn]
-[MaxColumn]
-[HtmlExporter]
-[MarkdownExporter]
-public class NetBitSetBitWiseShiftPerfTestSuit
+public class NetBitSetBitwiseShiftPerfTestSuit : PerfTestSuitBase
 {
-    private const int ShiftCount = 100;
+    private const int ShiftCount = 3;
 
     private NetBitSet _netBitSet = null!;
 
-    // 1 kbit, 100 kbit, 1 Mbit
-    [Params(8192, 819200, 8388608)] public ulong BitCount;
+    // 1 kbit, 1 Mbit, 10 Mbit
+    [Params(8192, 8388608, 83886080)] public ulong BitCount;
 
-    [GlobalSetup]
+    [IterationSetup]
     public void Setup()
     {
-        var byteCount = BitCount / 8;
+        _netBitSet = BuildRandomNetBitSet(BitCount);
+    }
 
-        var data = new byte[byteCount];
-        new Random().NextBytes(data);
+    [Benchmark]
+    public void ShiftLeft()
+    {
+        _netBitSet.ShiftLeft(ShiftCount, Bit.True);
+    }
 
-        _netBitSet = new NetBitSet(data);
+    [Benchmark]
+    public void ShiftRight()
+    {
+        _netBitSet.ShiftRight(ShiftCount, Bit.True);
     }
 
     [Benchmark]
@@ -60,17 +63,5 @@ public class NetBitSetBitWiseShiftPerfTestSuit
     public void CircularShiftRight()
     {
         _netBitSet.CircularShiftRight(ShiftCount);
-    }
-
-    [Benchmark]
-    public void ShiftLeft()
-    {
-        _netBitSet.ShiftLeft(ShiftCount, Bit.True);
-    }
-
-    [Benchmark]
-    public void ShiftRight()
-    {
-        _netBitSet.ShiftRight(ShiftCount, Bit.True);
     }
 }

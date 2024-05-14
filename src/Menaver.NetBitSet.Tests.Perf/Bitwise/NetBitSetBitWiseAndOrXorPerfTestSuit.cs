@@ -2,11 +2,7 @@
 
 namespace Menaver.NetBitSet.Tests.Perf.Bitwise;
 
-[MinColumn]
-[MaxColumn]
-[HtmlExporter]
-[MarkdownExporter]
-public class NetBitSetBitWiseAndOrXorPerfTestSuit
+public class NetBitSetBitwiseAndOrXorPerfTestSuit : PerfTestSuitBase
 {
     private NetBitSet _netBitSetA = null!;
     private NetBitSet _netBitSetB = null!;
@@ -14,11 +10,11 @@ public class NetBitSetBitWiseAndOrXorPerfTestSuit
     // 1 kbit, 1 Mbit, 10 Mbit
     [Params(8192, 8388608, 83886080)] public ulong BitCount;
 
-    [GlobalSetup]
+    [IterationSetup]
     public void Setup()
     {
-        _netBitSetA = new NetBitSet(BitCount, Bit.True);
-        _netBitSetB = new NetBitSet(BitCount, Bit.False);
+        _netBitSetA = BuildRandomNetBitSet(BitCount);
+        _netBitSetB = BuildRandomNetBitSet(BitCount);
     }
 
     [Benchmark]

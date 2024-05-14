@@ -2,27 +2,19 @@
 
 namespace Menaver.NetBitSet.Tests.Perf.LFSR;
 
-[MinColumn]
-[MaxColumn]
-[HtmlExporter]
-[MarkdownExporter]
-public class LFSRShiftPerfTestSuit
+public class LFSRShiftPerfTestSuit : PerfTestSuitBase
 {
-    private const int byteCount = 88;
-    private readonly ulong[] polynomial = { 11, 9, 8, 0 };
+    private const int BitCount = 88;
+    private readonly ulong[] Polynomial = { 11, 9, 8, 0 };
 
     private Menaver.NetBitSet.LFSR.LFSR _lfsr = null!;
 
-    [Params(100, 1000, 10000)] public ulong ShiftCount;
+    [Params(10000, 100000, 1000000)] public ulong ShiftCount;
 
-    [GlobalSetup]
+    [IterationSetup]
     public void Setup()
     {
-        var data = new byte[byteCount];
-        new Random().NextBytes(data);
-
-        var netBitSet = new NetBitSet(data);
-        _lfsr = new Menaver.NetBitSet.LFSR.LFSR(netBitSet, polynomial);
+        _lfsr = BuildRandomLFSR(BitCount, Polynomial);
     }
 
     [Benchmark]
@@ -35,7 +27,7 @@ public class LFSRShiftPerfTestSuit
     }
 
     [Benchmark]
-    public void ShiftWithCount()
+    public void ShiftByCount()
     {
         _lfsr.Shift(ShiftCount);
     }

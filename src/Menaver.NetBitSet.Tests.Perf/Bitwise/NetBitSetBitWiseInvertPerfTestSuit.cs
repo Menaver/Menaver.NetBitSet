@@ -2,26 +2,17 @@
 
 namespace Menaver.NetBitSet.Tests.Perf.Bitwise;
 
-[MinColumn]
-[MaxColumn]
-[HtmlExporter]
-[MarkdownExporter]
-public class NetBitSetBitWiseInvertPerfTestSuit
+public class NetBitSetBitwiseInvertPerfTestSuit : PerfTestSuitBase
 {
     private NetBitSet _netBitSet = null!;
 
     // 1 kbit, 1 Mbit, 10 Mbit
     [Params(8192, 8388608, 83886080)] public ulong BitCount;
 
-    [GlobalSetup]
+    [IterationSetup]
     public void Setup()
     {
-        var byteCount = BitCount / 8;
-
-        var data = new byte[byteCount];
-        new Random().NextBytes(data);
-
-        _netBitSet = new NetBitSet(data);
+        _netBitSet = BuildRandomNetBitSet(BitCount);
     }
 
     [Benchmark]

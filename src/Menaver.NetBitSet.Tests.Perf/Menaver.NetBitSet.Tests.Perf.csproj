@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Conversion\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Menaver.NetBitSet.LFSR\Menaver.NetBitSet.LFSR.csproj" />
     <ProjectReference Include="..\Menaver.NetBitSet\Menaver.NetBitSet.csproj" />
   </ItemGroup>
