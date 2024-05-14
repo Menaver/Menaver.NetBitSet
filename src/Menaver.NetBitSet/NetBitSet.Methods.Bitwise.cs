@@ -211,31 +211,31 @@ public partial class NetBitSet
     public void Xor(ulong position, bool bit)
     {
         var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
-        _containers[packIndex][bitIndex] |= bit;
+        _containers[packIndex][bitIndex] ^= bit;
     }
 
     public void Xor(ulong position, byte bit)
     {
         var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
-        _containers[packIndex][bitIndex] |= bit.ToBit().ToBool();
+        _containers[packIndex][bitIndex] ^= bit.ToBit().ToBool();
     }
 
     public void Xor(ulong position, int bit)
     {
         var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
-        _containers[packIndex][bitIndex] |= bit.ToBit().ToBool();
+        _containers[packIndex][bitIndex] ^= bit.ToBit().ToBool();
     }
 
     public void Xor(ulong position, double bit)
     {
         var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
-        _containers[packIndex][bitIndex] |= bit.ToBit().ToBool();
+        _containers[packIndex][bitIndex] ^= bit.ToBit().ToBool();
     }
 
     public void Xor(ulong position, Bit bit)
     {
         var (packIndex, bitIndex) = BitArrayHelper.GetComplexIndex(position);
-        _containers[packIndex][bitIndex] |= bit.ToBool();
+        _containers[packIndex][bitIndex] ^= bit.ToBool();
     }
 
     public void Xor(INetBitSet bitSet)
@@ -404,17 +404,6 @@ public partial class NetBitSet
         ShiftRight(count, shiftInBit.ToBit());
     }
 
-    public void ShiftLeft(ulong count, Bit shiftInBit)
-    {
-        for (ulong i = 0; i < count; i++)
-        {
-            for (var j = Count - 1; j > 0; j--)
-                this[j] = this[j - 1];
-
-            this[0] = shiftInBit;
-        }
-    }
-
     public void ShiftLeft(ulong count, bool shiftInBit)
     {
         ShiftLeft(count, shiftInBit.ToBit());
@@ -435,14 +424,73 @@ public partial class NetBitSet
         ShiftLeft(count, shiftInBit.ToBit());
     }
 
-    public void ShiftRight(ulong count, Bit shiftInBit)
+    public void ShiftLeft(ulong count, Bit shiftInBit)
     {
+        var elementCount = Count;
+        var iterationCount = elementCount - 1;
+
         for (ulong i = 0; i < count; i++)
         {
-            for (ulong j = 0; j < Count - 1; j++)
-                this[j] = this[j + 1];
+            if (elementCount <= int.MaxValue)
+            {
+                // a little optimization: if element count fits the 1-dimensional BitArray size limit,
+                // let's then do the shift over this array only,
+                // without needing to calculate a complex index on each iteration
 
-            this[Count - 1] = shiftInBit;
+                var shiftInBitBool = shiftInBit.ToBool();
+                var iterationCountInt = (int)iterationCount;
+
+                for (var j = iterationCountInt; j > 0; j--)
+                {
+                    _containers[0][j] = _containers[0][j - 1];
+                }
+
+                _containers[0][0] = shiftInBitBool;
+            }
+            else
+            {
+                for (var j = iterationCount; j > 0; j--)
+                {
+                    this[j] = this[j - 1];
+                }
+
+                this[0] = shiftInBit;
+            }
+        }
+    }
+
+    public void ShiftRight(ulong count, Bit shiftInBit)
+    {
+        var elementCount = Count;
+        var iterationCount = elementCount - 1;
+
+        for (ulong i = 0; i < count; i++)
+        {
+            if (elementCount <= int.MaxValue)
+            {
+                // a little optimization: if element count fits the 1-dimensional BitArray size limit,
+                // let's then do the shift over this array only,
+                // without needing to calculate a complex index on each iteration
+
+                var shiftInBitBool = shiftInBit.ToBool();
+                var iterationCountInt = (int)iterationCount;
+
+                for (var j = 0; j < iterationCountInt; j++)
+                {
+                    _containers[0][j] = _containers[0][j + 1];
+                }
+
+                _containers[0][iterationCountInt] = shiftInBitBool;
+            }
+            else
+            {
+                for (ulong j = 0; j < iterationCount; j++)
+                {
+                    this[j] = this[j + 1];
+                }
+
+                this[iterationCount] = shiftInBit;
+            }
         }
     }
 }
