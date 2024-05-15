@@ -1,0 +1,44 @@
+name: "Publish Package - Menaver.NetBitSet"
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - src/Menaver.NetBitSet/**
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+        - name: Checkout Code
+          uses: actions/checkout@v4
+
+        - name: Setup .NET Core SDK
+          uses: actions/setup-dotnet@v4
+          with:
+            dotnet-version: 8.0.x
+
+        - name: Restore
+          working-directory: src/Menaver.NetBitSet
+          run: dotnet restore
+
+        - name: Build
+          working-directory: src/Menaver.NetBitSet
+          run: dotnet build --configuration Release --no-restore
+
+        - name: Pack
+          working-directory: src/Menaver.NetBitSet
+          run: dotnet pack --configuration Release -o out --nologo
+
+        - name: Push to NuGet
+          working-directory: src/Menaver.NetBitSet
+          run: dotnet nuget push "./out/*.nupkg" --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
+
+        - name: Add GitHub Packages Source
+          run: dotnet nuget add source --username USERNAME --password ${{ secrets.GHA_PACKAGES_TOKEN }} --store-password-in-clear-text --name github_menaver "https://nuget.pkg.github.com/Menaver/index.json"
+
+        - name: Push to GitHub Packages
+          working-directory: src/Menaver.NetBitSet
+          run: dotnet nuget push "./out/*.nupkg" --api-key ${{ secrets.GHA_PACKAGES_TOKEN }} --source github_menaver
