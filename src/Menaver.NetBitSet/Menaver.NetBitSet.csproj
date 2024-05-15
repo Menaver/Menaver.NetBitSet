@@ -11,6 +11,7 @@
     <Version>1.0.3</Version>
     <RepositoryUrl>https://github.com/Menaver/menaver.netbitset</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>
       Inspired by std::bitset from C++, NetBitSet represents a .NET implementation of a fixed-size sequence of bits. NetBitSet gives you an ability to operate with data on a bit level, it can be manipulated by standard logic operators, cloned, converted to and from basic CTS numeric data types, strings and even abstract objects.
     </Description>
