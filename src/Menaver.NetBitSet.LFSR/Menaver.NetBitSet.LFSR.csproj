@@ -9,6 +9,14 @@
     <PackageId>$(MSBuildProjectName)</PackageId>
     <PackageVersion>1.0.0</PackageVersion>
     <Version>1.0.0</Version>
+    <RepositoryUrl>https://github.com/Menaver/menaver.netbitset</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>
+      Represents an abstraction of a linear-feedback shift register (LFSR) driven by Menaver.NetBitSet.
+    </Description>
+    <PackageReleaseNotes>
+      Init release.
+    </PackageReleaseNotes>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>embedded</DebugType>
@@ -22,14 +30,11 @@
   </Target>
 
   <ItemGroup>
+    <PackageReference Include="Menaver.NetBitSet" Version="1.0.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Menaver.NetBitSet\Menaver.NetBitSet.csproj" />
   </ItemGroup>
 
 </Project>
