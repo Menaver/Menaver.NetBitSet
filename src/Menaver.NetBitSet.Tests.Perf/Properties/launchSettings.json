@@ -1,0 +1,27 @@
+{
+  "profiles": {
+    "Menaver.NetBitSet.Tests.Perf": {
+      "commandName": "Project"
+    },
+    "Menaver.NetBitSet.Tests.Perf: NetBitSetBitwiseAndOrXorPerfTestSuit": {
+      "commandName": "Project",
+      "commandLineArgs": "NetBitSetBitwiseAndOrXorPerfTestSuit"
+    },
+    "Menaver.NetBitSet.Tests.Perf: NetBitSetBitwiseInvertPerfTestSuit": {
+      "commandName": "Project",
+      "commandLineArgs": "NetBitSetBitwiseInvertPerfTestSuit"
+    },
+    "Menaver.NetBitSet.Tests.Perf: NetBitSetBitwiseShiftPerfTestSuit": {
+      "commandName": "Project",
+      "commandLineArgs": "NetBitSetBitwiseShiftPerfTestSuit"
+    },
+    "Menaver.NetBitSet.Tests.Perf: NetBitSetConversionPerfTestSuit": {
+      "commandName": "Project",
+      "commandLineArgs": "NetBitSetConversionPerfTestSuit"
+    },
+    "Menaver.NetBitSet.Tests.Perf: LFSRShiftPerfTestSuit": {
+      "commandName": "Project",
+      "commandLineArgs": "LFSRShiftPerfTestSuit"
+    }
+  }
+}
