@@ -1,7 +1,8 @@
-# Overview
+# Overview <a name="overview"></a>
 
 Inspired by [std::bitset](https://en.cppreference.com/w/cpp/utility/bitset) from C++, `NetBitSet` represents a .NET implementation of a fixed-size sequence of bits. 
-`NetBitSet` gives you an ability to operate with data on a bit level, it can be manipulated by standard logic operators, cloned, converted to and from basic CTS numeric data types, strings and even abstract objects.
+`NetBitSet` gives you an ability to operate with data on a bit level, it can be manipulated by standard logic operators, cloned, converted to and from basic CTS numeric data types, strings and even abstract objects. 
+See [examples](#examples) below for more use-cases.
 
 ## Keynotes
 - Platform: netstandard2.0;
@@ -44,7 +45,7 @@ Inspired by [std::bitset](https://en.cppreference.com/w/cpp/utility/bitset) from
 The Performance testing is driven by [BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet).
 Its run results can be found in repo's GHA [here](https://github.com/Menaver/menaver.netbitset/actions/workflows/run-perf-tests.yml).
 
-# Examples
+# Examples <a name="examples"></a>
 
 ### Initialization
 
