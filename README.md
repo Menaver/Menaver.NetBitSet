@@ -6,7 +6,7 @@ See [examples](#examples) below for more use-cases.
 
 ## Keynotes
 - Platform: netstandard2.0;
-- Deliverable: shared package (DLL);
+- Distributed via NuGet (check out [Menaver.NetBitSet](https://www.nuget.org/packages/Menaver.NetBitSet) and [Menaver.NetBitSet.LFSR](https://www.nuget.org/packages/Menaver.NetBitSet.LFSR))
 - The implementation is covered with both Unit (800+) and Performance (25+) tests;
 - This repository leverages Github Actions (GHA);
 
