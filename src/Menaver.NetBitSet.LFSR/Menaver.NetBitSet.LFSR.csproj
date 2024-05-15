@@ -7,15 +7,16 @@
     <Nullable>enable</Nullable>
 
     <PackageId>$(MSBuildProjectName)</PackageId>
-    <PackageVersion>1.0.0</PackageVersion>
-    <Version>1.0.0</Version>
+    <PackageVersion>1.0.1</PackageVersion>
+    <Version>1.0.1</Version>
     <RepositoryUrl>https://github.com/Menaver/menaver.netbitset</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>
       Represents an abstraction of a linear-feedback shift register (LFSR) driven by Menaver.NetBitSet.
     </Description>
     <PackageReleaseNotes>
-      Init release.
+      Update description.
     </PackageReleaseNotes>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <DebugSymbols>true</DebugSymbols>
