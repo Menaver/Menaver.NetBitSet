@@ -37,8 +37,8 @@ jobs:
           run: dotnet nuget push "./out/*.nupkg" --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
 
         - name: Add GitHub Packages Source
-          run: dotnet nuget add source --username USERNAME --password ${{ secrets.GHA_PACKAGES_TOKEN }} --store-password-in-clear-text --name github_menaver "https://nuget.pkg.github.com/Menaver/index.json"
+          run: dotnet nuget add source --username USERNAME --password ${{ secrets.GHA_PERSONAL_READWRITE_PACKAGES }} --store-password-in-clear-text --name github_menaver "https://nuget.pkg.github.com/Menaver/index.json"
 
         - name: Push to GitHub Packages
           working-directory: src/Menaver.NetBitSet
-          run: dotnet nuget push "./out/*.nupkg" --api-key ${{ secrets.GHA_PACKAGES_TOKEN }} --source github_menaver
+          run: dotnet nuget push "./out/*.nupkg" --api-key ${{ secrets.GHA_PERSONAL_READWRITE_PACKAGES }} --source github_menaver
