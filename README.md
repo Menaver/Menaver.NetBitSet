@@ -22,7 +22,7 @@ Inspired by [std::bitset](https://en.cppreference.com/w/cpp/utility/bitset) from
 - Xor
 - Not (Invert)
 - Arithmetic Shift
-- Circular Shift
+- Logical Shift
 - Circular Shift
 - Invert Endianess
 
