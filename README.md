@@ -1,11 +1,11 @@
 # Overview
 
-Inspired by [std::bitset](https://en.cppreference.com/w/cpp/utility/bitset) from C++, NetBitSet represents a .NET implementation of a fixed-size sequence of bits. Bitsets can be cloned, manipulated by standard logic operators, converted to and from basic CTS numeric data types, strings and even abstract objects.
+Inspired by [std::bitset](https://en.cppreference.com/w/cpp/utility/bitset) from C++, `NetBitSet` represents a .NET implementation of a fixed-size sequence of bits. Bitsets can be cloned, manipulated by standard logic operators, converted to and from basic CTS numeric data types, strings and even abstract objects.
 
 ## Keynotes
 - Platform: netstandard2.0;
 - Deliverable: shared package (DLL);
-- The implementation is covered with both Unit  (800+) and Performance (25+) tests;
+- The implementation is covered with both Unit (800+) and Performance (25+) tests;
 - This repository leverages Github Actions (GHA);
 
 ## Features
@@ -25,18 +25,18 @@ Inspired by [std::bitset](https://en.cppreference.com/w/cpp/utility/bitset) from
 - Circular Shift
 - Invert Endianess
 
-## Supported Data Conversions
+## Supported bata conversions
 
 | Type                                   		| From | To | Implicit Cast | Explicit Cast |
 |-----------------------------------------------|-----:| --:|--------------:|--------------:|
-| 1-bit (bool / bool[])							|  ✅  | ✅ |       ✅      |       ✅       |
-| 8-bits ((s)byte / (s)byte[])					|  ✅  | ✅ |       ✅      |       ✅       |
-| 32-bits ((u)int / (u)int[])					|  ✅  | ✅ |       ✅      |       ✅       |
-| 64-bits ((u)long / (u)long[])					|  ✅  | ✅ |       ✅      |       ✅       |
-| 64-bits floating-point (double / double[])	|  ✅  | ✅ |       ✅      |       ✅       |
-| String (string)								|  ✅  | ✅ |       ✅      |       ❌       |
-| Binary string (string)						|  ✅  | ✅ |       ✅      |       ❌       |
-| Object of any type (serializable)				|  ✅  | ✅ |       ❌      |       ❌       |
+| 1-bit (`bool` / `bool[]`)							|  ✅  | ✅ |       ✅      |       ✅       |
+| 8-bits (`(s)byte` / `(s)byte[]`)					|  ✅  | ✅ |       ✅      |       ✅       |
+| 32-bits (`(u)int` / `(u)int[]`)					|  ✅  | ✅ |       ✅      |       ✅       |
+| 64-bits (`(u)long` / `(u)long[]`)					|  ✅  | ✅ |       ✅      |       ✅       |
+| 64-bits floating-point (`double` / `double[]`)	|  ✅  | ✅ |       ✅      |       ✅       |
+| String (`string`)								|  ✅  | ✅ |       ✅      |       ❌       |
+| Binary string (`string`)						|  ✅  | ✅ |       ✅      |       ❌       |
+| `Object` of any type (serializable)				|  ✅  | ✅ |       ❌      |       ❌       |
 
 ## Performance
 
@@ -129,4 +129,57 @@ netBitSet <<= 3;
 
 // logical shift right
 netBitSet >>= 3;
+```
+
+### Basic use-cas: visualize data, invert data bits, xor every bit by 0
+
+```cs
+// file data to bitset
+var bytes = File.ReadAllBytes("picture.png");
+NetBitSet bits = new NetBitSet(bytes);
+
+// output binary data as string
+var binaryString = bits.ToBinaryString();
+Console.WriteLine(binaryString);
+
+// invert data bits
+bits.InvertAll();
+
+// xor data bits
+var count = bits.Count;
+for (ulong i = 0; i < count; i++)
+{
+	bits[i].Xor(Bit.False);
+}
+
+// safe file
+bytes = bits.ToBytes();
+File.WriteAllBytes("picture.png", bytes);
+```
+
+### Basic use-cas: basic bit-level data encryption using Linear-feedback shift register (LFSR) based on NetBitSet
+
+```cs
+var password = "password123";
+var polynomial = new ulong[] { 11, 9, 8, 0 };
+
+// password to LFSR
+var passwordBits = new NetBitSet(password);
+var passwordLfsr = new Menaver.NetBitSet.LFSR.LFSR(passwordBits, polynomial);
+
+// file data to bitset
+var dataBytes = File.ReadAllBytes("picture.png");
+NetBitSet dataBits = new NetBitSet(dataBytes);
+
+// encrypt data
+var count = dataBits.Count;
+for (ulong i = 0; i < count; i++)
+{
+	var outBit = passwordLfsr.Shift();
+	dataBits[i] = dataBits[i].Xor(outBit);
+}
+
+// safe file
+dataBytes = dataBits.ToBytes();
+File.WriteAllBytes("picture.png", dataBytes);
 ```
