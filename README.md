@@ -1,6 +1,7 @@
 # Overview
 
-Inspired by [std::bitset](https://en.cppreference.com/w/cpp/utility/bitset) from C++, `NetBitSet` represents a .NET implementation of a fixed-size sequence of bits. Bitsets can be cloned, manipulated by standard logic operators, converted to and from basic CTS numeric data types, strings and even abstract objects.
+Inspired by [std::bitset](https://en.cppreference.com/w/cpp/utility/bitset) from C++, `NetBitSet` represents a .NET implementation of a fixed-size sequence of bits. 
+`NetBitSet` gives you an ability to operate with data on a bit level, it can be manipulated by standard logic operators, cloned, converted to and from basic CTS numeric data types, strings and even abstract objects.
 
 ## Keynotes
 - Platform: netstandard2.0;
@@ -10,8 +11,8 @@ Inspired by [std::bitset](https://en.cppreference.com/w/cpp/utility/bitset) from
 
 ## Features
 - Compact storing of each individual bit in RAM;
-- Implementation of the following basic interfaces: IEnumerable, ICloneable;
-- Large data support (technically, it's up to ~18446.74 petabytes, as long as your machine can handle it :D);
+- Implementation of the following basic interfaces: `IEnumerable`, `ICloneable`;
+- Large data support (technically, it's up to ~18446.74 petabytes, as long as your machine's RAM can handle it :D);
 - Implicit and explicit casting operators that provide more convenient interaction with data;
 - And many others.
 
@@ -25,7 +26,7 @@ Inspired by [std::bitset](https://en.cppreference.com/w/cpp/utility/bitset) from
 - Circular Shift
 - Invert Endianess
 
-## Supported bata conversions
+## Supported data conversions
 
 | Type                                   		| From | To | Implicit Cast | Explicit Cast |
 |-----------------------------------------------|-----:| --:|--------------:|--------------:|
@@ -131,7 +132,7 @@ netBitSet <<= 3;
 netBitSet >>= 3;
 ```
 
-### Basic use-cas: visualize data, invert data bits, xor every bit by 0
+### Basic use-case: visualize data, invert data bits, xor every bit by 0
 
 ```cs
 // file data to bitset
@@ -157,7 +158,7 @@ bytes = bits.ToBytes();
 File.WriteAllBytes("picture.png", bytes);
 ```
 
-### Basic use-cas: basic bit-level data encryption using Linear-feedback shift register (LFSR) based on NetBitSet
+### Basic use-case: bit-level data encryption using [linear-feedback shift register (LFSR)](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)
 
 ```cs
 var password = "password123";
