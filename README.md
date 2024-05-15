@@ -3,16 +3,16 @@
 Inspired by [std::bitset](https://en.cppreference.com/w/cpp/utility/bitset) from C++, NetBitSet represents a .NET implementation of a fixed-size sequence of bits. Bitsets can be cloned, manipulated by standard logic operators, converted to and from basic CTS numeric data types, strings and even abstract objects.
 
 ## Keynotes
-- Platform: netstandard2.0
-- Deliverable: shared package (DLL)
-- The implementation is covered with both Unit tests (800+) and Performance tests (25+);
-- This repository leverages Github Actions (GHA)
+- Platform: netstandard2.0;
+- Deliverable: shared package (DLL);
+- The implementation is covered with both Unit  (800+) and Performance (25+) tests;
+- This repository leverages Github Actions (GHA);
 
 ## Features
 - Compact storing of each individual bit in RAM;
-- Implementation of the following basic interfaces: IEnumerable<Bit>, ICloneable;
-- Support for large data (technically, it's up to ~18446.74 petabytes);
-- Implicit and explicit casting operators that provide more convenient interaction with the data;
+- Implementation of the following basic interfaces: IEnumerable, ICloneable;
+- Large data support (technically, it's up to ~18446.74 petabytes, as long as your machine can handle it :D);
+- Implicit and explicit casting operators that provide more convenient interaction with data;
 - And many others.
 
 ## Supported bitwise operations
@@ -36,11 +36,11 @@ Inspired by [std::bitset](https://en.cppreference.com/w/cpp/utility/bitset) from
 | 64-bits floating-point (double / double[])	|  ✅  | ✅ |       ✅      |       ✅       |
 | String (string)								|  ✅  | ✅ |       ✅      |       ❌       |
 | Binary string (string)						|  ✅  | ✅ |       ✅      |       ❌       |
-| Objct of any type (serializable)				|  ✅  | ✅ |       ❌      |       ❌       |
+| Object of any type (serializable)				|  ✅  | ✅ |       ❌      |       ❌       |
 
 ## Performance
 
-The Performance tesing is driven by [BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet).
+The Performance testing is driven by [BenchmarkDotNet](https://github.com/dotnet/BenchmarkDotNet).
 Its run results can be found in repo's GHA [here](https://github.com/Menaver/menaver.netbitset/actions/workflows/run-perf-tests.yml).
 
 # Examples
@@ -109,7 +109,7 @@ var binaryString = netBitSet.ToBinaryString();
 var dataTimeOffset = netBitSet.ToObject<DateTimeOffset>();
 ```
 
-### Bitwie
+### Bitwise operations
 
 ```cs
 // And
