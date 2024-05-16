@@ -1,14 +1,12 @@
 # Overview <a name="overview"></a>
 
-Inspired by [std::bitset](https://en.cppreference.com/w/cpp/utility/bitset) from C++, `NetBitSet` represents a .NET implementation of a fixed-size sequence of bits. 
-`NetBitSet` gives you an ability to operate with data on a bit level, it can be manipulated by standard logic operators, cloned, converted to and from basic CTS numeric data types, strings and even abstract objects. 
-See [examples](#examples) below for more use-cases.
+Inspired by [std::bitset](https://en.cppreference.com/w/cpp/utility/bitset) from C++, `NetBitSet` represents a .NET implementation of an operable sequence of bits. `NetBitSet` gives you an ability to operate with data on a bit level, it can be manipulated by standard logic operators, cloned, converted to and from basic CTS numeric data types, strings and even abstract objects. See [examples](#examples) below for more use-cases.
 
 ## Keynotes
 - Platform: netstandard2.0;
 - Distributed via NuGet (check out [Menaver.NetBitSet](https://www.nuget.org/packages/Menaver.NetBitSet) and [Menaver.NetBitSet.LFSR](https://www.nuget.org/packages/Menaver.NetBitSet.LFSR))
 - The implementation is covered with both Unit (800+) and Performance (25+) tests;
-- This repository leverages Github Actions (GHA);
+- This repository [leverages](https://github.com/Menaver/menaver.netbitset/actions) Github Actions (GHA);
 
 ## Features
 - Compact storing of each individual bit in RAM;
