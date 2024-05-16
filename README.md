@@ -131,7 +131,7 @@ netBitSet <<= 3;
 netBitSet >>= 3;
 ```
 
-### Basic use-case: visualize data, invert data bits, xor every bit by 0
+### Basic use-case: visualize data
 
 ```cs
 // file data to bitset
@@ -141,9 +141,29 @@ NetBitSet bits = new NetBitSet(bytes);
 // output binary data as string
 var binaryString = bits.ToBinaryString();
 Console.WriteLine(binaryString);
+```
+
+### Basic use-case: invert data bits
+
+```cs
+// file data to bitset
+var bytes = File.ReadAllBytes("picture.png");
+NetBitSet bits = new NetBitSet(bytes);
 
 // invert data bits
 bits.InvertAll();
+
+// safe file
+bytes = bits.ToBytes();
+File.WriteAllBytes("picture.png", bytes);
+```
+
+### Basic use-case: xor every bit by 0
+
+```cs
+// file data to bitset
+var bytes = File.ReadAllBytes("picture.png");
+NetBitSet bits = new NetBitSet(bytes);
 
 // xor data bits
 var count = bits.Count;
