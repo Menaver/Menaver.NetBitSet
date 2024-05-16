@@ -153,7 +153,7 @@ NetBitSet bits = new NetBitSet(bytes);
 // invert data bits
 bits.InvertAll();
 
-// safe file
+// save to file
 bytes = bits.ToBytes();
 File.WriteAllBytes("picture.png", bytes);
 ```
@@ -172,7 +172,7 @@ for (ulong i = 0; i < count; i++)
 	bits[i].Xor(Bit.False);
 }
 
-// safe file
+// save to file
 bytes = bits.ToBytes();
 File.WriteAllBytes("picture.png", bytes);
 ```
@@ -199,7 +199,7 @@ for (ulong i = 0; i < count; i++)
 	dataBits[i] = dataBits[i].Xor(outBit);
 }
 
-// safe file
+// save to file
 dataBytes = dataBits.ToBytes();
 File.WriteAllBytes("picture.png", dataBytes);
 ```
