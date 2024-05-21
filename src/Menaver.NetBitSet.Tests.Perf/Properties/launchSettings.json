@@ -11,9 +11,13 @@
       "commandName": "Project",
       "commandLineArgs": "NetBitSetBitwiseInvertPerfTestSuit"
     },
-    "Menaver.NetBitSet.Tests.Perf: NetBitSetBitwiseShiftPerfTestSuit": {
+    "Menaver.NetBitSet.Tests.Perf: NetBitSetBitwiseShiftOverSmallDataPerfTestSuit": {
       "commandName": "Project",
-      "commandLineArgs": "NetBitSetBitwiseShiftPerfTestSuit"
+      "commandLineArgs": "NetBitSetBitwiseShiftOverSmallDataPerfTestSuit"
+    },
+    "Menaver.NetBitSet.Tests.Perf: NetBitSetBitwiseShiftOverBigDataPerfTestSuit": {
+      "commandName": "Project",
+      "commandLineArgs": "NetBitSetBitwiseShiftOverBigDataPerfTestSuit"
     },
     "Menaver.NetBitSet.Tests.Perf: NetBitSetConversionPerfTestSuit": {
       "commandName": "Project",

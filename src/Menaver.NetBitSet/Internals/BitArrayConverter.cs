@@ -7,17 +7,6 @@ namespace Menaver.NetBitSet.Internals;
 
 internal static class BitArrayConverter
 {
-    public static void CheckByWordLength(
-        WordLength currentWordLength,
-        WordLength targetWordLength)
-    {
-        if (currentWordLength != targetWordLength)
-        {
-            throw new InvalidOperationException(
-                $"Word length does not match. Current: {currentWordLength}. Expected: {targetWordLength}.");
-        }
-    }
-
     public static void CheckByElementCount(
         ulong elementCount,
         WordLength targetWordLength)
