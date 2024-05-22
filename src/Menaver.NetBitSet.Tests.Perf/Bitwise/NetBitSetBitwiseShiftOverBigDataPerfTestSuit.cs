@@ -2,7 +2,7 @@
 
 namespace Menaver.NetBitSet.Tests.Perf.Bitwise;
 
-public class NetBitSetBitwiseShiftPerfTestSuit : PerfTestSuitBase
+public class NetBitSetBitwiseShiftOverBigDataPerfTestSuit : PerfTestSuitBase
 {
     private const int ShiftCount = 3;
 

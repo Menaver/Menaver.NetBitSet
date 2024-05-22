@@ -110,7 +110,6 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public sbyte[] ToSBytes()
     {
-        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Byte);
         BitArrayConverter.CheckByElementCount(Count, WordLengths.Byte);
 
         return BitArrayConverter.ConvertToSBytes(_containers);
@@ -122,7 +121,6 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public byte[] ToBytes()
     {
-        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Byte);
         BitArrayConverter.CheckByElementCount(Count, WordLengths.Byte);
 
         return BitArrayConverter.ConvertToBytes(_containers);
@@ -134,7 +132,6 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public short[] ToShorts()
     {
-        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Short);
         BitArrayConverter.CheckByElementCount(Count, WordLengths.Short);
 
         return BitArrayConverter.ConvertToShorts(_containers);
@@ -146,7 +143,6 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public ushort[] ToUShorts()
     {
-        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Short);
         BitArrayConverter.CheckByElementCount(Count, WordLengths.Short);
 
         return BitArrayConverter.ConvertToUShorts(_containers);
@@ -158,7 +154,6 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public int[] ToInts()
     {
-        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Int);
         BitArrayConverter.CheckByElementCount(Count, WordLengths.Int);
 
         return BitArrayConverter.ConvertToInts(_containers);
@@ -170,7 +165,6 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public uint[] ToUInts()
     {
-        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Int);
         BitArrayConverter.CheckByElementCount(Count, WordLengths.Int);
 
         return BitArrayConverter.ConvertToUInts(_containers);
@@ -182,7 +176,6 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public long[] ToLongs()
     {
-        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Long);
         BitArrayConverter.CheckByElementCount(Count, WordLengths.Long);
 
         return BitArrayConverter.ConvertToLongs(_containers);
@@ -194,7 +187,6 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public ulong[] ToULongs()
     {
-        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Long);
         BitArrayConverter.CheckByElementCount(Count, WordLengths.Long);
 
         return BitArrayConverter.ConvertToULongs(_containers);
@@ -206,7 +198,6 @@ public partial class NetBitSet
     /// <returns>The data converted.</returns>
     public double[] ToDoubles()
     {
-        BitArrayConverter.CheckByWordLength(WordLength, WordLengths.Double);
         BitArrayConverter.CheckByElementCount(Count, WordLengths.Double);
 
         return BitArrayConverter.ConvertToDoubles(_containers);

@@ -1195,4 +1195,204 @@ public class NetBitSetMethodBitWiseTests
         // assert
         Assert.That(changedBinaryString == expectedBinaryString);
     }
+
+    [TestCase(64, 1, Bit.False, 32)]
+    [TestCase(64, 2, Bit.False, 16)]
+    [TestCase(64, 3, Bit.False, 8)]
+    [TestCase(64, 4, Bit.False, 4)]
+    [TestCase(64, 1, Bit.True, 160)]
+    [TestCase(64, 2, Bit.True, 208)]
+    [TestCase(64, 3, Bit.True, 232)]
+    [TestCase(64, 4, Bit.True, 244)]
+    public void BitWise_ShiftRight_Byte_Count_ChangedValueFits(
+        byte value,
+        int count,
+        Bit shiftInBit,
+        byte expectedValue)
+    {
+        // arrange 
+        var netBitSet = new NetBitSet(value);
+
+        // act
+        netBitSet.ShiftRight((ulong)count, shiftInBit);
+        var changedValue = netBitSet.ToByte();
+
+        // assert
+        Assert.That(changedValue == expectedValue);
+    }
+
+    [TestCase((ushort)4096, 1, Bit.False, (ushort)2048)]
+    [TestCase((ushort)4096, 2, Bit.False, (ushort)1024)]
+    [TestCase((ushort)4096, 3, Bit.False, (ushort)512)]
+    [TestCase((ushort)4096, 4, Bit.False, (ushort)256)]
+    [TestCase((ushort)4096, 1, Bit.True, (ushort)34816)]
+    [TestCase((ushort)4096, 2, Bit.True, (ushort)50176)]
+    [TestCase((ushort)4096, 3, Bit.True, (ushort)57856)]
+    [TestCase((ushort)4096, 4, Bit.True, (ushort)61696)]
+    public void BitWise_ShiftRight_UShort_Count_ChangedValueFits(
+        ushort value,
+        int count,
+        Bit shiftInBit,
+        ushort expectedValue)
+    {
+        // arrange 
+        var netBitSet = new NetBitSet(value);
+
+        // act
+        netBitSet.ShiftRight((ulong)count, shiftInBit);
+        var changedValue = netBitSet.ToUShort();
+
+        // assert
+        Assert.That(changedValue == expectedValue);
+    }
+
+    [TestCase((uint)1073741824, 1, Bit.False, (uint)536870912)]
+    [TestCase((uint)1073741824, 2, Bit.False, (uint)268435456)]
+    [TestCase((uint)1073741824, 3, Bit.False, (uint)134217728)]
+    [TestCase((uint)1073741824, 4, Bit.False, (uint)67108864)]
+    [TestCase((uint)1073741824, 1, Bit.True, 2684354560)]
+    [TestCase((uint)1073741824, 2, Bit.True, 3489660928)]
+    [TestCase((uint)1073741824, 3, Bit.True, 3892314112)]
+    [TestCase((uint)1073741824, 4, Bit.True, 4093640704)]
+    public void BitWise_ShiftRight_UInt_Count_ChangedValueFits(
+        uint value,
+        int count,
+        Bit shiftInBit,
+        uint expectedValue)
+    {
+        // arrange 
+        var netBitSet = new NetBitSet(value);
+
+        // act
+        netBitSet.ShiftRight((ulong)count, shiftInBit);
+        var changedValue = netBitSet.ToUInt();
+
+        // assert
+        Assert.That(changedValue == expectedValue);
+    }
+
+    [TestCase((ulong)4611686018427387904, 1, Bit.False, (ulong)2305843009213693952)]
+    [TestCase((ulong)4611686018427387904, 2, Bit.False, (ulong)1152921504606846976)]
+    [TestCase((ulong)4611686018427387904, 3, Bit.False, (ulong)576460752303423488)]
+    [TestCase((ulong)4611686018427387904, 4, Bit.False, (ulong)288230376151711744)]
+    [TestCase((ulong)4611686018427387904, 1, Bit.True, 11529215046068469760)]
+    [TestCase((ulong)4611686018427387904, 2, Bit.True, 14987979559889010688)]
+    [TestCase((ulong)4611686018427387904, 3, Bit.True, 16717361816799281152)]
+    [TestCase((ulong)4611686018427387904, 4, Bit.True, 17582052945254416384)]
+    public void BitWise_ShiftRight_ULong_Count_ChangedValueFits(
+        ulong value,
+        int count,
+        Bit shiftInBit,
+        ulong expectedValue)
+    {
+        // arrange 
+        var netBitSet = new NetBitSet(value);
+
+        // act
+        netBitSet.ShiftRight((ulong)count, shiftInBit);
+        var changedValue = netBitSet.ToULong();
+
+        // assert
+        Assert.That(changedValue == expectedValue);
+    }
+
+    [TestCase(8, 1, Bit.False, 16)]
+    [TestCase(8, 2, Bit.False, 32)]
+    [TestCase(8, 3, Bit.False, 64)]
+    [TestCase(8, 4, Bit.False, 128)]
+    [TestCase(8, 1, Bit.True, 17)]
+    [TestCase(8, 2, Bit.True, 35)]
+    [TestCase(8, 3, Bit.True, 71)]
+    [TestCase(8, 4, Bit.True, 143)]
+    public void BitWise_ShiftLeft_Byte_Count_ChangedValueFits(
+        byte value,
+        int count,
+        Bit shiftInBit,
+        byte expectedValue)
+    {
+        // arrange 
+        var netBitSet = new NetBitSet(value);
+
+        // act
+        netBitSet.ShiftLeft((ulong)count, shiftInBit);
+        var changedValue = netBitSet.ToByte();
+
+        // assert
+        Assert.That(changedValue == expectedValue);
+    }
+
+    [TestCase((ushort)4096, 1, Bit.False, (ushort)8192)]
+    [TestCase((ushort)4096, 2, Bit.False, (ushort)16384)]
+    [TestCase((ushort)4096, 3, Bit.False, (ushort)32768)]
+    [TestCase((ushort)4096, 4, Bit.False, (ushort)0)]
+    [TestCase((ushort)4096, 1, Bit.True, (ushort)8193)]
+    [TestCase((ushort)4096, 2, Bit.True, (ushort)16387)]
+    [TestCase((ushort)4096, 3, Bit.True, (ushort)32775)]
+    [TestCase((ushort)4096, 4, Bit.True, (ushort)15)]
+    public void BitWise_ShiftLeft_UShort_Count_ChangedValueFits(
+        ushort value,
+        int count,
+        Bit shiftInBit,
+        ushort expectedValue)
+    {
+        // arrange 
+        var netBitSet = new NetBitSet(value);
+
+        // act
+        netBitSet.ShiftLeft((ulong)count, shiftInBit);
+        var changedValue = netBitSet.ToUShort();
+
+        // assert
+        Assert.That(changedValue == expectedValue);
+    }
+
+    [TestCase((uint)4096, 1, Bit.False, (uint)8192)]
+    [TestCase((uint)4096, 2, Bit.False, (uint)16384)]
+    [TestCase((uint)4096, 3, Bit.False, (uint)32768)]
+    [TestCase((uint)4096, 4, Bit.False, (uint)65536)]
+    [TestCase((uint)4096, 1, Bit.True, (uint)8193)]
+    [TestCase((uint)4096, 2, Bit.True, (uint)16387)]
+    [TestCase((uint)4096, 3, Bit.True, (uint)32775)]
+    [TestCase((uint)4096, 4, Bit.True, (uint)65551)]
+    public void BitWise_ShiftLeft_UInt_Count_ChangedValueFits(
+        uint value,
+        int count,
+        Bit shiftInBit,
+        uint expectedValue)
+    {
+        // arrange 
+        var netBitSet = new NetBitSet(value);
+
+        // act
+        netBitSet.ShiftLeft((ulong)count, shiftInBit);
+        var changedValue = netBitSet.ToUInt();
+
+        // assert
+        Assert.That(changedValue == expectedValue);
+    }
+
+    [TestCase((ulong)1073741824, 1, Bit.False, (ulong)2147483648)]
+    [TestCase((ulong)1073741824, 2, Bit.False, (ulong)4294967296)]
+    [TestCase((ulong)1073741824, 3, Bit.False, (ulong)8589934592)]
+    [TestCase((ulong)1073741824, 4, Bit.False, (ulong)17179869184)]
+    [TestCase((ulong)1073741824, 1, Bit.True, (ulong)2147483649)]
+    [TestCase((ulong)1073741824, 2, Bit.True, (ulong)4294967299)]
+    [TestCase((ulong)1073741824, 3, Bit.True, (ulong)8589934599)]
+    [TestCase((ulong)1073741824, 4, Bit.True, (ulong)17179869199)]
+    public void BitWise_ShiftLeft_ULong_Count_ChangedValueFits(
+        ulong value,
+        int count,
+        Bit shiftInBit,
+        ulong expectedValue)
+    {
+        // arrange 
+        var netBitSet = new NetBitSet(value);
+
+        // act
+        netBitSet.ShiftLeft((ulong)count, shiftInBit);
+        var changedValue = netBitSet.ToULong();
+
+        // assert
+        Assert.That(changedValue == expectedValue);
+    }
 }

@@ -1,4 +1,5 @@
-﻿using Menaver.NetBitSet.Extensions;
+﻿using System.Collections;
+using Menaver.NetBitSet.Extensions;
 using Menaver.NetBitSet.Interfaces;
 using Menaver.NetBitSet.Internals;
 
@@ -427,34 +428,102 @@ public partial class NetBitSet
     public void ShiftLeft(ulong count, Bit shiftInBit)
     {
         var elementCount = Count;
-        var iterationCount = elementCount - 1;
 
         for (ulong i = 0; i < count; i++)
         {
-            if (elementCount <= int.MaxValue)
+            switch (elementCount)
             {
-                // a little optimization: if element count fits the 1-dimensional BitArray size limit,
-                // let's then do the shift over this array only,
-                // without needing to calculate a complex index on each iteration
-
-                var shiftInBitBool = shiftInBit.ToBool();
-                var iterationCountInt = (int)iterationCount;
-
-                for (var j = iterationCountInt; j > 0; j--)
+                case 8:
                 {
-                    _containers[0][j] = _containers[0][j - 1];
-                }
+                    // convert to byte
+                    var temp = new byte[1];
+                    _containers[0].CopyTo(temp, 0);
+                    var register = temp[0];
 
-                _containers[0][0] = shiftInBitBool;
-            }
-            else
-            {
-                for (var j = iterationCount; j > 0; j--)
+                    register <<= 1;
+
+                    var shiftInBitConverted = shiftInBit == Bit.True ? (byte)1 : (byte)0;
+
+                    register = (byte)(register | shiftInBitConverted);
+
+                    _containers[0] = new BitArray(new byte[] { register });
+                }
+                    break;
+                case 16:
                 {
-                    this[j] = this[j - 1];
-                }
+                    // convert to ushort
+                    var temp = new byte[2];
+                    _containers[0].CopyTo(temp, 0);
+                    var register = BitConverter.ToUInt16(temp, 0);
 
-                this[0] = shiftInBit;
+                    register <<= 1;
+
+                    var shiftInBitConverted = shiftInBit == Bit.True ? (ushort)1 : (ushort)0;
+
+                    register = (ushort)(register | shiftInBitConverted);
+
+                    _containers[0] = new BitArray(BitConverter.GetBytes(register));
+                }
+                    break;
+                case 32:
+                {
+                    // convert to uint
+                    var temp = new uint[1];
+                    _containers[0].CopyTo(temp, 0);
+                    var register = temp[0];
+
+                    register <<= 1;
+
+                    var shiftInBitConverted = shiftInBit == Bit.True ? (uint)1 : (uint)0;
+
+                    register = (uint)(register | shiftInBitConverted);
+
+                    _containers[0] = new BitArray(BitConverter.GetBytes(register));
+                }
+                    break;
+                case 64:
+                {
+                    // convert to ulong
+                    var temp = new byte[8];
+                    _containers[0].CopyTo(temp, 0);
+                    var register = BitConverter.ToUInt64(temp, 0);
+
+                    register <<= 1;
+
+                    var shiftInBitConverted = shiftInBit == Bit.True ? (ulong)1 : (ulong)0;
+
+                    register = (ulong)(register | shiftInBitConverted);
+
+                    _containers[0] = new BitArray(BitConverter.GetBytes(register));
+                }
+                    break;
+                case <= int.MaxValue:
+                {
+                    // a little optimization: if element count fits the 1-dimensional BitArray size limit,
+                    // let's then do the shift over this array only,
+                    // without needing to calculate a complex index on each iteration
+
+                    var shiftInBitBool = shiftInBit.ToBool();
+                    var iterationCountInt = (int)elementCount - 1;
+
+                    for (var j = iterationCountInt; j > 0; j--)
+                    {
+                        _containers[0][j] = _containers[0][j - 1];
+                    }
+
+                    _containers[0][0] = shiftInBitBool;
+                }
+                    break;
+                default:
+                {
+                    for (var j = elementCount - 1; j > 0; j--)
+                    {
+                        this[j] = this[j - 1];
+                    }
+
+                    this[0] = shiftInBit;
+                }
+                    break;
             }
         }
     }
@@ -466,30 +535,103 @@ public partial class NetBitSet
 
         for (ulong i = 0; i < count; i++)
         {
-            if (elementCount <= int.MaxValue)
+            switch (elementCount)
             {
-                // a little optimization: if element count fits the 1-dimensional BitArray size limit,
-                // let's then do the shift over this array only,
-                // without needing to calculate a complex index on each iteration
-
-                var shiftInBitBool = shiftInBit.ToBool();
-                var iterationCountInt = (int)iterationCount;
-
-                for (var j = 0; j < iterationCountInt; j++)
+                case 8:
                 {
-                    _containers[0][j] = _containers[0][j + 1];
-                }
+                    // convert to byte
+                    var temp = new byte[1];
+                    _containers[0].CopyTo(temp, 0);
+                    var register = temp[0];
 
-                _containers[0][iterationCountInt] = shiftInBitBool;
-            }
-            else
-            {
-                for (ulong j = 0; j < iterationCount; j++)
+                    register >>= 1;
+
+                    var shiftInBitConverted = shiftInBit == Bit.True ? (byte)1 : (byte)0;
+                    shiftInBitConverted = (byte)(shiftInBitConverted << 7);
+
+                    register = (byte)(register | shiftInBitConverted);
+
+                    _containers[0] = new BitArray(new byte[] { register });
+                }
+                    break;
+                case 16:
                 {
-                    this[j] = this[j + 1];
-                }
+                    // convert to ushort
+                    var temp = new byte[2];
+                    _containers[0].CopyTo(temp, 0);
+                    var register = BitConverter.ToUInt16(temp, 0);
 
-                this[iterationCount] = shiftInBit;
+                    register >>= 1;
+
+                    var shiftInBitConverted = shiftInBit == Bit.True ? (ushort)1 : (ushort)0;
+                    shiftInBitConverted = (ushort)(shiftInBitConverted << 15);
+
+                    register = (ushort)(register | shiftInBitConverted);
+
+                    _containers[0] = new BitArray(BitConverter.GetBytes(register));
+                }
+                    break;
+                case 32:
+                {
+                    // convert to uint
+                    var temp = new uint[1];
+                    _containers[0].CopyTo(temp, 0);
+                    var register = temp[0];
+
+                    register >>= 1;
+
+                    var shiftInBitConverted = shiftInBit == Bit.True ? (uint)1 : (uint)0;
+                    shiftInBitConverted = (uint)(shiftInBitConverted << 31);
+
+                    register = (uint)(register | shiftInBitConverted);
+
+                    _containers[0] = new BitArray(BitConverter.GetBytes(register));
+                }
+                    break;
+                case 64:
+                {
+                    // convert to ulong
+                    var temp = new byte[8];
+                    _containers[0].CopyTo(temp, 0);
+                    var register = BitConverter.ToUInt64(temp, 0);
+
+                    register >>= 1;
+
+                    var shiftInBitConverted = shiftInBit == Bit.True ? (ulong)1 : (ulong)0;
+                    shiftInBitConverted = (ulong)(shiftInBitConverted << 63);
+
+                    register = (ulong)(register | shiftInBitConverted);
+
+                    _containers[0] = new BitArray(BitConverter.GetBytes(register));
+                }
+                    break;
+                case <= int.MaxValue:
+                {
+                    // a little optimization: if element count fits the 1-dimensional BitArray size limit,
+                    // let's then do the shift over this array only,
+                    // without needing to calculate a complex index on each iteration
+
+                    var shiftInBitBool = shiftInBit.ToBool();
+                    var iterationCountInt = (int)iterationCount;
+
+                    for (var j = 0; j < iterationCountInt; j++)
+                    {
+                        _containers[0][j] = _containers[0][j + 1];
+                    }
+
+                    _containers[0][iterationCountInt] = shiftInBitBool;
+                }
+                    break;
+                default:
+                {
+                    for (ulong j = 0; j < iterationCount; j++)
+                    {
+                        this[j] = this[j + 1];
+                    }
+
+                    this[iterationCount] = shiftInBit;
+                }
+                    break;
             }
         }
     }
