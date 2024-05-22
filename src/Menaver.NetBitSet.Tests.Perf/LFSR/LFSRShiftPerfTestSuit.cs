@@ -4,12 +4,12 @@ namespace Menaver.NetBitSet.Tests.Perf.LFSR;
 
 public class LFSRShiftPerfTestSuit : PerfTestSuitBase
 {
-    private const int BitCount = 88;
-    private readonly ulong[] Polynomial = { 11, 9, 8, 0 };
+    private const int BitCount = 64;
+    private readonly ulong[] Polynomial = { 4, 3, 1, 0 };
 
     private Menaver.NetBitSet.LFSR.LFSR _lfsr = null!;
 
-    [Params(10000, 100000, 1000000)] public ulong ShiftCount;
+    [Params(100000, 1000000, 10000000)] public ulong ShiftCount;
 
     [IterationSetup]
     public void Setup()
