@@ -177,7 +177,7 @@ bytes = bits.ToBytes();
 File.WriteAllBytes("picture.png", bytes);
 ```
 
-### Basic use-case: bit-level data encryption using [linear-feedback shift register (LFSR)](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)
+### Another use-case: symmetric bit-level data encryption using [linear-feedback shift register (LFSR)](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)
 
 ```cs
 var password = "password123";
